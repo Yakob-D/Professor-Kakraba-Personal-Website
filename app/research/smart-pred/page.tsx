@@ -64,6 +64,30 @@ export default function SmartPredPage() {
             </div>
           </div>
         </div>
+
+        <Reveal delay={120} className="mt-10">
+          <blockquote className="relative rounded-2xl border border-line bg-brand-gradient-soft p-6 sm:p-8">
+            <Icon name="quote" className="size-6 text-accent-400" strokeWidth={1.4} />
+            <p className="mt-4 text-pretty text-lg leading-relaxed text-ink sm:text-xl">
+              “{smartPred.quote.text}”
+            </p>
+            <footer className="mt-4 text-[0.875rem] font-medium text-muted">
+              — {smartPred.quote.attribution}
+            </footer>
+          </blockquote>
+        </Reveal>
+
+        <div className="mt-8 flex flex-wrap items-center gap-2">
+          <span className="text-[0.8125rem] font-medium text-muted">Collaborators:</span>
+          {smartPred.collaborators.map((name) => (
+            <span
+              key={name}
+              className="rounded-full border border-line px-3 py-1 text-[0.8125rem] text-ink-soft"
+            >
+              {name}
+            </span>
+          ))}
+        </div>
       </Section>
 
       <Section id="details" tone="tint" className="border-y border-line">

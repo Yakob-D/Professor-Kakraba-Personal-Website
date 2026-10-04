@@ -7,6 +7,7 @@ const iconFor: Record<ResearchOutput["kind"], string> = {
   software: "code",
   patent: "shield",
   collaboration: "users",
+  "in-review": "clock",
 };
 
 export function OutputsList({ items }: { items: ResearchOutput[] }) {

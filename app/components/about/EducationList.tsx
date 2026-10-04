@@ -24,7 +24,10 @@ export function EducationList() {
             {deg.institution}
             {deg.secondInstitution && <> &amp; {deg.secondInstitution}</>}
           </p>
-          <p className="mt-0.5 text-[0.8125rem] text-muted">{deg.location}</p>
+          <p className="mt-0.5 text-[0.8125rem] text-muted">
+            {deg.location}
+            {deg.note && <span className="text-faint"> · {deg.note}</span>}
+          </p>
           {deg.thesis && (
             <p className="mt-2 text-[0.875rem] italic leading-relaxed text-ink-soft">
               “{deg.thesis.title}”

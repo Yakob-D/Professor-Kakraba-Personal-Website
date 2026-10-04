@@ -7,15 +7,14 @@ import { Paragraphs } from "../components/ui/Prose";
 import { Badge } from "../components/ui/Card";
 import { Button } from "../components/ui/Button";
 import { CTABand } from "../components/ui/CTABand";
-import { Icon } from "../components/ui/Icon";
 import { ScaleDiagram } from "../components/ui/GraphNetwork";
 import { AreaCard } from "../components/research/AreaCard";
-import { researchAreas, researchVision, softwareProjects, patents, funding } from "./data";
+import { researchAreas, researchVision, patents, patentsCount, patentsNote, funding, fundingNote } from "./data";
 
 export const metadata: Metadata = {
   title: "Research",
   description:
-    "Explainable AI for public health — four research areas running from molecules to populations.",
+    "Explainable AI for public health — four research pillars running from molecules to populations.",
   alternates: { canonical: "/research" },
 };
 
@@ -28,16 +27,21 @@ export default function ResearchPage() {
         gradientWord="populations."
         lede="One question asked at four different scales: can a model be accurate enough to change a decision, and still explain itself well enough to be trusted?"
       >
-        <Button href="/research/smart-pred" icon="arrow-right">
-          See SMART-Pred
-        </Button>
+        <div className="flex flex-wrap gap-3">
+          <Button href="/research/smart-pred" icon="arrow-right">
+            See SMART-Pred
+          </Button>
+          <Button href="/software" variant="secondary" leadingIcon="code">
+            Software & Tools
+          </Button>
+        </div>
       </PageHeader>
 
       {/* --------------------------------------------------------- vision */}
       <Section id="vision" spacing="lg">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:items-center">
           <div>
-            <SectionHeading eyebrow="Vision" title="One path," gradientWord="four stops." />
+            <SectionHeading eyebrow="Vision" title="One path," gradientWord="four pillars." />
             <Reveal delay={100} className="mt-8">
               <Paragraphs items={researchVision.paragraphs} />
             </Reveal>
@@ -50,10 +54,10 @@ export default function ResearchPage() {
         </div>
       </Section>
 
-      {/* ------------------------------------------------------ 4 areas */}
+      {/* ------------------------------------------------------ 4 pillars */}
       <Section id="areas" tone="tint" className="border-y border-line">
         <SectionHeading
-          eyebrow="Four research areas"
+          eyebrow="Four research pillars"
           title="Pick a scale,"
           gradientWord="start exploring."
         />
@@ -66,40 +70,8 @@ export default function ResearchPage() {
         </ul>
       </Section>
 
-      {/* ----------------------------------------------------- software */}
-      <Section id="software" spacing="lg">
-        <SectionHeading eyebrow="Software & code" title="Built to be" gradientWord="reused." />
-        <ul className="mt-10 grid gap-4 sm:grid-cols-3">
-          {softwareProjects.map((proj, i) => (
-            <Reveal as="li" key={proj.name} delay={i * 90}>
-              <a
-                href={proj.href}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="group/sw flex h-full flex-col rounded-2xl border border-line bg-surface p-6 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-brand-300/70"
-              >
-                <div className="flex items-center justify-between">
-                  <Icon name="code" className="size-5 text-brand-600 dark:text-brand-300" />
-                  <Icon
-                    name="arrow-up-right"
-                    className="size-4 text-faint transition-transform group-hover/sw:translate-x-0.5"
-                  />
-                </div>
-                <h3 className="mt-4 font-mono text-[0.9375rem] font-medium text-ink">
-                  {proj.name}
-                </h3>
-                <p className="mt-2 flex-1 text-[0.8125rem] leading-relaxed text-muted">
-                  {proj.description}
-                </p>
-                <span className="mt-4 text-[0.75rem] text-faint">{proj.language}</span>
-              </a>
-            </Reveal>
-          ))}
-        </ul>
-      </Section>
-
       {/* ------------------------------------------------------- patents */}
-      <Section id="patents" tone="tint" className="border-y border-line">
+      <Section id="patents" spacing="lg">
         <SectionHeading eyebrow="Patents" title="Protecting the" gradientWord="methods." />
         <ul className="mt-10 space-y-3">
           {patents.map((p, i) => (
@@ -110,22 +82,25 @@ export default function ResearchPage() {
                     {p.title}
                   </h3>
                   <p className="mt-1 font-mono text-[0.75rem] text-faint">{p.number}</p>
+                  <p className="mt-1 text-[0.8125rem] text-muted">{p.filingBody}</p>
                   <p className="mt-2.5 text-[0.875rem] leading-relaxed text-muted">
                     {p.description}
                   </p>
                 </div>
-                <div className="flex shrink-0 items-center gap-2">
-                  <Badge tone={p.status === "Granted" ? "brand" : "outline"}>{p.status}</Badge>
-                  <span className="font-mono text-[0.75rem] text-faint">{p.year}</span>
-                </div>
+                <Badge tone="outline" className="shrink-0">
+                  {p.status}
+                </Badge>
               </div>
             </Reveal>
           ))}
         </ul>
+        <p className="mt-5 text-[0.8125rem] italic text-faint">
+          {patentsCount} patents/applications in total. {patentsNote}
+        </p>
       </Section>
 
       {/* ------------------------------------------------------- funding */}
-      <Section id="funding" spacing="lg">
+      <Section id="funding" tone="tint" className="border-y border-line">
         <SectionHeading eyebrow="Funding" title="Who's" gradientWord="behind it." />
         <ul className="mt-10 space-y-3">
           {funding.map((f, i) => (
@@ -143,6 +118,7 @@ export default function ResearchPage() {
             </Reveal>
           ))}
         </ul>
+        <p className="mt-5 text-[0.8125rem] italic text-faint">{fundingNote}</p>
       </Section>
 
       <CTABand />

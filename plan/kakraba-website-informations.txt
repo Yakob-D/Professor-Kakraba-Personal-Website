@@ -1,0 +1,276 @@
+Website Blueprint for Samuel Kakraba, Ph.D.: Site Map, Section-by-Section Content Plan, and Build Recommendations
+Dr. Kakraba should build a 10-item, research-first website on kakrabaresearchgroup.com: a personal "PI + lab" hybrid site organized around four research pillars, with SMART-Pred as the flagship. Global health data science in Ghana and Africa should run through every page as his distinctive brand, and a strong "Join the Lab" page should turn his record of mentoring 20+ international students into a recruiting asset. Privacy-sensitive, outdated and pre-faculty material belongs in an archive layer, not the main navigation.
+TL;DR
+	•	Structure: Home · About · Research · Publications · Software & Tools · Lab & Mentorship · Teaching · Talks & Media · Global Engagement · Join/Contact. CV download, service, awards and funding sit as sub-pages. This mirrors how leading AI-in-medicine and biostatistics labs (Zitnik Lab at Harvard, rafalab at Dana-Farber, Elizabeth Stuart at Johns Hopkins, Mukherjee Lab at Yale) organize their sites, and adds the Ghana/global-engagement and responsible-AI layers that set him apart.
+	•	Positioning: "Explainable, accessible AI for public health — from molecules to populations, New Orleans to Accra." Lead with SMART-Pred (JMIR Aging case study, 91% test accuracy, a WSPH–CAIDS seed grant, Louisiana Department of Health collaboration). Next come verified metrics (17+ peer-reviewed papers, h-index 10, 3 patents/applications, 59 presentations, 47 verified reviews, 2 associate-editor roles) and the newest titles (CAIDS Senior Advisor; Associate Editor of JMIR Aging and Scientific Reports).
+	•	Handle with care: don't name sponsored students or the 2016 surgery patient. Show only funded or awarded grants publicly (pending ones as "under review", without dollar amounts; leave unfunded ones off). Label manuscripts under review as preprints or "in review" only if a preprint exists. Move high school and primary school teaching and track and field to a brief "Story" note. Fix the inconsistencies (CAIDS's official name, Senior Advisor unit, citation counts, an outdated Tulane bio) before launch.
+Key Findings from the Research
+What best-practice guidance says.
+	•	Jennifer van Alstyne (The Academic Designer, host of the Best Personal Academic Websites Contest) lists 35 possible page types, from Homepage, About/Bio, Awards, Service and Leadership to Research/Projects, Teaching, Team/Alumni/Mentoring, Join the Team, Community Engagement, Publications, Talks, Workshops, Consulting, Media Kit, News and Blog. She stresses that you don't need them all; "consider the people you hope to reach."[1]
+	•	She recommends abstracts on publication and talk pages because they "help more people find your website when searching for related topics online."[1]
+	•	She points out that Altmetric badges can be embedded.[1] Altmetric's own page confirms that "the free badges are only available to individual researchers for personal web pages."
+	•	OpenScholar's analysis of faculty sites finds five recurring categories. The "About" category should include a formal biography and a downloadable CV.[2]
+	•	OpenScholar also advises: "If your personal academic website will be your main web presence, make sure to link back to it from all the other places you are active."[2]
+What exemplary sites actually do. I reviewed six sites directly (October 2026):
+	•	Zitnik Lab (Harvard, AI in medicine): menu is About · Research · Publications · Members · Teaching & Conferences · Datasets · AI Models · [flagship tool pages] · News · Join Us. The homepage pairs an "Open Positions" button with a mission statement, three research-theme blocks and a dated news feed with inline [Paper] [Code] [Project website] links.[3] Its Join Us page gives separate instructions for PhD students, undergraduates and visitors. It is candid about email load: "she may not respond to all applicants. Do not take this personally! We do review all applications!"[4]
+	•	rafalab (Irizarry, Dana-Farber/Harvard): Home · About · People · Research · Books · Software · Teaching. Its homepage is a clickable grid of figures from papers, plus listed grant numbers.[5]
+	•	Elizabeth Stuart (Chair of Biostatistics, JHU): built on Hugo Academic, with a CV PDF directly in the menu, a curated software-guide page and talk slides as PDFs. It also has a talks section still labeled "(CONTENT TO BE UPDATED)", a cautionary example of stale content.[6]
+	•	Mukherjee Lab (Yale): a Quarto site with Vision/Mission/Values statements, a Software page of R packages and Shiny apps, an Alumnae page, and a publications list scraped automatically from PubMed.[7][8]
+	•	Nigam Shah (Stanford): free-to-use press photos plus ready-made Short and Long Biographies with metrics, effectively a media kit for event organizers.[9]
+	•	Jeff Leek: a "Work With Me" link in the header and a "Products" section (Talks, Papers, Software, Data, Books, Guides, Courses, Blog).[10]
+	•	Pattern: Software and Teaching get their own menu items on 5 of the 6 sites. Only the most recruitment-oriented lab (Zitnik) has a full Join page, and it is the most useful page for prospective students.
+What already exists online for Dr. Kakraba (audit).
+	•	Tulane coverage gives strong flagship content. The CAIDS/WSPH story on SMART-Pred reports that the platform "currently uses 10 machine learning algorithms," that he intends to expand it to "more than 20,"[11] and that its top model reached "91% test accuracy" in the JMIR Aging case study. It notes collaboration with the Louisiana Department of Health[12] and work toward HIPAA compliance. It names collaborators Sudesh K. Srivastav, Jeffrey G. Shaffer, Edmund F. Agyemang and Han Wenzheng, and quotes him: "SMART-pred represents a new model for public health… AI-driven, explainable, affordable and accessible to everyone."[11][12]
+	•	Symposium coverage. Tulane reports that the "Demystifying AI in Public Health" symposium he co-organized (September 5, 2025) had 9 invited talks, 3 panel sessions, over 100 on-site attendees, 35+ virtual attendees and 18 student poster entrants.[13]
+	•	Partnership coverage. KNUST's International Programmes Office records an MoU with Tulane signed after a Tulane delegation's visit on July 9, 2025.[14]
+	•	Problems found:
+	•	The public Tulane WSPH bio still describes mainly his doctoral-era QSAR/NSAID drug-discovery work. A February 2024 CV PDF is still posted on sph.tulane.edu.[15][16]
+	•	Google Scholar showed "Cited by 297" in a recent snapshot,[17] versus 327+ on the CV.
+	•	CAIDS's official name is the "Connolly Alexander Institute for Data Science", not "of".[11][12]
+	•	A student-built "Kakraba International Research Lab" site exists on Vercel (GitHub: Yakob-D).[18]
+	•	The new site must be the single source of truth that reconciles all of this.
+Recommended Site Map and Navigation
+Primary navigation (desktop, 8 items plus a button):
+	•	Home
+	•	About ▾ Bio & Story · Positions & Affiliations · Education · Honors & Awards · CV (PDF) · Media Kit
+	•	Research ▾ Research Vision · Four Pillars (one page each) · Projects (SMART-Pred, AI-QSAR, Graph-theoretic mutations, Responsible AI) · Funding · Patents · Collaborators & Partners
+	•	Publications ▾ All (filterable) · Featured Papers · Preprints/In Review · Theses & Dissertation · Patents
+	•	Software & Tools ▾ SMART-Pred · GitHub Workflows · Datasets & Reproducibility
+	•	Lab ▾ People · Alumni & Placements · Mentorship · Student Research & Posters · Join the Lab (prospective-student FAQ)
+	•	Teaching ▾ Courses · New Courses in Development · Teaching Philosophy · Guest Lectures · Student Resources · Thesis/Dissertation Supervision
+	•	Engagement ▾ Talks & Keynotes · News & Media · Global Engagement (Ghana/Africa) · Service & Editorial Leadership · Events & Seminars · Insights/Blog
+	•	Contact / Work With Me (highlighted button): collaborate, speaking invitations, media, prospective students
+Footer (every page): email; office (1440 Canal Street, Tulane);[15] icon links to Google Scholar, ORCID 0000-0002-6362-5126, PubMed, GitHub (KakrabaLab), LinkedIn, ResearchGate and the Tulane WSPH/CAIDS/Center for Aging profiles; "Download CV"; "Last updated [date]"; accessibility statement.
+Why this structure: it keeps the menu to roughly 8 top-level items (the exemplars run 6–13). It puts the three audiences he most needs (collaborators and funders, prospective students, media and event organizers) one click from the homepage. It gives Software and Lab their own top-level items, as the strongest biomedical AI labs do.
+Homepage Design (top to bottom)
+	•	Hero: professional photo (the CAIDS headshot style); name with credentials; one-line title: "Assistant Professor of Biostatistics & Data Science · Senior Advisor for Health Data Science Engagement, CAIDS · Tulane University". Pick one tagline (options below). Two buttons: Explore Our Research and Join / Collaborate.
+	•	Impact metrics bar (animated counters, each with an "as of [month/year]" note): 17+ peer-reviewed publications · 327+ citations · h-index 10 · 3 patents/applications · 7+ open ML workflows · 59 presentations · 20+ students mentored into MS/PhD programs · 47 verified peer reviews. Pull citations and h-index automatically or update them quarterly, so they match Google Scholar.
+	•	Research pillars (four cards with icons, each linking to a pillar page):
+	•	AI for Public Health Surveillance & Precision Prediction (SMART-Pred, maternal health, CVD, mental health, hypertension, LLMs for infectious disease surveillance)
+	•	Explainable & Responsible AI (Beyond AUC, epistemic humility, the "Proxy Problem", algorithmic monoculture, cognitive sovereignty)
+	•	AI-Driven Drug Discovery for Aging & Neurodegeneration (AI-QSAR, TDZD analogs, quinoline multi-target inhibitors, C. elegans lifespan models)
+	•	Graph-Theoretic & Computational Biology (CFTR, sickle cell, NBD2, SARS-CoV-2 spike, Hepatitis B)
+	•	A fifth "cross-cutting lens" banner: Global Health Data Science in Africa.
+	•	Flagship feature: SMART-Pred: screenshot or short GIF of the Shiny app, the "91% test accuracy" result, a seed-grant badge, "In collaboration with the Louisiana Department of Health", and buttons for Try the App, Read the Paper and Code.[11]
+	•	Latest news (3–5 dated items): CAIDS Senior Advisor appointment (July 2026); Associate Editor appointments (2026); WSPH–CAIDS seed grant (February 2026); KNUST keynote (2025); LDH AI Symposium (2026).
+	•	Featured publications (3 cards with figure thumbnails): the JMIR Aging SMART-Pred paper; JMIR AI AI-QSAR (DNA polymerase inhibitors); Frontiers in Public Health "Cognitive sovereignty and decolonial public health."[19]
+	•	"Where we work" strip: Tulane WSPH · CAIDS · Tulane Center for Aging · KNUST · University of Ghana · University of Cape Coast · Ensign Global University (use logos only with permission).
+	•	Recruiting call-to-action: "Now recruiting motivated MS/PhD students in health AI. Read how to join →"
+	•	Footer as above.
+Tagline and positioning options:
+	•	"Explainable AI for healthier populations — from molecules to communities."
+	•	"Building trustworthy, accessible AI for public health, from New Orleans to Accra."
+	•	"Data science that predicts earlier, explains clearly, and serves everyone."
+	•	Positioning statement (About page and media kit): "Dr. Samuel Kakraba develops explainable, open machine-learning tools that turn complex health data into earlier, fairer decisions across surveillance, aging and drug discovery, and builds the people and partnerships, especially across Africa, to make public health AI responsible and globally shared."
+Section-by-Section Plan (with CV mapping)
+1. About
+	•	Purpose: credibility and story in 60 seconds; the page journalists, search committees and event hosts read.
+	•	Sub-sections:
+	•	Short bio (~100 words) and long bio (~350 words), both in third person and copyable, as on Nigam Shah's page.[9]
+	•	Story: from mathematics teacher in Ghana (University of Cape Coast BEd) to MS at ETSU, PhD at UALR/UAMS, faculty at EKU, then Tulane. One paragraph; mention the Fante/Twi/English heritage here.
+	•	Positions & Affiliations: Assistant Professor, WSPH (January 2024–present); Senior Advisor for Health Data Science Engagement, CAIDS (July 2026–present);[20] Assistant Professor (tertiary), Tulane Center for Aging, School of Medicine (January 2024–present); Director, Kakraba International Research Lab. Prior: Assistant Professor of Statistics & Data Science, EKU (2021–2023).[16][20]
+	•	Education:
+	•	PhD Bioinformatics, UALR & UAMS 2021, GPA 4.0. Dissertation: "Drugs that Protect Against Protein Aggregation in Neurodegenerative Diseases"; advisor Robert J. Shmookler Reis.
+	•	MS Mathematical Sciences, ETSU 2015. Thesis: "A Hierarchical Graph for Nucleotide Binding Domain 2";[17] advisor Debra Knisley.
+	•	BEd Mathematics, UCC 2011.
+	•	Honors & Awards: Outstanding College Doctoral Candidate and Outstanding Departmental Doctoral Candidate (2020–21); top-ranked student in the College of STEM; 3rd place, Outstanding Oral Presentation, UAMS Drug Discovery Colloquium; ETSU Faculty Award for Outstanding Graduate Student; assistantship awards.
+	•	Skills & Methods: a visual "toolkit" grid. Languages: R, Python, SAS, SPSS, Minitab, Prism, Hadoop. Molecular modeling: GROMACS, Schrödinger Maestro, AutoDock Vina, Discovery Studio, Chimera, Sybyl. Networks: Cytoscape. Infrastructure: Linux, LaTeX.
+	•	Professional memberships: Delta Omega, ISCB, ASA, AAUP, MCBIOS.
+	•	CV: a PDF download button plus "last updated" date.
+	•	Visuals: an interactive career timeline (Ghana → Tennessee → Arkansas → Kentucky → New Orleans); a map pin graphic.
+	•	Make it impressive: open with outcomes, not adjectives. Retire phrases from the current Tulane bio such as "outstanding university assistant professor… with exceptional intellectual abilities";[15] let the metrics speak.
+2. Research
+	•	Purpose: show a coherent agenda, not a list of topics.
+	•	Sub-sections:
+	•	Research Vision (new, ~300 words): the arc "molecules → patients → populations," with explainability and equity as the common thread.
+	•	Four pillar pages, each with: the problem (in plain language), the approach, key outputs (papers, software, patents), team, funding, and "what's next" (pending grants phrased as directions, not dollars).
+	•	Pillar 1, AI for public health surveillance and prediction: SMART-Pred; postpartum depression, sepsis, heart failure and CVD prediction; mental health and hypertension workflows; LLMs for infectious disease surveillance (in review); Parkinson's voice pipeline (Data); handwriting-based Alzheimer's screening.[12][21]
+	•	Pillar 2, Responsible and explainable AI: Frontiers in Public Health "cognitive sovereignty"; manuscripts in review on the "Proxy Problem," algorithmic monoculture, "Beyond AUC," epistemic humility in clinical AI, and generative AI as public health language infrastructure; the new BIOS 6790 course; the WSPH AI Literacy committee.
+	•	Pillar 3, AI-driven drug discovery for aging: the two JMIR AI AI-QSAR papers; Pharmaceuticals (TDZD analogs, C. elegans lifespan); Frontiers in Molecular Neuroscience; iScience; Antioxidants & Redox Signaling; Molecules. Patents: quinoline multi-target AChE/aggregation inhibitors (Tulane OIPM 2026) and TDZD analogs (US20230125667A1; PCT/US/2021/017970); NIH P01 AG012411 heritage.[15][16][19]
+	•	Pillar 4, Graph-theoretic computational biology: CFTR and sickle-cell mutation models; NBD2 hierarchical graph; SARS-CoV-2 spike edge weights (JMIR Bioinformatics and Biotechnology); Hepatitis B graph/MD/ML (in review); the "machine learning unveils novel… associations among amino acids" work.[17]
+	•	Projects: one card per project (SMART-Pred, AI-QSAR, HBsAg workflow, AI-optimized consensus clustering).
+	•	Funding: Current: PI, WSPH–CAIDS AI Seed Grant, SMART-Pred (2026–2027).[11] Prior support: NIH/NIA P01, VA, Arkansas INBRE (as a graduate research assistant; label it that way).[11]
+	•	Patents: all three, with status labels (application/publication number, filing body).
+	•	Collaborators & Partners: Tulane Biostatistics colleagues, the Louisiana Department of Health,[12] UAMS colleagues, the Ghanaian partner institutions.
+	•	Visuals: a "molecules-to-populations" diagram; an interactive collaboration network graph (fitting for a graph theorist); figure thumbnails from papers (rafalab style).[5]
+	•	Make it impressive: every pillar page should end in three buttons: Papers · Code · Data.
+3. Publications
+	•	Purpose: the authoritative, searchable record.
+	•	Features:
+	•	Filters by year, pillar/topic, type (journal / preprint / patent / thesis) and role (first or senior author; mentee co-author, marked with an asterisk or dagger).
+	•	Per-item buttons: PDF (where open access) · DOI · Code · Slides · Cite (BibTeX).
+	•	Short abstracts; free Altmetric badges;[1] Google Scholar and ORCID links at the top.[22]
+	•	Sections:
+	•	Featured (5–6 papers with a one-sentence "why it matters").
+	•	Peer-reviewed 2016–2026, covering all the journals listed on the CV: Acta Psychologica; Network Modeling Analysis in Health Informatics and Bioinformatics; Scientific Reports; Frontiers in Public Health; JMIR AI (×2); Data; JMIR Aging; JMIR Bioinformatics and Biotechnology; Pharmaceuticals; Frontiers in Molecular Neuroscience; iScience; Antioxidants & Redox Signaling; Molecules; the graph-theoretic mutation papers.
+	•	Preprints / In Review (only items with a public preprint, linked).
+	•	Theses (the ETSU MS thesis and the UAMS dissertation, linked to the ProQuest/ETSU repository).
+	•	Patents.
+	•	Make it impressive: highlight student co-authors. It turns the publication list into evidence of mentoring.
+4. Software & Tools
+	•	Purpose: this is his strongest differentiator for a health data science audience. Open, reproducible tools are what labs like Zitnik and Mukherjee showcase.[8][23]
+	•	Content:
+	•	SMART-Pred: its own landing page with a live Shiny demo, a feature list (multi-algorithm comparison, explainability, no coding needed), the paper and a citation, a roadmap (10 → 20+ algorithms, multi-disease validation, HIPAA compliance), and the team.[11]
+	•	GitHub (KakrabaLab) gallery: AI-optimized consensus clustering; Parkinson's pipeline; SARS-CoV-2 edge weights; mental health and hypertension workflows; HBsAg workflow; the Python multi-model predictive-modeling pipeline built with students.[24] Each card shows language, license, live star count, a "Run in Colab/Binder" button and the linked paper.
+	•	Reproducibility statement: how the lab shares code and data.
+	•	Make it impressive: add short demo videos (60–90 seconds) and a "Cite this software" box with Zenodo DOIs for each repository.
+5. Lab (People, Mentorship, Join)
+	•	People:
+	•	PhD advisees he chairs: Agyemang, Akter, Yemeh, Netsey. Feature them with photo, bio and project, with consent.
+	•	MS thesis students, grouped by topic: ML for postpartum depression, endometriosis XAI, sepsis, heart failure, Parkinson's, the Alzheimer's R Shiny app.
+	•	Committee memberships, including the international committee in Mali and Tulane SOM.
+	•	Alumni & Placements: the 2014–present mentee list rendered as "where they went" (program and institution only), as on Stanford's Shah Lab alumni page.[25] Present the 20+ international students placed in MS/PhD programs and the ~10 US students from underrepresented groups as aggregate figures, not a named roster, unless each person opts in.
+	•	Student Research: a gallery of TRICS and Tulane AI Symposium posters, and student awards.
+	•	Join the Lab (new; high priority):
+	•	Openings by type (PhD, MS thesis, undergraduate, visiting scholar, postdoc when funded).
+	•	Programs he advises through (Tulane Biostatistics and Data Science PhD/MS; the Graduate Biostatistics Certificate).
+	•	What he looks for; a required email subject line or interest form; expected time commitment; funding realities.
+	•	An FAQ: "Do you take international students?", "Can you review my profile before I apply?", "Do you offer assistantships?", "Do you respond to every email?"
+	•	Model the honesty on Zitnik's page.[4] Students often email professors in advance to learn whether a lab is recruiting, so a clear page saves time on both sides.[26]
+	•	Mentorship Philosophy: a short statement; his own pathway is the credibility.
+6. Teaching
+	•	Courses:
+	•	Tulane: BIOS 7650 Statistical Learning in Data Science; BIOS 6310 Intro to Methods in Data Science.
+	•	EKU: R and Data Mining, Regression, Applied Statistics, Statistical ML in R, Multivariate.
+	•	ETSU: MATH 1530.
+	•	A headline figure: "20+ courses across 4 universities."
+	•	New courses in development: BIOS 6980 AI for Biomedical and Public Health Applications (Spring 2027); BIOS 6790 Responsible AI Ethics and Governance (Fall 2027); R for Biomedical and Public Health Data Science. Each gets a description and learning outcomes; this signals curriculum leadership.
+	•	Teaching philosophy: student-centered, applied, reproducible, responsible AI.
+	•	Guest lectures: "C. elegans as a model of aging," "Responsible Research Conduct Using AI," "AI at the Frontiers of Aging."
+	•	Student resources: R/Python starter guides, recommended readings, and letter-of-recommendation request instructions (a page type van Alstyne recommends).[1]
+	•	Evaluations: use selected quotes and a single summary line rather than percentages. See Caveats.
+7. Talks & Media
+	•	Talks:
+	•	A filterable list of the 59 presentations, with types (keynote / invited / panel / contributed / student poster) and a map view.
+	•	Pin: Keynote, KNUST 11th Biennial Scientific Conference (2025); Louisiana Department of Health AI Symposium (2026); Tulane Medical Grand Rounds (2024); AfriQAN/Association of African Universities (2024); MCBIOS; panels at University of Ghana, UCC, KNUST and Ensign.
+	•	Slides and video where available; embed the EKU Spark Talk "Beyond the Algorithm."
+	•	News & Media:
+	•	CAIDS Senior Advisor announcement; Tulane/CAIDS SMART-Pred story; WSPH seed grants (February 2026); "How to become a leader in public health AI" (November 2025).[11][21]
+	•	"Demystifying AI in Public Health" symposium coverage; Ghana partnership coverage (Graphic.com.gh, partner universities); UAMS and ETSU features.[27]
+	•	Show outlet logos with headline, date and an excerpt.
+	•	Media Kit / Speaking: short and long bios, high-resolution headshots ("free to use with credit"),[9] speaking topics (e.g., "Explainable AI for public health practice," "Responsible AI governance," "AI and decolonial global health," "From handwriting to health: AI for early Alzheimer's screening"), formats (keynote, panel, workshop), and a booking form.
+8. Global Engagement (Ghana & Africa)
+	•	Purpose: his most distinctive asset. Give it its own top-level presence, not just a news item.
+	•	Content:
+	•	His role as University Liaison for Global Engagement with KNUST, Ensign Global University, UCC and the University of Ghana.
+	•	The Tulane–KNUST MoU (2025) and related agreements.[14]
+	•	Keynotes and panels in Ghana; capacity building; the "cognitive sovereignty" scholarship as the intellectual frame.
+	•	Pending capacity-building aims, phrased as goals rather than named unfunded grants.
+	•	Visuals: an interactive map; a partner logo wall; a photo gallery from visits.
+	•	Philanthropy: a single respectful line: "Committed to expanding access to higher education in Ghana, including personally supporting students' university studies and community health fundraising." No names, amounts or photos of beneficiaries.
+9. Service & Leadership (sub-page under Engagement, linked from About)
+	•	Editorial: Associate Editor, JMIR Aging and Scientific Reports (2026–); reviewer for many journals; "47 ORCID-verified reviews across 16 journals (2024–2026)", linking to ORCID's peer-review section.
+	•	Tulane leadership:
+	•	WSPH representative, AI Literacy committee; Director, Areas of Specialization; Director, Graduate Biostatistics Certificate Program.
+	•	University Liaison for Global Engagement; Dean's Research Committee; Curriculum Committee; Dean's Data Science & AI Initiative expert member.
+	•	Faculty lead, Biostatistics & Data Science Seminar Series; co-organizer of the "Demystifying AI in Public Health" symposium.[13]
+	•	Earlier service: Director of the Statistical Consulting Center, EKU; chair of the EKU math/stats symposium.
+	•	Format: a leadership "cards" layout (role · impact · years) rather than a dense list.
+10. Insights / Blog (new)
+	•	Monthly or quarterly short posts: plain-language paper summaries, SMART-Pred tutorials, responsible-AI commentary, student spotlights, and "notes from Ghana."
+	•	Posts build search visibility and give media something to quote. Quarto or Hugo can publish R Markdown or Jupyter notebooks directly.[28][29]
+11. Contact / Work With Me
+	•	Separate routes for: research collaboration · speaking and media · prospective students (redirects to Join first) · industry and health-department partnerships · statistical consulting (if offered).
+	•	Always show his email next to any form, as van Alstyne advises.[1] Include an office map and a "typical response time" line.
+Optional and archive pages
+	•	Professional development & certifications (CITI; Coursera R, Data Scientist's Toolbox, Drug Discovery) as a collapsible list in the CV only.
+	•	Life beyond academia: track and field (5K, 1500m, 3000m wins), languages and faith or community roots, as a short humanizing paragraph.
+Additional Sections to Add (not on the CV)
+	•	Research Vision statement
+	•	Lab Values (as Mukherjee Lab does: reproducibility, rigor, inclusion, impact)[8]
+	•	Prospective-student FAQ
+	•	Media kit with photos
+	•	Testimonials: short quotes from mentees, partners and co-organizers, with permission
+	•	"In the Classroom" photos
+	•	Open data/code policy
+	•	Newsletter signup
+	•	Events calendar (seminar series, symposium)
+	•	"Selected Impact" page (policy and practice use: the LDH collaboration, SMART-Pred adoption)
+	•	Accessibility statement
+	•	Press-ready one-page PDF fact sheet
+Recommendations (prioritized build order)
+	•	Phase 1 (weeks 1–3, minimum viable impressive site): Home, About + CV, Research (vision + 4 pillars), Publications, SMART-Pred page, Join the Lab, Contact.
+	•	Phase 2 (weeks 4–6): Software gallery, Teaching, Talks & Media + Media Kit, Global Engagement, Lab people and alumni.
+	•	Phase 3 (ongoing): Blog/Insights, Service, testimonials, news updated at least monthly. Set a quarterly review of metrics and links; Stuart's "(CONTENT TO BE UPDATED)" label shows what neglect looks like.[6]
+	•	Also: ask Tulane WSPH to replace the outdated bio and February 2024 CV PDF,[15][16] and link all institutional profiles back to kakrabaresearchgroup.com.
+Caveats: What to Downplay or Present Carefully
+	•	Privacy and dignity:
+	•	Don't name the students he sponsored or the teen whose surgery he fundraised for, and don't post amounts. Describe the commitment in aggregate.
+	•	List mentees only with consent; avoid publishing visa or immigration details for any individual.
+	•	Funding:
+	•	Show current awards publicly.
+	•	List pending proposals (the $3.55M adverse pregnancy outcomes study, the Macy Foundation SMART-Pred v2, the AD/ADRD and NSF proposals) as "under review", without dollar amounts and only with co-investigator consent. Better still, describe them as research directions.
+	•	Never list unfunded applications (NIH D43, Gates, Coefficient Giving, R01s) on the website; they belong in internal dossiers only.
+	•	Describe NIH P01, VA and INBRE support as "graduate research assistant on…" so it is not read as his own PI funding.
+	•	Manuscripts: "15+ under review" and "15 in preparation" shouldn't appear as headline metrics. On the public site, list only peer-reviewed work and public preprints. In-review items without a preprint can be mentioned by topic on pillar pages.
+	•	Early career: keep secondary and primary school teaching in Ghana (Wesley Girls' High School, 2009–2013, and earlier schools) as a single sentence in the "Story" section. It makes a compelling origin narrative but shouldn't be a CV-style list. Omit high school achievements.
+	•	Teaching evaluations: "80–82% would recommend" at Tulane reads weaker than EKU's near-100% and invites comparison. Use qualitative quotes, or phrase it as "consistently strong student evaluations" with selected comments.
+	•	Consistency fixes before launch:
+	•	Use "Connolly Alexander Institute for Data Science" throughout.[11][12]
+	•	Decide how to present the Senior Advisor role and place it under CAIDS only. The CV lists it under different units; ResearchGate dates it July 2026.[20]
+	•	Use one citation figure with a date stamp. Google Scholar recently displayed 297 versus the CV's 327+, so pull it live or state "per Google Scholar, [month year]."[17]
+	•	Align titles: the March 2026 CAIDS story calls him a "faculty affiliate", from before the advisor appointment.[11]
+	•	Note that the Frontiers in Public Health paper lists his affiliation as the Tulane Center for Aging; make sure affiliations read consistently across papers and profiles.[19]
+	•	Tone: avoid self-superlatives, which the current institutional bio uses.[15] Specific numbers and third-party coverage persuade more.
+	•	The existing Vercel site: coordinate with the student developer, then redirect or retire it so search engines see one canonical lab site.[18]
+Technical and Platform Recommendations
+	•	Recommended: Quarto (or Hugo Blox "Academic CV/Research Group"), hosted free on GitHub Pages or Netlify under kakrabaresearchgroup.com.
+	•	Why Quarto: he works in R; Quarto renders R/Python notebooks as blog posts; Yale's Mukherjee Lab uses it with publications pulled automatically from PubMed.[7][8]
+	•	Hugo Academic (formerly Wowchemy) is MIT-licensed. It offers BibTeX publication import, talks and slides, and a research-group template with team, news and contact blocks, and is used at Stanford, MIT and elsewhere.[30][31][32][33]
+	•	Either keeps content in Markdown he owns. Disregard the vendor marketing claims such as "citations up 3×"; they are unverified testimonials.[32][34][35]
+	•	No-code alternatives:
+	•	Owlstown: built for academics; Semantic Scholar/BibTeX import; custom domain on the Pro tier at $6/month billed yearly ($8 billed monthly), per Owlstown's pricing page.
+	•	Squarespace or Framer: the most polished design, but weak publication handling.
+	•	WordPress with a scholarly plugin: flexible, but more maintenance and security work.
+	•	Since he already has GitHub and student developers, a static site is the best long-term fit.
+	•	Publication automation: a single BibTeX/ORCID-sourced file that feeds the publications page through a GitHub Action (ORCID or PubMed API), with a quarterly manual check. Embed free Altmetric badges.[22]
+	•	SEO:
+	•	Use Person schema (JSON-LD) on About with name, jobTitle, worksFor (Tulane), alumniOf, knowsAbout (biostatistics, explainable AI, public health surveillance) and sameAs links to ORCID, Google Scholar, LinkedIn, GitHub and Tulane profiles.[36][37][38]
+	•	Give each publication its own page with an abstract. If PDFs are hosted, add Google Scholar citation meta tags: Google Scholar's Inclusion Guidelines for Webmasters require "at least three fields" (the title, the full name of at least the first author, and the year of publication), and PDFs are "processed as if they had no meta tags at all, unless they're linked from the corresponding HTML abstracts using citation_pdf_url."
+	•	Use descriptive page titles ("Samuel Kakraba | Explainable AI for Public Health | Tulane").
+	•	Submit a sitemap to Google Search Console.
+	•	Accessibility: build to WCAG 2.1 AA, ideally 2.2 AA:
+	•	alt text on all figures; captions or transcripts on videos; color contrast that meets the standard; keyboard navigation; text-based (not scanned) PDFs.[39][40]
+	•	Tulane is private, so the DOJ's ADA Title II web rule doesn't directly apply. But WCAG 2.1 AA is the federal benchmark, and DOJ's interim final rule of April 20, 2026 moved the Title II deadlines back by a year: per Jackson Lewis, to April 26, 2027 for entities with populations of at least 50,000 and April 26, 2028 for smaller ones (most sources give the original large-entity deadline as April 24, 2026).
+	•	Other: a mobile-first layout; light and dark mode; privacy-respecting analytics (Plausible or GA4) to see which pages students and media use; a custom 404 page; a "Last updated" stamp; HTTPS; and a backup of all content in the GitHub repository.
+Sources
+	•	35 Page Ideas for Your Academic Personal Website
+	•	How to Create an Impactful Faculty Website
+	•	Artificial Intelligence for Science and Medicine
+	•	Open Positions
+	•	rafalab
+	•	Elizabeth A. Stuart
+	•	GitHub - ysph-dsde/mukherjee-lab · GitHub
+	•	Mukherjee Lab
+	•	nigam_shah [Shah Lab]
+	•	Jeff Leek
+	•	Tulane University professor creates AI-driven SMART-pred platform that aims to transform public health surveillance
+	•	Tulane University professor creates AI-driven SMART-pred platform that aims to transform public health surveillance
+	•	AI Research Symposium: Demystifying AI in Public Health
+	•	Partnerships and MOU's
+	•	Samuel Kakraba, PhD PROFILES Institutional/Work (Tulane University)
+	•	Samuel Kakraba, PhD
+	•	Samuel Kakraba, Ph.D.
+	•	GitHub - Yakob-D/Kakraba-International-Research-Lab: This is the official website of Kakraba International Research Lab. · GitHub
+	•	Frontiers
+	•	Samuel KAKRABA
+	•	How to become a leader in public health AI
+	•	Free Badges for Individual Researchers - Altmetric
+	•	Artificial Intelligence for Medicine and Science @ Harvard Zitnik Lab · GitHub
+	•	Samuel Kakraba, Ph.D. - Professor(Assistant) of Biostatistics and Data Science - Tulane University School of Public Health and Tropical Medicine
+	•	lab_members [Shah Lab]
+	•	How to Email Professors for Graduate School: Do’s and Don’ts
+	•	Demystifying AI in Public Health
+	•	HugoBlox · GitHub
+	•	Creating an academic website using Quarto
+	•	getting started
+	•	Hugo Academic — Free Academic Theme & CV Template for Researchers
+	•	Academic CV — Hugo Site Template · HugoBlox
+	•	GitHub - HugoBlox/theme-research-group: 👥 轻松创建研究组或组织网站 Easily create a stunning Research Group, Team, or Business Website with no-code
+	•	GitHub - ghj0504520/academic-page: Created from Hugo Blox template: theme-academic-cv · GitHub
+	•	GitHub - Xgogu/academic-website: Created from HugoBlox template: hugo-theme-academic-cv · GitHub
+	•	Schema sameAs: How Entity Disambiguation Works
+	•	Person Schema: Complete Reference - Plain Intelligence
+	•	Schema for AEO: Which Structured Data Types Get You Cited
+	•	Best Practices
+	•	New Regulations on ADA Title II Web Accessibility

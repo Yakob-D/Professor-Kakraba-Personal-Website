@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/research",
     "/research/smart-pred",
     "/publications",
+    "/software",
     "/teaching",
     "/engagement",
     "/contact",

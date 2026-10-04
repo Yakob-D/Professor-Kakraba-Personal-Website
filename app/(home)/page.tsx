@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 
 import { Hero } from "../components/home/Hero";
-import { Intro } from "../components/home/Intro";
 import { AtAGlance } from "../components/home/AtAGlance";
 import { ResearchAreas } from "../components/home/ResearchAreas";
+import { CrossCuttingBanner } from "../components/home/CrossCuttingBanner";
 import { FeaturedWork } from "../components/home/FeaturedWork";
-import { SelectedPublications } from "../components/home/SelectedPublications";
 import { RecentNews } from "../components/home/RecentNews";
+import { SelectedPublications } from "../components/home/SelectedPublications";
 import { Affiliations } from "../components/home/Affiliations";
+import { RecruitingCta } from "../components/home/RecruitingCta";
 import { CTABand } from "../components/ui/CTABand";
 import { profile, siteMeta } from "../data/site";
 
@@ -20,18 +21,24 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-/** Homepage. Sections follow §3 of the plan, top to bottom. */
+/**
+ * Homepage. Section order follows the source document's "Homepage Design"
+ * spec exactly: Hero, impact metrics, research pillars, the cross-cutting
+ * banner, the flagship tool, latest news, featured publications, "where we
+ * work," the recruiting CTA, then the site-wide closing band and footer.
+ */
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <Intro />
       <AtAGlance />
       <ResearchAreas />
+      <CrossCuttingBanner />
       <FeaturedWork />
-      <SelectedPublications />
       <RecentNews />
+      <SelectedPublications />
       <Affiliations />
+      <RecruitingCta />
       <CTABand />
     </>
   );

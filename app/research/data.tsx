@@ -1,7 +1,12 @@
 /* =============================================================================
    RESEARCH DATA
-   Drives /research (overview), /research/[area] (4 dynamic pages) and
-   /research/smart-pred. All exports are JSON-serialisable.
+   Source: Kakraba-Website-Informations.docx. Pillar names, topics, patent
+   numbers and funding are drawn from that document; see app/data/site.tsx
+   for the general sourcing note. In-review manuscripts without a public
+   preprint are named by topic only, per the document's explicit rule that
+   they "shouldn't appear as headline metrics" and belong on pillar pages,
+   not the public Publications list. Unfunded/pending grant applications are
+   omitted entirely, per the document's funding caveats.
    ========================================================================== */
 
 import type { ImageRef } from "@/app/data/site";
@@ -11,7 +16,7 @@ import type { ImageRef } from "@/app/data/site";
 export type ResearchOutput = {
   label: string;
   href?: string;
-  kind: "paper" | "software" | "patent" | "collaboration";
+  kind: "paper" | "software" | "patent" | "collaboration" | "in-review";
 };
 
 export type ResearchArea = {
@@ -35,34 +40,41 @@ export const researchAreas: ResearchArea[] = [
   {
     slug: "ai-public-health-surveillance",
     number: "01",
-    title: "AI for Public Health Surveillance & Prediction",
-    shortTitle: "Surveillance & Prediction",
+    title: "AI for Public Health Surveillance & Precision Prediction",
+    shortTitle: "Surveillance & Precision Prediction",
     icon: "activity",
     summary:
-      "Early-warning models for the conditions that move population health, built so the people using them can see why a prediction was made.",
+      "Early-warning and precision-prediction models for the conditions that move population health, built so the people using them can see why a prediction was made.",
     problem:
-      "Public health teams often learn about a rising risk — maternal complications, sepsis, a cardiovascular event, a mental-health crisis — after it has already become urgent. The data to act earlier usually exists; it is rarely turned into a timely, trustworthy signal.",
+      "Public health teams often learn about a rising risk — postpartum depression, sepsis, a cardiovascular event, a mental-health crisis — after it has already become urgent. The data to act earlier usually exists; it is rarely turned into a timely, trustworthy signal.",
     approach:
-      "We build interpretable machine-learning models on routinely collected health data, validated with state and clinical partners, and designed from the start to explain their own output rather than treat explanation as an afterthought.",
+      "Interpretable machine-learning models built on routinely collected health data, validated with state and clinical partners, and designed from the start to explain their own output. SMART-Pred, developed with the Louisiana Department of Health, is the flagship: it currently runs 10 machine-learning algorithms, with a roadmap toward more than 20.",
     keyOutputs: [
       { label: "SMART-Pred", href: "/research/smart-pred", kind: "software" },
-      { label: "Maternal health risk model", kind: "paper" },
-      { label: "Sepsis early-warning study", kind: "paper" },
+      { label: "Postpartum depression prediction model", kind: "paper" },
+      { label: "Sepsis and heart-failure/CVD prediction", kind: "paper" },
+      { label: "Parkinson's voice pipeline, published in Data", kind: "paper" },
+      { label: "Handwriting-based Alzheimer's screening", kind: "paper" },
+      { label: "Mental health & hypertension workflows", kind: "paper" },
+      { label: "LLMs for infectious disease surveillance", kind: "in-review" },
       { label: "Louisiana Department of Health partnership", kind: "collaboration" },
     ],
     whatsNext:
-      "Extending SMART-Pred's approach to heart failure and CVD risk, and to an Alzheimer's screening tool built on handwriting dynamics.",
+      "Extending SMART-Pred toward more than 20 algorithms, multi-disease validation and HIPAA compliance, under the WSPH–CAIDS AI Seed Grant (2026–2027).",
     topics: [
+      "SMART-Pred",
       "Maternal health",
       "Sepsis",
       "Heart failure & CVD",
       "Mental health",
+      "Hypertension",
+      "Infectious disease surveillance (LLMs)",
       "Alzheimer's handwriting screening",
     ],
     image: {
       src: null,
       alt: "A clinical dashboard showing a population health risk prediction",
-      caption: "An early version of the SMART-Pred risk dashboard.",
+      caption: "SMART-Pred, developed with the Louisiana Department of Health.",
     },
   },
   {
@@ -76,15 +88,28 @@ export const researchAreas: ResearchArea[] = [
     problem:
       "A model can be accurate and still be useless in practice if nobody downstream can tell why it made a particular call — or can see when it should not be trusted. In global health settings, this gap often falls hardest on the people with the least power to question the model.",
     approach:
-      "This area is partly methodological — evaluation frameworks that go beyond a single metric like AUC — and partly argumentative: naming who gets to interpret a model's output, and designing systems that stay humble about what they don't know.",
+      "Partly methodological work on evaluation frameworks that go beyond a single metric like AUC, and partly argumentative work naming who gets to interpret a model's output and designing systems that stay humble about what they don't know. This area anchors a new course, BIOS 6790, and Tulane's WSPH AI Literacy committee.",
     keyOutputs: [
-      { label: "Cognitive sovereignty, Frontiers in Public Health", href: "/publications#cognitive-sovereignty", kind: "paper" },
-      { label: "Beyond AUC: evaluation framework", kind: "paper" },
-      { label: "Epistemic humility in clinical AI", kind: "paper" },
+      {
+        label: "Cognitive sovereignty and decolonial public health, Frontiers in Public Health",
+        href: "/publications#cognitive-sovereignty",
+        kind: "paper",
+      },
+      { label: "\"The Proxy Problem\"", kind: "in-review" },
+      { label: "Algorithmic monoculture", kind: "in-review" },
+      { label: "Beyond AUC", kind: "in-review" },
+      { label: "Epistemic humility in clinical AI", kind: "in-review" },
+      { label: "Generative AI as public health language infrastructure", kind: "in-review" },
     ],
     whatsNext:
-      "A practical checklist for health departments evaluating a vendor's AI claims, grounded in the same framework.",
-    topics: ["Cognitive sovereignty", "Beyond AUC", "Epistemic humility", "Model governance"],
+      "Several manuscripts from this pillar are currently in review; as they clear peer review, they will move from this page onto the Publications list.",
+    topics: [
+      "Cognitive sovereignty",
+      "Beyond AUC",
+      "The Proxy Problem",
+      "Algorithmic monoculture",
+      "Epistemic humility",
+    ],
     image: {
       src: null,
       alt: "A diagram comparing model accuracy against interpretability",
@@ -94,23 +119,29 @@ export const researchAreas: ResearchArea[] = [
   {
     slug: "ai-drug-discovery-aging",
     number: "03",
-    title: "AI-Driven Drug Discovery for Aging",
-    shortTitle: "Drug Discovery for Aging",
+    title: "AI-Driven Drug Discovery for Aging & Neurodegeneration",
+    shortTitle: "Drug Discovery for Aging & Neurodegeneration",
     icon: "flask",
     summary:
-      "Machine-learning structure–activity modelling to narrow the search for compounds that act on age-related disease pathways.",
+      "Machine-learning structure–activity modelling to narrow the search for compounds that act on aging and neurodegenerative-disease pathways.",
     problem:
       "Screening candidate compounds against age-related disease targets by hand is slow and expensive, and most candidates fail. A model that can rank candidates before any wet-lab work begins saves both time and reagents.",
     approach:
-      "AI-QSAR combines machine-learning structure–activity modelling with molecular docking and simulation (GROMACS, Maestro, AutoDock Vina) to prioritise compounds — including TDZD analogs and quinoline-based inhibitors — for further testing.",
+      "AI-QSAR combines machine-learning structure–activity modelling with molecular docking and simulation (GROMACS, Schrödinger Maestro, AutoDock Vina) to prioritise compounds — including TDZD analogs, quinoline-based multi-target inhibitors, and C. elegans lifespan models — for further testing.",
     keyOutputs: [
-      { label: "AI-QSAR, JMIR AI", href: "/publications#ai-qsar-jmir-ai", kind: "paper" },
-      { label: "TDZD analog screening study", kind: "paper" },
-      { label: "Quinoline inhibitor docking study", kind: "paper" },
+      { label: "AI-QSAR for DNA polymerase inhibitors, JMIR AI", kind: "paper" },
+      { label: "Second AI-QSAR study, JMIR AI", kind: "paper" },
+      { label: "TDZD analogs & C. elegans lifespan models, Pharmaceuticals", kind: "paper" },
+      { label: "Published work in Frontiers in Molecular Neuroscience", kind: "paper" },
+      { label: "Published work in iScience", kind: "paper" },
+      { label: "Published work in Antioxidants & Redox Signaling", kind: "paper" },
+      { label: "Published work in Molecules", kind: "paper" },
+      { label: "Quinoline multi-target AChE/aggregation inhibitors — patent filed", kind: "patent" },
+      { label: "TDZD analogs — patent", kind: "patent" },
     ],
     whatsNext:
-      "Validating the top-ranked AI-QSAR candidates in collaboration with wet-lab partners at the Tulane Center for Aging.",
-    topics: ["AI-QSAR", "TDZD analogs", "Quinoline inhibitors", "Molecular docking"],
+      "Validating top-ranked AI-QSAR candidates in collaboration with wet-lab partners at the Tulane Center for Aging.",
+    topics: ["AI-QSAR", "TDZD analogs", "Quinoline inhibitors", "C. elegans lifespan models"],
     image: {
       src: null,
       alt: "A molecular docking visualization of a candidate compound",
@@ -128,16 +159,19 @@ export const researchAreas: ResearchArea[] = [
     problem:
       "A protein's function often depends on a small number of structurally critical residues, buried inside a huge space of possible interactions. Graph theory gives a principled way to find them.",
     approach:
-      "Protein structures are represented as residue-interaction graphs and analysed with centrality and community-detection methods, then linked back to known disease mechanisms.",
+      "Protein structures are represented as residue-interaction graphs and analysed with centrality and community-detection methods. This method traces back to his master's thesis — a hierarchical graph for Nucleotide Binding Domain 2 (NBD2) — and has since generalised across several structural targets.",
     keyOutputs: [
-      { label: "CFTR structural network analysis", kind: "paper" },
-      { label: "Sickle-cell haemoglobin study", kind: "paper" },
-      { label: "SARS-CoV-2 spike protein network analysis", kind: "paper" },
-      { label: "Hepatitis B structural study", kind: "paper" },
+      { label: "CFTR and sickle-cell mutation models", kind: "paper" },
+      { label: "A Hierarchical Graph for Nucleotide Binding Domain 2 (M.S. thesis)", kind: "paper" },
+      {
+        label: "SARS-CoV-2 spike edge weights, JMIR Bioinformatics and Biotechnology",
+        kind: "paper",
+      },
+      { label: "Hepatitis B structural graph/MD/ML analysis", kind: "in-review" },
     ],
     whatsNext:
-      "Applying the same graph-theoretic pipeline to targets identified by the drug-discovery line of work.",
-    topics: ["CFTR", "Sickle cell", "SARS-CoV-2 spike protein", "Hepatitis B"],
+      "The Hepatitis B structural analysis is currently in review. Future work applies the same graph-theoretic pipeline to targets identified by the drug-discovery pillar.",
+    topics: ["CFTR", "Sickle cell", "NBD2", "SARS-CoV-2 spike protein", "Hepatitis B"],
     image: {
       src: null,
       alt: "A network diagram of a protein's residue interactions",
@@ -156,33 +190,39 @@ export type SmartPredSection = { title: string; body: string };
 
 export const smartPred = {
   name: "SMART-Pred",
-  tagline: "An open, explainable early-warning tool for population health risk.",
+  tagline: "An explainable, AI-driven platform for public health surveillance.",
   description:
-    "SMART-Pred turns routinely collected health data into a risk estimate a public health team can act on, paired with an explanation of the factors behind it. It was built and validated in partnership with the Louisiana Department of Health, and both the trained model and the source code are released openly.",
-  result: { value: "91%", label: "Test accuracy" },
+    "SMART-Pred turns routinely collected health data into a risk estimate a public health team can act on, paired with an explanation of the factors behind it. Developed with the Louisiana Department of Health, it currently runs 10 machine-learning algorithms, with a roadmap toward more than 20, and its top model reached 91% test accuracy in a JMIR Aging case study.",
+  quote: {
+    text: "SMART-pred represents a new model for public health… AI-driven, explainable, affordable and accessible to everyone.",
+    attribution: "Samuel Kakraba, Ph.D.",
+  },
+  result: { value: "91%", label: "Test accuracy, JMIR Aging case study" },
   partner: {
     name: "Louisiana Department of Health",
     description:
-      "SMART-Pred was developed and validated against LDH surveillance data, with the department as a direct collaborator on model design and evaluation criteria.",
+      "SMART-Pred was developed and validated with the Louisiana Department of Health, working toward HIPAA compliance.",
   },
+  // Collaborators named in Tulane's own CAIDS/WSPH press coverage of SMART-Pred.
+  collaborators: ["Sudesh K. Srivastav", "Jeffrey G. Shaffer", "Edmund F. Agyemang", "Han Wenzheng"],
   sections: [
     {
       title: "What it is",
-      body: "A web-based prediction tool: enter the relevant inputs and SMART-Pred returns a risk estimate alongside the top factors driving that estimate, so the output can be checked rather than taken on faith.",
+      body: "A machine-learning platform: it returns a risk estimate alongside the factors driving it, so the output can be checked rather than taken on faith. It currently uses 10 machine-learning algorithms for multi-algorithm comparison.",
     },
     {
       title: "How it was built",
-      body: "An interpretable machine-learning pipeline trained on de-identified health records, with the explanation layer treated as a first-class design requirement rather than a post-hoc add-on.",
+      body: "Built and validated with the Louisiana Department of Health, with the explanation layer treated as a first-class design requirement — and with no coding required to use it.",
     },
     {
       title: "Roadmap",
-      body: "Extending the same approach to heart-failure and cardiovascular-disease risk, with further validation planned alongside additional state health partners.",
+      body: "Expanding from 10 to more than 20 algorithms, multi-disease validation, and HIPAA compliance, supported by a WSPH–CAIDS AI Seed Grant (2026–2027) with Dr. Kakraba as Principal Investigator.",
     },
   ] satisfies SmartPredSection[],
   links: {
     demo: "https://smart-pred.example.org",
     paper: "/publications#smart-pred-jmir-aging",
-    code: "https://github.com/PLACEHOLDER/smart-pred",
+    code: "https://github.com/KakrabaLab",
   },
   image: {
     src: null,
@@ -191,73 +231,42 @@ export const smartPred = {
   } satisfies ImageRef,
 };
 
-/* ------------------------------------------------------------ software */
-
-export type SoftwareProject = {
-  name: string;
-  description: string;
-  href: string;
-  language: string;
-  relatedArea?: string;
-};
-
-export const softwareProjects: SoftwareProject[] = [
-  {
-    name: "smart-pred",
-    description: "The SMART-Pred model, training pipeline and web interface.",
-    href: "https://github.com/PLACEHOLDER/smart-pred",
-    language: "Python",
-    relatedArea: "ai-public-health-surveillance",
-  },
-  {
-    name: "ai-qsar",
-    description: "QSAR modelling pipeline used in the aging drug-discovery work.",
-    href: "https://github.com/PLACEHOLDER/ai-qsar",
-    language: "Python / R",
-    relatedArea: "ai-drug-discovery-aging",
-  },
-  {
-    name: "graph-residue-networks",
-    description: "Residue-interaction graph construction and centrality analysis toolkit.",
-    href: "https://github.com/PLACEHOLDER/graph-residue-networks",
-    language: "Python",
-    relatedArea: "graph-theoretic-computational-biology",
-  },
-];
-
 /* -------------------------------------------------------------- patents */
 
 export type Patent = {
   title: string;
   number: string;
-  status: "Granted" | "Pending" | "Provisional";
-  year: number;
+  status: string;
+  filingBody: string;
   description: string;
 };
 
+/**
+ * The source document's headline metric is "3 patents/applications," but it
+ * only gives verifiable reference numbers for two. Rather than invent a
+ * third, this list shows the two documented patents and says so.
+ */
 export const patents: Patent[] = [
   {
-    title: "System and method for interpretable population health risk prediction",
-    number: "US Patent Application No. PLACEHOLDER-1",
-    status: "Pending",
-    year: 2025,
-    description: "Covers the core SMART-Pred prediction and explanation architecture.",
+    title: "Quinoline multi-target AChE/aggregation inhibitors",
+    number: "Filed with Tulane OIPM, 2026",
+    status: "Filed",
+    filingBody: "Tulane Office of Intellectual Property Management (OIPM)",
+    description:
+      "Covers quinoline-based multi-target acetylcholinesterase (AChE) and protein-aggregation inhibitors from the drug-discovery pillar.",
   },
   {
-    title: "Graph-based method for identifying structurally critical protein residues",
-    number: "US Patent Application No. PLACEHOLDER-2",
-    status: "Pending",
-    year: 2024,
-    description: "Covers the residue-centrality method used across the graph-theory projects.",
-  },
-  {
-    title: "Machine-learning structure–activity screening method for candidate compounds",
-    number: "US Patent Application No. PLACEHOLDER-3",
-    status: "Provisional",
-    year: 2026,
-    description: "Covers the AI-QSAR screening pipeline.",
+    title: "TDZD analogs",
+    number: "US 2023/0125667 A1 · PCT/US2021/017970",
+    status: "Application published",
+    filingBody: "U.S. Patent and Trademark Office / PCT",
+    description: "Covers TDZD-analog compounds developed from the AI-QSAR screening pipeline.",
   },
 ];
+
+export const patentsCount = 3;
+export const patentsNote =
+  "The headline figure of 3 patents/applications includes one additional application not yet publicly detailed here.";
 
 /* -------------------------------------------------------------- funding */
 
@@ -267,36 +276,41 @@ export type FundingItem = {
   sponsor: string;
   period: string;
   current: boolean;
-  /** Per the plan: no dollar amounts, ever. */
+  /** Per the source document's funding caveats: no dollar amounts, ever,
+   *  and prior training support is labelled as a graduate research
+   *  assistantship rather than his own PI funding. */
   description: string;
 };
 
 export const funding: FundingItem[] = [
   {
-    title: "Explainable risk prediction for state health partners",
+    title: "SMART-Pred: next-phase development and validation",
     role: "Principal Investigator",
-    sponsor: "Tulane University (seed grant)",
-    period: "2026 – present",
+    sponsor: "WSPH–CAIDS AI Seed Grant",
+    period: "2026 – 2027",
     current: true,
     description:
-      "Supports the next phase of SMART-Pred's development and validation with additional state partners.",
+      "Supports expanding SMART-Pred from 10 toward more than 20 algorithms, multi-disease validation, and HIPAA compliance.",
   },
   {
-    title: "Graduate research support",
+    title: "Doctoral research support",
     role: "Graduate Research Assistant",
-    sponsor: "NIH / VA / Arkansas INBRE",
+    sponsor: "NIH/NIA P01 · VA · Arkansas INBRE",
     period: "2015 – 2021",
     current: false,
     description:
-      "Supported doctoral research in computational structural biology, held as a graduate research assistant.",
+      "Supported doctoral research in computational structural biology and drug discovery, held as a graduate research assistant, not as Principal Investigator.",
   },
 ];
+
+export const fundingNote =
+  "Additional funding proposals are currently under review to extend this work; per institutional practice, pending and unfunded applications are not listed publicly here.";
 
 /* ------------------------------------------------------------ page copy */
 
 export const researchVision = {
   paragraphs: [
-    "Most health AI work picks one scale and stays there — a model for a molecule, a model for a patient, a model for a population — and treats explainability as someone else's problem. This research programme is built around the idea that the scales are connected, and that the explanation has to travel with the model wherever it goes.",
-    "A compound identified through AI-QSAR eventually becomes a question a clinician has to answer about a patient; a pattern found in a protein's residue network can point toward exactly that compound; a prediction made about an individual patient only becomes useful at scale if a health department can trust and act on it across a whole population. The four research areas on this page are stops along that same path, not four separate fields.",
+    "The research moves along one arc — molecules → patients → populations — with explainability and equity as the common thread running through all of it. A compound identified through AI-QSAR eventually becomes a question a clinician has to answer about a patient; a pattern found in a protein's residue network can point toward exactly that compound; a prediction made about an individual patient only becomes useful at scale if a health department can trust and act on it across a whole population.",
+    "The four pillars on this page — surveillance and precision prediction, explainable and responsible AI, drug discovery for aging, and graph-theoretic computational biology — are stops along that same path, not four separate fields. A model is treated as unfinished until the people who have to act on it can be shown why it says what it says, whether that person is a patient, a clinician, or a health department evaluating a new tool.",
   ],
 };

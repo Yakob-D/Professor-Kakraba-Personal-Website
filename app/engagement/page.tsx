@@ -7,7 +7,15 @@ import { Figure } from "../components/ui/Figure";
 import { CTABand } from "../components/ui/CTABand";
 import { Icon } from "../components/ui/Icon";
 import { TalkItem } from "../components/engagement/TalkItem";
-import { talks, newsMedia, globalEngagement, editorialRoles, editorialService } from "./data";
+import {
+  talks,
+  talksStat,
+  newsMedia,
+  globalEngagement,
+  editorialRoles,
+  editorialService,
+  leadershipRoles,
+} from "./data";
 import { formatLongDate } from "../lib/utils";
 
 export const metadata: Metadata = {
@@ -19,6 +27,8 @@ export const metadata: Metadata = {
 export default function EngagementPage() {
   const pinned = talks.filter((t) => t.pinned);
   const rest = talks.filter((t) => !t.pinned);
+  const currentLeadership = leadershipRoles.filter((r) => r.current);
+  const earlierLeadership = leadershipRoles.filter((r) => !r.current);
 
   return (
     <>
@@ -26,10 +36,10 @@ export default function EngagementPage() {
 
       {/* --------------------------------------------------------- talks */}
       <Section id="talks" spacing="lg">
-        <SectionHeading eyebrow="Talks & keynotes" title="On the" gradientWord="record." />
+        <SectionHeading eyebrow="Talks & keynotes" title="On the" gradientWord="record." lede={talksStat} />
         <ul className="mt-10 grid gap-4 sm:grid-cols-2">
           {pinned.map((t, i) => (
-            <Reveal as="li" key={t.title} delay={i * 90}>
+            <Reveal as="li" key={t.title + t.venue} delay={i * 90}>
               <TalkItem talk={t} />
             </Reveal>
           ))}
@@ -37,7 +47,7 @@ export default function EngagementPage() {
         {rest.length > 0 && (
           <ul className="mt-4 grid gap-4 sm:grid-cols-2">
             {rest.map((t, i) => (
-              <Reveal as="li" key={t.title} delay={i * 70}>
+              <Reveal as="li" key={t.title + t.venue} delay={i * 70}>
                 <TalkItem talk={t} />
               </Reveal>
             ))}
@@ -76,15 +86,12 @@ export default function EngagementPage() {
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-14">
           <div>
-            <h3 className="text-sm font-semibold text-ink">Partners</h3>
+            <h3 className="text-sm font-semibold text-ink">Partner institutions</h3>
             <ul className="mt-4 space-y-2.5">
               {globalEngagement.partners.map((p) => (
                 <li key={p.name} className="flex items-start gap-3 rounded-xl border border-line bg-surface px-4 py-3">
                   <Icon name="building" className="mt-0.5 size-4 shrink-0 text-brand-500" />
-                  <span>
-                    <span className="block text-[0.9375rem] font-medium text-ink">{p.name}</span>
-                    <span className="block text-[0.8125rem] text-muted">{p.role}</span>
-                  </span>
+                  <span className="text-[0.9375rem] font-medium text-ink">{p.name}</span>
                 </li>
               ))}
             </ul>
@@ -97,9 +104,7 @@ export default function EngagementPage() {
               <p className="mt-2 text-[0.8125rem] leading-relaxed text-muted">
                 {globalEngagement.mou.description}
               </p>
-              <time dateTime={globalEngagement.mou.date} className="mt-2 block font-mono text-[0.6875rem] text-faint">
-                Signed {formatLongDate(globalEngagement.mou.date)}
-              </time>
+              <p className="mt-2 font-mono text-[0.6875rem] text-faint">{globalEngagement.mou.date}</p>
             </div>
 
             <p className="mt-6 text-[0.8125rem] italic leading-relaxed text-faint">
@@ -120,7 +125,7 @@ export default function EngagementPage() {
       {/* ------------------------------------------------- editorial/service */}
       <Section id="editorial" tone="tint" className="border-y border-line">
         <SectionHeading eyebrow="Editorial & service" title="Keeping the" gradientWord="field honest." />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {editorialRoles.map((r) => (
             <div key={r.role + r.organisation} className="rounded-2xl border border-line bg-surface p-5">
               <Icon name="shield" className="size-4 text-brand-600 dark:text-brand-300" />
@@ -136,18 +141,31 @@ export default function EngagementPage() {
           </div>
         </div>
 
-        <div className="mt-6 space-y-2">
-          {editorialService.committees.map((c) => (
-            <p key={c} className="flex items-center gap-2.5 text-[0.875rem] text-ink-soft">
-              <Icon name="users" className="size-3.5 text-brand-500" />
-              {c}
-            </p>
-          ))}
-          <p className="flex items-center gap-2.5 text-[0.875rem] text-ink-soft">
-            <Icon name="calendar" className="size-3.5 text-brand-500" />
-            {editorialService.symposium}
-          </p>
+        <div className="mt-10">
+          <h3 className="text-sm font-semibold text-ink">Tulane leadership</h3>
+          <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
+            {currentLeadership.map((r) => (
+              <li key={r.role} className="flex items-start gap-2.5 text-[0.875rem] text-ink-soft">
+                <Icon name="users" className="mt-0.5 size-3.5 shrink-0 text-brand-500" />
+                {r.role}
+              </li>
+            ))}
+          </ul>
         </div>
+
+        {earlierLeadership.length > 0 && (
+          <div className="mt-8">
+            <h3 className="text-sm font-semibold text-ink">Earlier service</h3>
+            <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
+              {earlierLeadership.map((r) => (
+                <li key={r.role} className="flex items-start gap-2.5 text-[0.875rem] text-muted">
+                  <Icon name="calendar" className="mt-0.5 size-3.5 shrink-0 text-faint" />
+                  {r.role} — {r.organisation}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </Section>
 
       <CTABand />

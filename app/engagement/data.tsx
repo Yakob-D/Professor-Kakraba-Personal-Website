@@ -1,6 +1,11 @@
 /* =============================================================================
    ENGAGEMENT PAGE DATA
-   Talks, news & media, global engagement (Ghana), editorial & service.
+   Source: Kakraba-Website-Informations.docx. Talk venues, news items,
+   partnership facts, the philanthropy line and the service list are drawn
+   from that document; see app/data/site.tsx for the general sourcing note.
+   No video is embedded for the EKU Spark Talk because the source document
+   names the talk but gives no video URL — inventing one would misrepresent
+   it.
    ========================================================================== */
 
 import type { ImageRef } from "@/app/data/site";
@@ -10,121 +15,122 @@ export type TalkType = "Keynote" | "Invited talk" | "Grand rounds" | "Conference
 export type Talk = {
   title: string;
   venue: string;
-  date: string;
+  /** ISO date where the source document gives a year; omitted otherwise. */
+  date?: string;
   type: TalkType;
   pinned?: boolean;
-  videoUrl?: string;
 };
 
 export const talks: Talk[] = [
   {
-    title: "Building Health Data Science Capacity in Ghana",
-    venue: "KNUST, Kumasi",
-    date: "2025-10-20",
+    title: "Keynote address",
+    venue: "KNUST 11th Biennial Scientific Conference",
+    date: "2025",
     type: "Keynote",
     pinned: true,
   },
   {
-    title: "SMART-Pred: Explainable AI for State Health Surveillance",
+    title: "Keynote address",
     venue: "Louisiana Department of Health AI Symposium",
-    date: "2026-03-05",
+    date: "2026",
     type: "Keynote",
     pinned: true,
   },
   {
-    title: "Explainable AI in Clinical Risk Prediction",
-    venue: "Tulane School of Medicine, Grand Rounds",
-    date: "2024-09-12",
+    title: "Medical Grand Rounds",
+    venue: "Tulane University",
+    date: "2024",
     type: "Grand rounds",
     pinned: true,
   },
   {
-    title: "Bridging Data Science Across the Atlantic",
+    title: "Invited talk",
     venue: "AfriQAN / Association of African Universities (AAU)",
-    date: "2024-11-08",
+    date: "2024",
     type: "Invited talk",
     pinned: true,
   },
   {
-    title: "Beyond the Algorithm: Trust in Clinical AI",
-    venue: "Tulane CAIDS Seminar Series",
-    date: "2025-02-14",
+    title: "Beyond the Algorithm",
+    venue: "EKU Spark Talk",
     type: "Invited talk",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    pinned: true,
   },
   {
-    title: "Graph-Theoretic Methods in Structural Bioinformatics",
+    title: "Conference talk",
     venue: "MCBIOS Annual Conference",
-    date: "2023-04-02",
     type: "Conference talk",
   },
   {
-    title: "AI-QSAR for Aging-Related Drug Discovery",
-    venue: "Gerontological Society of America Annual Meeting",
-    date: "2025-11-15",
-    type: "Conference talk",
-  },
-  {
-    title: "Panel: Responsible AI in Global Health",
-    venue: "ISCB Africa",
-    date: "2025-07-22",
+    title: "Panel talks",
+    venue: "University of Ghana, University of Cape Coast, KNUST and Ensign Global University",
     type: "Panel",
   },
 ];
+
+export const talksStat =
+  "59 presentations overall (keynote, invited, panel, contributed and student poster).";
 
 export type NewsMedia = {
   outlet: string;
   headline: string;
   date: string;
   excerpt: string;
-  href?: string;
 };
 
 export const newsMedia: NewsMedia[] = [
   {
-    outlet: "Tulane News",
-    headline: "Kakraba named Senior Advisor at CAIDS",
-    date: "2026-07-01",
+    outlet: "Tulane / CAIDS",
+    headline: "Tulane professor creates AI-driven SMART-pred platform that aims to transform public health surveillance",
+    date: "2026-03",
     excerpt:
-      "Dr. Samuel Kakraba will connect the institute's data science capacity with public health partners across Louisiana and abroad.",
+      "\"SMART-pred represents a new model for public health… AI-driven, explainable, affordable and accessible to everyone.\" Covers the Louisiana Department of Health collaboration and the platform's 91% test accuracy in a JMIR Aging case study.",
   },
   {
-    outlet: "Louisiana Department of Health",
-    headline: "New AI tool aims to flag health risks earlier",
-    date: "2026-03-05",
-    excerpt:
-      "SMART-Pred, developed with Tulane researchers, returns a risk score along with a plain explanation of what drove it.",
+    outlet: "Tulane",
+    headline: "How to become a leader in public health AI",
+    date: "2025-11",
+    excerpt: "Feature coverage of his approach to explainable, open AI for public health.",
   },
   {
-    outlet: "KNUST News",
-    headline: "Tulane–KNUST partnership to expand health data science training",
-    date: "2025-10-22",
+    outlet: "Tulane",
+    headline: "AI Research Symposium: Demystifying AI in Public Health",
+    date: "2025-09-05",
     excerpt:
-      "A new memorandum of understanding will support joint research and student exchange in biostatistics and bioinformatics.",
+      "Coverage of the symposium he co-organized: 9 invited talks, 3 panel sessions, over 100 on-site attendees, 35+ virtual attendees and 18 student poster entrants.",
+  },
+  {
+    outlet: "KNUST International Programmes Office",
+    headline: "Partnerships and MOUs: Tulane–KNUST memorandum of understanding",
+    date: "2025-07-09",
+    excerpt:
+      "Recorded after a Tulane delegation's visit to KNUST on July 9, 2025, supporting the Tulane–KNUST MoU signed in 2025.",
   },
 ];
 
 export const globalEngagement = {
   intro:
-    "A sizeable share of this work runs through Ghana — formal partnerships, training visits, and a role as a connector between data science programmes in the US and in West Africa.",
+    "He serves as Tulane's University Liaison for Global Engagement with KNUST, Ensign Global University, the University of Cape Coast and the University of Ghana.",
+  role: "University Liaison for Global Engagement",
   partners: [
-    { name: "Kwame Nkrumah University of Science and Technology (KNUST)", role: "Liaison & MoU partner" },
-    { name: "University of Ghana", role: "Research partner" },
-    { name: "University of Cape Coast", role: "Alma mater & research partner" },
-    { name: "Ensign Global College", role: "Training partner" },
+    { name: "Kwame Nkrumah University of Science and Technology (KNUST)" },
+    { name: "Ensign Global University" },
+    { name: "University of Cape Coast" },
+    { name: "University of Ghana" },
   ],
   mou: {
     title: "Tulane–KNUST Memorandum of Understanding",
-    date: "2025-09-15",
+    date: "2025",
     description:
-      "A formal agreement supporting joint research projects, faculty exchange and graduate training in health data science.",
+      "Signed after a Tulane delegation's visit to KNUST on July 9, 2025, recorded by KNUST's International Programmes Office.",
   },
+  // Verbatim from the source document.
   philanthropyNote:
-    "He also supports students in Ghana directly, in ways kept private at their request.",
+    "Committed to expanding access to higher education in Ghana, including personally supporting students' university studies and community health fundraising.",
   galleryImages: [
     { src: null, alt: "University partnership visit in Ghana" },
-    { src: null, alt: "Signing the Tulane–KNUST memorandum of understanding" },
-    { src: null, alt: "Delivering the keynote address at KNUST" },
+    { src: null, alt: "Delegation visit marking the Tulane–KNUST memorandum of understanding" },
+    { src: null, alt: "Delivering the keynote address at the KNUST 11th Biennial Scientific Conference" },
   ] satisfies ImageRef[],
 };
 
@@ -141,10 +147,33 @@ export const editorialRoles: EditorialRole[] = [
 
 export const editorialService = {
   reviewCount: 47,
-  reviewLabel: "Verified peer reviews completed",
-  committees: [
-    "Tulane SPHTM Data Science Curriculum Committee",
-    "Tulane Center for Aging Seminar Committee",
-  ],
-  symposium: "Co-organizer, Tulane–KNUST Health Data Science Symposium (2025)",
+  reviewLabel: "ORCID-verified reviews across 16 journals (2024–2026)",
 };
+
+export type LeadershipRole = {
+  role: string;
+  organisation: string;
+  current: boolean;
+};
+
+export const leadershipRoles: LeadershipRole[] = [
+  { role: "WSPH representative, AI Literacy committee", organisation: "Tulane University", current: true },
+  { role: "Director, Areas of Specialization", organisation: "Tulane University", current: true },
+  { role: "Director, Graduate Biostatistics Certificate Program", organisation: "Tulane University", current: true },
+  { role: "University Liaison for Global Engagement", organisation: "Tulane University", current: true },
+  { role: "Member, Dean's Research Committee", organisation: "Tulane University", current: true },
+  { role: "Member, Curriculum Committee", organisation: "Tulane University", current: true },
+  { role: "Expert member, Dean's Data Science & AI Initiative", organisation: "Tulane University", current: true },
+  {
+    role: "Faculty lead, Biostatistics & Data Science Seminar Series",
+    organisation: "Tulane University",
+    current: true,
+  },
+  {
+    role: "Co-organizer, \"Demystifying AI in Public Health\" symposium",
+    organisation: "Tulane University",
+    current: true,
+  },
+  { role: "Director, Statistical Consulting Center", organisation: "Eastern Kentucky University", current: false },
+  { role: "Chair, Math/Statistics Symposium", organisation: "Eastern Kentucky University", current: false },
+];
