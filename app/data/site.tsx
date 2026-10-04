@@ -76,10 +76,14 @@ export const profile: Profile = {
     mapUrl: "https://maps.google.com/?q=1440+Canal+Street,+New+Orleans,+LA+70112",
   },
   portrait: {
-    src: "https://medicine.tulane.edu/sites/default/files/2024-04/olivier_240416_3726_11zon.jpg",
+    // Self-hosted rather than pointed at the Tulane URL directly: relying
+    // on a live third-party fetch for the hero's single most important
+    // image is fragile (next/image proxies and re-optimizes it on every
+    // cold cache miss, and that fetch can time out on a slow connection).
+    src: "/images/headshots/samuel-kakraba-headshot.jpg",
     alt: "Portrait of Dr. Samuel Kakraba",
-    width: 1200,
-    height: 1500,
+    width: 3087,
+    height: 4631,
   },
   pronouns: "He/Him",
   languages: ["English", "Fante", "Twi"],
