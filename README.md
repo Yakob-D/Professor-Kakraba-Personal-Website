@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Samuel Kakraba, Ph.D. — Personal Website
 
-## Getting Started
+Dr. Samuel Kakraba's personal portfolio site: a Next.js (App Router) build covering Home, About,
+Research, Publications, Teaching, Engagement and Contact. See `plan/kakraba-website-plan.md` for
+the full brief this was built against.
 
-First, run the development server:
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Every route is its own folder under `app/` (`app/about/page.tsx`, `app/research/page.tsx`, …).
+  The homepage lives in the `app/(home)/` route group so it still resolves to `/`.
+- Each page folder has a sibling `data.tsx` holding every piece of copy and every typed object
+  that page renders — titles, bios, publications, talks, etc. Nothing is hard-coded in JSX.
+- Shared, site-wide data (nav, profile, footer links, headline metrics) lives in `app/data/site.tsx`.
+- Reusable UI lives in `app/components/ui/`; page-specific components live in
+  `app/components/<section>/`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Backend-readiness
 
-## Learn More
+Every `data.tsx` export is a plain, JSON-serialisable value with an exported TypeScript type.
+When the CMS backend exists, each `export const x = [...]` becomes `export async function
+getX()` returning the same shape — no component should need to change. Images go through
+`ImageRef` (`app/data/site.tsx`) and the `<Figure>` / `<Portrait>` components: set `src: null`
+and a designed placeholder renders instead of a broken image, so content can ship before photos
+do.
 
-To learn more about Next.js, take a look at the following resources:
+## Design system
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+One set of CSS custom properties in `app/globals.css` drives every colour, gradient and shadow
+on the site — a deep-green brand ramp and a warm-gold accent ramp, each with a light and dark
+value. To re-skin the whole site, edit only the `--brand-*` / `--accent-*` values (and, if
+needed, the semantic block that derives from them) at the top of that file; every component
+reads from the same tokens via Tailwind's `@theme inline` mapping.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Fonts
 
-## Deploy on Vercel
+Typography uses Google's own type family — **Google Sans Flex** (body), **Google Sans**
+(display/headings) and **Google Sans Code** (mono) — self-hosted via `next/font/local` from the
+variable `.woff2` files in `app/fonts/`. They're loaded locally rather than through
+`next/font/google` because this Next.js version's Turbopack build cannot resolve
+`next/font/google`'s internal fetch module (reproduces even for the default Geist font); self-
+hosting sidesteps the bug and removes the runtime network dependency entirely.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Notes for the next pass
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Real photography replaces the `src: null` placeholders in each `data.tsx` (headshot, speaking,
+  teaching, Ghana visits) — drop files into `public/images/*` and update the paths.
+- `ContactForm` (`app/components/contact/ContactForm.tsx`) currently validates and simulates a
+  submission; wire it to a real send path (server action, email API, or the future backend) when
+  one exists.
+- Several external links (Google Scholar, ORCID, GitHub, the CV PDF, the lab site) are
+  placeholders — see `app/data/site.tsx` and `PLACEHOLDER` markers in the `data.tsx` files.
