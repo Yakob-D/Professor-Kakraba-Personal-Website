@@ -149,7 +149,7 @@ export default function AboutPage() {
       <CTABand
         title="Looking for the research group instead?"
         lede="Students, lab projects and open positions all live on the Kakraba Lab site."
-        primary={{ label: "Visit the lab", href: "https://kakrabalab.org" }}
+        primary={{ label: "Visit the lab", href: "https://kakraba-research-group.vercel.app" }}
         secondary={{ label: "Contact Dr. Kakraba", href: "/contact" }}
         showLabLink={false}
       />

@@ -76,13 +76,12 @@ export const profile: Profile = {
     mapUrl: "https://maps.google.com/?q=1440+Canal+Street,+New+Orleans,+LA+70112",
   },
   portrait: {
-    // TODO: drop the real headshot at this path and the placeholder disappears.
-    src: null,
+    src: "https://medicine.tulane.edu/sites/default/files/2024-04/olivier_240416_3726_11zon.jpg",
     alt: "Portrait of Dr. Samuel Kakraba",
     width: 1200,
     height: 1500,
   },
-  pronouns: null,
+  pronouns: "He/Him",
   languages: ["English", "Fante", "Twi"],
   cv: {
     href: "/cv/samuel-kakraba-cv.pdf",
@@ -95,7 +94,6 @@ export const profile: Profile = {
 export type NavItem = {
   label: string;
   href: string;
-  /** Short line used in the mobile menu and on hover. */
   blurb?: string;
 };
 
@@ -117,7 +115,6 @@ export type SocialLink = {
   href: string;
   /** Key into the icon set in app/components/ui/Icon.tsx */
   icon: string;
-  /** Shown in the footer; keep it short. */
   handle?: string;
 };
 
@@ -140,9 +137,9 @@ export const socialLinks: SocialLink[] = [
 
 /** The research group lives on its own site; this site links out to it. */
 export const labSite = {
-  name: "Kakraba International Research Lab",
-  shortName: "Kakraba Lab",
-  href: "https://kakrabalab.org",
+  name: "Kakraba Research Group",
+  shortName: "Kakraba Research Group",
+  href: "https://kakraba-research-group.vercel.app",
 };
 
 /* ------------------------------------------------------------- at a glance */
