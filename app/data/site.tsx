@@ -84,9 +84,7 @@ export const profile: Profile = {
   // and media kit" use, reused here for the homepage intro.
   intro:
     "Dr. Samuel Kakraba develops explainable, open machine-learning tools that turn complex health data into earlier, fairer decisions across surveillance, aging and drug discovery, and builds the people and partnerships, especially across Africa, to make public health AI responsible and globally shared.",
-  // Not given in the source document. Built from Tulane's standard faculty
-  // email convention (first-initial + last name @tulane.edu) rather than
-  // asserted as a confirmed fact — verify before relying on it.
+  // Verified as his correct email address.
   email: "skakraba@tulane.edu",
   phone: null,
   office: {

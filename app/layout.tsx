@@ -5,6 +5,7 @@ import "./globals.css";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { ThemeScript } from "./components/layout/ThemeScript";
+import { ChatWidget } from "./components/chat/ChatWidget";
 import { profile, siteMeta } from "./data/site";
 
 /* Google's own type family, as used across google.com and antigravity.google:
@@ -103,6 +104,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        <ChatWidget />
       </body>
     </html>
   );
