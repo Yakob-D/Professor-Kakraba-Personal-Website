@@ -10,7 +10,6 @@ content kept on the separate Kakraba Research Group site by direction.
 
 ```bash
 npm install
-cp .env.example .env.local   # then fill in CONTACT_API_URL once a backend exists
 npm run dev     # http://localhost:3000
 npm run build   # production build
 ```
@@ -53,23 +52,21 @@ variable `.woff2` files in `app/fonts/`. They're loaded locally rather than thro
 `next/font/google`'s internal fetch module (reproduces even for the default Geist font); self-
 hosting sidesteps the bug and removes the runtime network dependency entirely.
 
-## Contact form backend
+## Contact page
 
-`ContactForm` (`app/components/contact/ContactForm.tsx`) POSTs to this app's own
-`/api/contact` route (`app/api/contact/route.ts`), never to a backend directly. That route
-validates the payload, then forwards it as JSON to whatever `CONTACT_API_URL` points at and
-relays the response back unchanged. Until `CONTACT_API_URL` is set, it correctly returns 503
-("the contact backend isn't connected yet") instead of faking success — see that file's
-header comment for the full request/response contract and how to wire in the real backend
-when it exists. If the backend ends up living inside this Next.js app instead of as a separate
-service, replace the forwarding call in that one file with the real logic directly.
+There is deliberately no contact form or backend. `/contact` (`app/contact/page.tsx`) shows his
+email directly, plus a row of `mailto:` buttons per inquiry type (`app/contact/data.tsx`) that
+pre-fill the subject line (e.g. "Speaking invitation" → subject "Speaking Invitation") — zero
+infrastructure, and the message always lands straight in his real inbox rather than depending on
+an email-sending service, a verified domain, or a backend that doesn't exist yet. If a real form
+is wanted later, `mailtoHref()` in `app/lib/utils.ts` and the `contactReasons` data are the
+pieces to build on, not replace.
 
 ## Notes for the next pass
 
 - Real photography replaces the `src: null` placeholders in each `data.tsx` (speaking, teaching,
   Ghana visits — the headshot itself is already a real photo, self-hosted in
   `public/images/headshots/`) — drop files into `public/images/*` and update the paths.
-- His email (`app/data/site.tsx`) is inferred from Tulane's standard faculty convention, not
-  confirmed — verify it. Google Scholar, ORCID, LinkedIn, ResearchGate and GitHub (KakrabaLab)
-  are his real profile links; a personal GitHub (as opposed to the lab org) isn't set.
+- Google Scholar, ORCID, LinkedIn, ResearchGate and GitHub (KakrabaLab) are his real profile
+  links; a personal GitHub (as opposed to the lab org) isn't set.
 - SMART-Pred's live demo link (`app/research/data.tsx`) is still a placeholder URL.

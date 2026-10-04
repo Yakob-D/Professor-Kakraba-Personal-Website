@@ -27,3 +27,8 @@ export function byNewest<T extends { date?: string; year?: number }>(a: T, b: T)
   if (a.date && b.date) return a.date < b.date ? 1 : -1;
   return (b.year ?? 0) - (a.year ?? 0);
 }
+
+/** Builds a `mailto:` href with an optional pre-filled subject. */
+export function mailtoHref(email: string, subject?: string) {
+  return subject ? `mailto:${email}?subject=${encodeURIComponent(subject)}` : `mailto:${email}`;
+}
