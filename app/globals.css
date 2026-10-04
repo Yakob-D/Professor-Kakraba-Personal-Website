@@ -8,50 +8,50 @@
    --------------------------------------------------------------------------
    Every colour, gradient and shadow on the site resolves back to the tokens
    in this block. To re-skin the entire website, edit ONLY this section:
-     1. `--brand-*`  : the primary ramp (currently brushed steel / gunmetal)
-     2. `--accent-*` : the accent ramp (currently warm gold)
+     1. `--brand-*`  : the primary ramp (currently indigo/violet)
+     2. `--accent-*` : the accent ramp (currently vivid coral)
      3. the semantic block under `:root` (light) and `.dark` (dark)
    Nothing else in the codebase hard-codes a hex value.
    ========================================================================== */
 
 :root {
-  /* --- 1. Brand ramp: brushed steel / gunmetal (metallic) ------------ */
-  --brand-50: #f4f6f7;
-  --brand-100: #e3e8ea;
-  --brand-200: #c7d0d5;
-  --brand-300: #a4b1b8;
-  --brand-400: #7e8e97;
-  --brand-500: #5f707a;
-  --brand-600: #4a5861;
-  --brand-700: #3a454c;
-  --brand-800: #2c353a;
-  --brand-900: #21282c;
-  --brand-950: #15191c;
+  /* --- 1. Brand ramp: indigo / violet --------------------------------- */
+  --brand-50: #f1f0fe;
+  --brand-100: #e3e1fd;
+  --brand-200: #c8c3fb;
+  --brand-300: #a79ef7;
+  --brand-400: #8a7cf0;
+  --brand-500: #6d5ae8;
+  --brand-600: #5842d1;
+  --brand-700: #4631ab;
+  --brand-800: #38268a;
+  --brand-900: #2c1f6c;
+  --brand-950: #1a1340;
 
-  /* --- 2. Accent ramp: warm gold (a nod to Ghana) -------------------- */
-  --accent-50: #fdf8ec;
-  --accent-100: #f8edcf;
-  --accent-200: #f0da9c;
-  --accent-300: #e6c266;
-  --accent-400: #dcac3c;
-  --accent-500: #c9962a;
-  --accent-600: #a87720;
-  --accent-700: #85591c;
-  --accent-800: #6b471c;
-  --accent-900: #583b1b;
+  /* --- 2. Accent ramp: vivid coral ------------------------------------ */
+  --accent-50: #fff4ef;
+  --accent-100: #ffe4d8;
+  --accent-200: #ffc7ac;
+  --accent-300: #ffa374;
+  --accent-400: #ff7f47;
+  --accent-500: #f8602a;
+  --accent-600: #d8481c;
+  --accent-700: #ad3815;
+  --accent-800: #852c14;
+  --accent-900: #5e2012;
 
-  /* --- 3. Semantic tokens — LIGHT ----------------------------------- */
-  --bg: #fbfaf7;
-  --bg-tint: #f5f3ed;
+  /* --- 3. Semantic tokens — LIGHT: cool, violet-tinted neutrals ------ */
+  --bg: #faf9fc;
+  --bg-tint: #f3f1f8;
   --surface: #ffffff;
-  --surface-2: #f4f2ec;
-  --surface-3: #ece9e0;
-  --ink: #12140f;
-  --ink-soft: #343a30;
-  --muted: #6b7264;
-  --faint: #9aa192;
-  --line: #e4e1d8;
-  --line-strong: #d3cfc2;
+  --surface-2: #f5f3f9;
+  --surface-3: #ebe8f2;
+  --ink: #16131f;
+  --ink-soft: #2f2b3d;
+  --muted: #6b6578;
+  --faint: #9994a3;
+  --line: #e5e1ed;
+  --line-strong: #d2cce0;
 
   --primary: var(--brand-700);
   --primary-hover: var(--brand-800);
@@ -63,14 +63,14 @@
   --selection: var(--brand-100);
 
   /* Gradients — referenced by `bg-brand-gradient`, `text-gradient`, etc.
-     The brand gradient carries a bright silver stop (--brand-200) between
-     the gunmetal and gold stops, to read as a sheen catching light across
-     brushed metal rather than a flat two-tone fade. */
+     Indigo through violet into coral: a complementary, high-contrast pair
+     rather than a tonal fade, which is what makes it read as vivid/modern
+     instead of corporate-blue. */
   --gradient-brand: linear-gradient(
     120deg,
     var(--brand-900) 0%,
-    var(--brand-600) 38%,
-    var(--brand-200) 64%,
+    var(--brand-600) 40%,
+    var(--brand-400) 65%,
     var(--accent-500) 100%
   );
   --gradient-brand-soft: linear-gradient(
@@ -95,31 +95,31 @@
   --gradient-mesh-b: var(--accent-200);
   --gradient-mesh-c: var(--brand-100);
 
-  /* Elevation, tuned to the warm neutral background */
-  --shadow-xs: 0 1px 2px 0 rgb(18 20 15 / 0.04);
-  --shadow-sm: 0 1px 3px 0 rgb(18 20 15 / 0.06), 0 1px 2px -1px rgb(18 20 15 / 0.05);
-  --shadow-md: 0 8px 24px -8px rgb(18 20 15 / 0.1), 0 2px 6px -2px rgb(18 20 15 / 0.05);
-  --shadow-lg: 0 24px 56px -20px rgb(18 20 15 / 0.16), 0 6px 16px -8px rgb(18 20 15 / 0.08);
+  /* Elevation, tinted to the cool violet-black ink rather than pure black */
+  --shadow-xs: 0 1px 2px 0 rgb(22 19 31 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(22 19 31 / 0.07), 0 1px 2px -1px rgb(22 19 31 / 0.06);
+  --shadow-md: 0 8px 24px -8px rgb(22 19 31 / 0.12), 0 2px 6px -2px rgb(22 19 31 / 0.06);
+  --shadow-lg: 0 24px 56px -20px rgb(22 19 31 / 0.18), 0 6px 16px -8px rgb(22 19 31 / 0.09);
   --shadow-glow: 0 24px 64px -24px color-mix(in oklab, var(--brand-600) 45%, transparent);
 }
 
 :root.dark {
-  /* --- 3b. Semantic tokens — DARK ---------------------------------- */
-  --bg: #080c09;
-  --bg-tint: #0c120e;
-  --surface: #11170f;
-  --surface-2: #171f18;
-  --surface-3: #1f2a20;
-  --ink: #f1f4ee;
-  --ink-soft: #d3dacf;
-  --muted: #98a393;
-  --faint: #6f7a6b;
-  --line: #222d23;
-  --line-strong: #324032;
+  /* --- 3b. Semantic tokens — DARK: cool violet-black neutrals -------- */
+  --bg: #0b0a12;
+  --bg-tint: #0f0d18;
+  --surface: #15121f;
+  --surface-2: #1b1828;
+  --surface-3: #241f32;
+  --ink: #f3f1f8;
+  --ink-soft: #d9d5e3;
+  --muted: #a39db0;
+  --faint: #6f697c;
+  --line: #2a2536;
+  --line-strong: #383049;
 
   --primary: var(--brand-300);
   --primary-hover: var(--brand-200);
-  --on-primary: #061c14;
+  --on-primary: var(--brand-950);
   --accent: var(--accent-300);
   --accent-soft: color-mix(in oklab, var(--accent-500) 18%, transparent);
 
