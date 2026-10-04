@@ -8,25 +8,25 @@
    --------------------------------------------------------------------------
    Every colour, gradient and shadow on the site resolves back to the tokens
    in this block. To re-skin the entire website, edit ONLY this section:
-     1. `--brand-*`  : the primary ramp (currently deep green)
+     1. `--brand-*`  : the primary ramp (currently brushed steel / gunmetal)
      2. `--accent-*` : the accent ramp (currently warm gold)
      3. the semantic block under `:root` (light) and `.dark` (dark)
    Nothing else in the codebase hard-codes a hex value.
    ========================================================================== */
 
 :root {
-  /* --- 1. Brand ramp: deep green ------------------------------------- */
-  --brand-50: #eff6f1;
-  --brand-100: #d7e9dd;
-  --brand-200: #afd3bc;
-  --brand-300: #7fb696;
-  --brand-400: #4f9470;
-  --brand-500: #2c7a54;
-  --brand-600: #1b6244;
-  --brand-700: #134d36;
-  --brand-800: #0e3c2b;
-  --brand-900: #0a2e21;
-  --brand-950: #061c14;
+  /* --- 1. Brand ramp: brushed steel / gunmetal (metallic) ------------ */
+  --brand-50: #f4f6f7;
+  --brand-100: #e3e8ea;
+  --brand-200: #c7d0d5;
+  --brand-300: #a4b1b8;
+  --brand-400: #7e8e97;
+  --brand-500: #5f707a;
+  --brand-600: #4a5861;
+  --brand-700: #3a454c;
+  --brand-800: #2c353a;
+  --brand-900: #21282c;
+  --brand-950: #15191c;
 
   /* --- 2. Accent ramp: warm gold (a nod to Ghana) -------------------- */
   --accent-50: #fdf8ec;
@@ -62,12 +62,15 @@
   --ring: var(--brand-500);
   --selection: var(--brand-100);
 
-  /* Gradients — referenced by `bg-brand-gradient`, `text-gradient`, etc. */
+  /* Gradients — referenced by `bg-brand-gradient`, `text-gradient`, etc.
+     The brand gradient carries a bright silver stop (--brand-200) between
+     the gunmetal and gold stops, to read as a sheen catching light across
+     brushed metal rather than a flat two-tone fade. */
   --gradient-brand: linear-gradient(
     120deg,
-    var(--brand-800) 0%,
-    var(--brand-600) 40%,
-    var(--brand-500) 62%,
+    var(--brand-900) 0%,
+    var(--brand-600) 38%,
+    var(--brand-200) 64%,
     var(--accent-500) 100%
   );
   --gradient-brand-soft: linear-gradient(
@@ -86,7 +89,7 @@
     120deg,
     var(--ink) 0%,
     var(--brand-700) 55%,
-    var(--brand-500) 100%
+    var(--brand-400) 100%
   );
   --gradient-mesh-a: var(--brand-200);
   --gradient-mesh-b: var(--accent-200);
@@ -125,8 +128,8 @@
 
   --gradient-brand: linear-gradient(
     120deg,
-    var(--brand-400) 0%,
-    var(--brand-300) 42%,
+    var(--brand-500) 0%,
+    var(--brand-100) 48%,
     var(--accent-300) 100%
   );
   --gradient-brand-soft: linear-gradient(
