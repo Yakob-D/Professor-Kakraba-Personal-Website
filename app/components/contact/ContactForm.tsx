@@ -11,34 +11,54 @@ type Status = "idle" | "submitting" | "success" | "error";
 /**
  * Client-side contact form.
  *
- * BACKEND NOTE: `handleSubmit` currently only validates and simulates a
- * network round-trip. Wire it to a real submit path once one exists —
- * e.g. a Next.js Server Action that sends mail via a provider, or a POST to
- * the future CMS backend's /contact endpoint. The field shape below (name,
- * email, reason, message) is the payload contract to keep stable.
+ * BACKEND NOTE: submissions POST to this app's own /api/contact route
+ * (app/api/contact/route.ts), never to a backend directly. That route is
+ * the one place that needs updating once the real backend exists — see
+ * its file-level comment. This component only needs to keep sending the
+ * same { name, email, reason, message } shape and handling { ok, error }
+ * back.
  */
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [reason, setReason] = useState(contactReasons[0].value);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
+    const name = data.get("name");
+    const email = data.get("email");
+    const message = data.get("message");
 
-    if (!data.get("name") || !data.get("email") || !data.get("message")) {
+    if (!name || !email || !message) {
+      setErrorMessage("Please fill in your name, email and a short message.");
       setStatus("error");
       return;
     }
 
     setStatus("submitting");
     try {
-      // TODO: replace with a real submission once a backend endpoint exists.
-      await new Promise((resolve) => setTimeout(resolve, 900));
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, reason, message }),
+      });
+      const payload: { ok: boolean; error?: string } = await res
+        .json()
+        .catch(() => ({ ok: false, error: "Unexpected response from the server." }));
+
+      if (!res.ok || !payload.ok) {
+        setErrorMessage(payload.error ?? "Something went wrong. Please try again.");
+        setStatus("error");
+        return;
+      }
+
       setStatus("success");
       form.reset();
       setReason(contactReasons[0].value);
     } catch {
+      setErrorMessage("Couldn't reach the server. Check your connection and try again.");
       setStatus("error");
     }
   }
@@ -110,10 +130,10 @@ export function ContactForm() {
         />
       </div>
 
-      {status === "error" && (
+      {status === "error" && errorMessage && (
         <p className="mt-4 flex items-center gap-2 text-[0.8125rem] font-medium text-accent-700">
           <Icon name="x" className="size-4" />
-          Please fill in your name, email and a short message.
+          {errorMessage}
         </p>
       )}
 
