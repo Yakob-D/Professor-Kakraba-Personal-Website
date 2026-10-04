@@ -8,70 +8,74 @@
    --------------------------------------------------------------------------
    Every colour, gradient and shadow on the site resolves back to the tokens
    in this block. To re-skin the entire website, edit ONLY this section:
-     1. `--brand-*`  : the primary ramp (currently indigo/violet)
-     2. `--accent-*` : the accent ramp (currently vivid coral)
+     1. `--brand-*`  : the primary ramp (currently true neutral grayscale)
+     2. `--accent-*` : the accent ramp (mirrors the brand ramp — black & white
+        has no second hue, but the component API still expects one)
      3. the semantic block under `:root` (light) and `.dark` (dark)
    Nothing else in the codebase hard-codes a hex value.
    ========================================================================== */
 
 :root {
-  /* --- 1. Brand ramp: indigo / violet --------------------------------- */
-  --brand-50: #f1f0fe;
-  --brand-100: #e3e1fd;
-  --brand-200: #c8c3fb;
-  --brand-300: #a79ef7;
-  --brand-400: #8a7cf0;
-  --brand-500: #6d5ae8;
-  --brand-600: #5842d1;
-  --brand-700: #4631ab;
-  --brand-800: #38268a;
-  --brand-900: #2c1f6c;
-  --brand-950: #1a1340;
+  /* --- 1. Brand ramp: true neutral grayscale (R=G=B, no tint) -------- */
+  --brand-50: #fafafa;
+  --brand-100: #f0f0f0;
+  --brand-200: #dcdcdc;
+  --brand-300: #c2c2c2;
+  --brand-400: #a0a0a0;
+  --brand-500: #7a7a7a;
+  --brand-600: #5a5a5a;
+  --brand-700: #404040;
+  --brand-800: #292929;
+  --brand-900: #171717;
+  --brand-950: #0a0a0a;
 
-  /* --- 2. Accent ramp: vivid coral ------------------------------------ */
-  --accent-50: #fff4ef;
-  --accent-100: #ffe4d8;
-  --accent-200: #ffc7ac;
-  --accent-300: #ffa374;
-  --accent-400: #ff7f47;
-  --accent-500: #f8602a;
-  --accent-600: #d8481c;
-  --accent-700: #ad3815;
-  --accent-800: #852c14;
-  --accent-900: #5e2012;
+  /* --- 2. Accent ramp: same grayscale — kept as a separate token set so
+     components that expect a distinct `accent-*` still work, but no hue
+     is introduced anywhere. --------------------------------------------- */
+  --accent-50: #fafafa;
+  --accent-100: #f0f0f0;
+  --accent-200: #dcdcdc;
+  --accent-300: #c2c2c2;
+  --accent-400: #a0a0a0;
+  --accent-500: #7a7a7a;
+  --accent-600: #5a5a5a;
+  --accent-700: #404040;
+  --accent-800: #292929;
+  --accent-900: #171717;
 
-  /* --- 3. Semantic tokens — LIGHT: cool, violet-tinted neutrals ------ */
-  --bg: #faf9fc;
-  --bg-tint: #f3f1f8;
+  /* --- 3. Semantic tokens — LIGHT: pure white, true-neutral grays --- */
+  --bg: #ffffff;
+  --bg-tint: #f7f7f7;
   --surface: #ffffff;
-  --surface-2: #f5f3f9;
-  --surface-3: #ebe8f2;
-  --ink: #16131f;
-  --ink-soft: #2f2b3d;
-  --muted: #6b6578;
-  --faint: #9994a3;
-  --line: #e5e1ed;
-  --line-strong: #d2cce0;
+  --surface-2: #f2f2f2;
+  --surface-3: #e8e8e8;
+  --ink: #0a0a0a;
+  --ink-soft: #292929;
+  --muted: #6e6e6e;
+  --faint: #a3a3a3;
+  --line: #e2e2e2;
+  --line-strong: #cfcfcf;
 
-  --primary: var(--brand-700);
-  --primary-hover: var(--brand-800);
+  --primary: var(--brand-900);
+  --primary-hover: var(--brand-950);
   --on-primary: #ffffff;
-  --accent: var(--accent-600);
+  --accent: var(--accent-700);
   --accent-soft: var(--accent-100);
 
-  --ring: var(--brand-500);
-  --selection: var(--brand-100);
+  --ring: var(--brand-800);
+  --selection: var(--brand-200);
 
   /* Gradients — referenced by `bg-brand-gradient`, `text-gradient`, etc.
-     Indigo through violet into coral: a complementary, high-contrast pair
-     rather than a tonal fade, which is what makes it read as vivid/modern
-     instead of corporate-blue. */
+     Kept tonal (black through gray) rather than reaching all the way to
+     white: `bg-brand-gradient` sits behind white button/badge text, so the
+     lightest stop here is capped at a gray dark enough to keep that text
+     readable (see `--gradient-accent` below for the inverse case). */
   --gradient-brand: linear-gradient(
     120deg,
-    var(--brand-900) 0%,
-    var(--brand-600) 40%,
-    var(--brand-400) 65%,
-    var(--accent-500) 100%
+    var(--brand-950) 0%,
+    var(--brand-800) 40%,
+    var(--brand-600) 70%,
+    var(--brand-900) 100%
   );
   --gradient-brand-soft: linear-gradient(
     135deg,
@@ -79,11 +83,13 @@
     var(--surface) 45%,
     var(--accent-50) 100%
   );
+  /* `bg-accent-gradient` sits behind fixed near-black text (no dark-mode
+     override), so every stop here stays light regardless of theme. */
   --gradient-accent: linear-gradient(
     110deg,
-    var(--accent-600) 0%,
-    var(--accent-400) 55%,
-    var(--brand-400) 100%
+    var(--accent-200) 0%,
+    var(--accent-100) 55%,
+    var(--brand-200) 100%
   );
   --gradient-ink: linear-gradient(
     120deg,
@@ -95,42 +101,44 @@
   --gradient-mesh-b: var(--accent-200);
   --gradient-mesh-c: var(--brand-100);
 
-  /* Elevation, tinted to the cool violet-black ink rather than pure black */
-  --shadow-xs: 0 1px 2px 0 rgb(22 19 31 / 0.05);
-  --shadow-sm: 0 1px 3px 0 rgb(22 19 31 / 0.07), 0 1px 2px -1px rgb(22 19 31 / 0.06);
-  --shadow-md: 0 8px 24px -8px rgb(22 19 31 / 0.12), 0 2px 6px -2px rgb(22 19 31 / 0.06);
-  --shadow-lg: 0 24px 56px -20px rgb(22 19 31 / 0.18), 0 6px 16px -8px rgb(22 19 31 / 0.09);
+  /* Elevation — true neutral black, no tint */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+  --shadow-md: 0 8px 24px -8px rgb(0 0 0 / 0.14), 0 2px 6px -2px rgb(0 0 0 / 0.07);
+  --shadow-lg: 0 24px 56px -20px rgb(0 0 0 / 0.2), 0 6px 16px -8px rgb(0 0 0 / 0.1);
   --shadow-glow: 0 24px 64px -24px color-mix(in oklab, var(--brand-600) 45%, transparent);
 }
 
 :root.dark {
-  /* --- 3b. Semantic tokens — DARK: cool violet-black neutrals -------- */
-  --bg: #0b0a12;
-  --bg-tint: #0f0d18;
-  --surface: #15121f;
-  --surface-2: #1b1828;
-  --surface-3: #241f32;
-  --ink: #f3f1f8;
-  --ink-soft: #d9d5e3;
-  --muted: #a39db0;
-  --faint: #6f697c;
-  --line: #2a2536;
-  --line-strong: #383049;
+  /* --- 3b. Semantic tokens — DARK: near-black, true-neutral grays --- */
+  --bg: #0a0a0a;
+  --bg-tint: #0f0f0f;
+  --surface: #141414;
+  --surface-2: #1c1c1c;
+  --surface-3: #262626;
+  --ink: #fafafa;
+  --ink-soft: #d4d4d4;
+  --muted: #9a9a9a;
+  --faint: #6b6b6b;
+  --line: #2a2a2a;
+  --line-strong: #3a3a3a;
 
-  --primary: var(--brand-300);
-  --primary-hover: var(--brand-200);
+  --primary: var(--brand-100);
+  --primary-hover: var(--brand-50);
   --on-primary: var(--brand-950);
-  --accent: var(--accent-300);
+  --accent: var(--accent-200);
   --accent-soft: color-mix(in oklab, var(--accent-500) 18%, transparent);
 
-  --ring: var(--brand-400);
-  --selection: color-mix(in oklab, var(--brand-400) 30%, transparent);
+  --ring: var(--brand-300);
+  --selection: color-mix(in oklab, var(--brand-300) 30%, transparent);
 
+  /* Inverted: lightest-to-mid-gray, since `on-primary` is near-black here. */
   --gradient-brand: linear-gradient(
     120deg,
-    var(--brand-500) 0%,
-    var(--brand-100) 48%,
-    var(--accent-300) 100%
+    var(--brand-50) 0%,
+    var(--brand-200) 40%,
+    var(--brand-400) 70%,
+    var(--brand-100) 100%
   );
   --gradient-brand-soft: linear-gradient(
     135deg,

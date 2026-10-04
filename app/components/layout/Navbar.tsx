@@ -105,11 +105,11 @@ export function Navbar() {
             <ThemeToggle />
             <Link
               href={navCta.href}
-              className="group/cta relative hidden h-10 items-center gap-2 overflow-hidden rounded-full bg-brand-gradient px-5 text-sm font-medium text-white shadow-sm transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-glow sm:inline-flex dark:text-brand-950"
+              className="group/cta relative hidden h-10 items-center gap-2 overflow-hidden rounded-full bg-ink px-5 text-sm font-medium text-bg shadow-sm transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-glow sm:inline-flex"
             >
               <span
                 aria-hidden
-                className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover/cta:translate-x-full motion-reduce:hidden"
+                className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-bg/30 to-transparent transition-transform duration-700 group-hover/cta:translate-x-full motion-reduce:hidden"
               />
               <span className="relative">{navCta.label}</span>
               <Icon

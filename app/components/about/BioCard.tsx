@@ -27,7 +27,7 @@ export function BioCard() {
               className={cn(
                 "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
                 activeId === bio.id
-                  ? "bg-brand-gradient text-white shadow-sm dark:text-brand-950"
+                  ? "bg-ink text-bg shadow-sm"
                   : "text-ink-soft hover:text-ink",
               )}
             >

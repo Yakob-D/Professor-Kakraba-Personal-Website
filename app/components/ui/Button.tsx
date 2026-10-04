@@ -9,10 +9,8 @@ const base =
   "group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-medium whitespace-nowrap transition-[transform,box-shadow,background-color,border-color,color] duration-300 ease-out active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<ButtonVariant, string> = {
-  primary:
-    "bg-brand-gradient text-white shadow-md hover:shadow-glow hover:-translate-y-0.5 dark:text-brand-950",
-  accent:
-    "bg-accent-gradient text-brand-950 shadow-md hover:shadow-glow hover:-translate-y-0.5",
+  primary: "bg-ink text-bg shadow-md hover:shadow-glow hover:-translate-y-0.5",
+  accent: "bg-ink text-bg shadow-md hover:shadow-glow hover:-translate-y-0.5",
   secondary:
     "border border-line-strong bg-surface text-ink hover:border-brand-400 hover:text-brand-700 hover:-translate-y-0.5 hover:shadow-sm dark:hover:text-brand-200",
   ghost:
@@ -47,11 +45,15 @@ function Inner({
 }: Pick<CommonProps, "children" | "icon" | "leadingIcon" | "animateIcon" | "variant">) {
   return (
     <>
-      {/* Light sweep on hover, only for the filled variants. */}
+      {/* Sweep on hover, only for the filled variants. Uses `via-bg` rather
+          than a literal white so it reads as a light sweep over the black
+          button in light mode and a dark sweep over the white button in
+          dark mode — `bg` is always the opposite tone of the button's own
+          `ink` fill. */}
       {(variant === "primary" || variant === "accent") && (
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out group-hover/btn:translate-x-full motion-reduce:hidden"
+          className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-bg/25 to-transparent transition-transform duration-700 ease-out group-hover/btn:translate-x-full motion-reduce:hidden"
         />
       )}
       {leadingIcon && <Icon name={leadingIcon} />}

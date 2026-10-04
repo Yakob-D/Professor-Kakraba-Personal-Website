@@ -127,7 +127,7 @@ export function MobileMenu({
             href={navCta.href}
             tabIndex={open ? 0 : -1}
             onClick={onClose}
-            className="mt-5 flex h-12 items-center justify-center gap-2 rounded-full bg-brand-gradient text-sm font-medium text-white shadow-sm dark:text-brand-950"
+            className="mt-5 flex h-12 items-center justify-center gap-2 rounded-full bg-ink text-sm font-medium text-bg shadow-sm"
           >
             {navCta.label}
             <Icon name="arrow-right" className="size-4" />
