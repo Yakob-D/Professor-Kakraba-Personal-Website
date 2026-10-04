@@ -152,8 +152,9 @@ export type SocialLink = {
 export const socialLinks: SocialLink[] = [
   {
     label: "Google Scholar",
-    href: "https://scholar.google.com/citations?user=PLACEHOLDER",
+    href: "https://scholar.google.com/citations?user=S9_ha_UAAAAJ",
     icon: "scholar",
+    handle: "S9_ha_UAAAAJ",
   },
   {
     // Real ORCID iD, confirmed in the source document's footer specification.
@@ -170,7 +171,7 @@ export const socialLinks: SocialLink[] = [
     href: "https://pubmed.ncbi.nlm.nih.gov/?term=Kakraba+S%5BAuthor%5D",
     icon: "file-text",
   },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/PLACEHOLDER", icon: "linkedin" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/kakrabasamuel/", icon: "linkedin" },
   {
     // Real GitHub organisation name, confirmed in the source document.
     label: "GitHub",
@@ -178,7 +179,7 @@ export const socialLinks: SocialLink[] = [
     icon: "github",
     handle: "KakrabaLab",
   },
-  { label: "ResearchGate", href: "https://www.researchgate.net/profile/PLACEHOLDER", icon: "researchgate" },
+  { label: "ResearchGate", href: "https://www.researchgate.net/profile/Samuel-Kakraba", icon: "researchgate" },
   {
     label: "Tulane profile",
     href: "https://sph.tulane.edu/bios/samuel-kakraba",
@@ -242,7 +243,7 @@ export const headlineMetrics: Metric[] = [
     label: "Citations",
     asOf: "2026-09",
     note: "per Google Scholar",
-    href: "https://scholar.google.com/citations?user=PLACEHOLDER",
+    href: socialLinks[0].href,
   },
   { value: 10, label: "h-index", asOf: "2026-09", note: "per Google Scholar" },
   { value: 3, label: "Patents / applications", asOf: "2026-09", href: "/research#patents" },
