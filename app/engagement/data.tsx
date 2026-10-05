@@ -134,6 +134,63 @@ export const globalEngagement = {
   ] satisfies ImageRef[],
 };
 
+/* ------------------------------------------- philanthropy & mentorship */
+/* Source: CV, "Philanthropic Sponsorships and Support" and "International
+   Student Mentorship". Per the information file's privacy guidance, sponsored
+   students, the 2016 surgery patient and individual mentees are not named, and
+   no amounts are shown; mentees appear as program + institution only. */
+
+export const philanthropy = {
+  paragraphs: [
+    "Academic potential should not be limited by socioeconomic constraints. Through personal funding and collaborative support, he has sponsored talented but underprivileged students through their university education in Ghana, covering tuition, fees and, in some cases, living expenses, while mentoring them throughout their studies.",
+    "Beyond education, he has mobilized emergency support for people facing life-threatening medical needs. In 2016 he organized a fundraising effort among friends and colleagues that paid for a critical, life-saving surgery for a teenager in Ghana, who recovered.",
+  ],
+  highlights: [
+    { value: "4", label: "Students given full bachelor's-degree sponsorships", detail: "Selected sponsorships, 2012 – 2023" },
+    { value: "2016", label: "Life-saving surgery funded", detail: "Community fundraising he organized and led" },
+  ],
+};
+
+export type MenteePlacement = {
+  year: number;
+  program: string;
+  institution: string;
+};
+
+export const internationalMentorship = {
+  paragraphs: [
+    "As a service to his community and a tribute to those who opened doors for him, he volunteers his time, networks and expertise to help students from Ghana and elsewhere reach graduate school, from admissions and fully funded assistantships to visa processes and pre-departure support.",
+    "He has also guided about ten U.S. students from underrepresented groups toward advanced degrees, many of whom have moved into graduate programs and professional careers.",
+  ],
+  stats: [
+    { value: 20, suffix: "+", label: "International students mentored into MS/PhD programs" },
+    { value: 10, suffix: "", label: "U.S. students from underrepresented groups guided toward advanced degrees", prefix: "~" },
+  ],
+  placementsIntro: "Selected placements, 2014 – present. Program and institution only.",
+  placements: [
+    { year: 2026, program: "Interdisciplinary PhD in Aging Studies", institution: "Tulane University" },
+    { year: 2024, program: "Interdisciplinary PhD in Aging Studies", institution: "Tulane University" },
+    { year: 2024, program: "M.S. Data Science and Analytics", institution: "Georgia State University" },
+    { year: 2023, program: "M.S. Plant Science and Agronomy", institution: "South Dakota State University" },
+    { year: 2022, program: "M.S. Mathematical Sciences", institution: "East Tennessee State University" },
+    { year: 2022, program: "MBA Accounting & Finance", institution: "Eastern Kentucky University" },
+    { year: 2022, program: "MPH Health Promotion", institution: "Eastern Kentucky University" },
+    { year: 2022, program: "M.S. Applied Statistics", institution: "Minnesota State University, Mankato" },
+    { year: 2022, program: "M.A. Clinical Mental Health Counseling", institution: "East Tennessee State University" },
+    { year: 2021, program: "M.S. Agribusiness and Applied Economics", institution: "North Dakota State University" },
+    { year: 2021, program: "M.S. Mathematical Sciences", institution: "East Tennessee State University" },
+    { year: 2021, program: "M.S. Civil and Environmental Engineering", institution: "South Dakota State University" },
+    { year: 2021, program: "Ph.D. Bioinformatics", institution: "UALR & UAMS" },
+    { year: 2020, program: "Ph.D. Bioinformatics", institution: "UALR & UAMS" },
+    { year: 2019, program: "Ph.D. Business Information Systems", institution: "University of Memphis" },
+    { year: 2017, program: "Ph.D. Applied Physics", institution: "University of Arkansas at Little Rock" },
+    { year: 2016, program: "M.S. Mathematical Sciences", institution: "East Tennessee State University" },
+    { year: 2015, program: "M.S. Mathematical Sciences", institution: "East Tennessee State University" },
+    { year: 2015, program: "M.S. Mathematical Sciences", institution: "East Tennessee State University" },
+    { year: 2014, program: "M.S. Mathematical Sciences", institution: "East Tennessee State University" },
+  ] satisfies MenteePlacement[],
+};
+
 export type EditorialRole = {
   role: string;
   organisation: string;

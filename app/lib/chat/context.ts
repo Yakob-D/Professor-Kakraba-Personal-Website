@@ -53,6 +53,8 @@ import {
   guestLectures,
   studentResources,
   evaluationsNote,
+  evaluations,
+  courseHistory,
   mentoring,
 } from "@/app/teaching/data";
 import {
@@ -60,6 +62,8 @@ import {
   talksStat,
   newsMedia,
   globalEngagement,
+  philanthropy,
+  internationalMentorship,
   editorialRoles,
   editorialService,
   leadershipRoles,
@@ -218,9 +222,10 @@ function formatPatents(): string {
 }
 
 function formatFunding(): string {
-  const lines = funding.map(
-    (f) => `- ${f.title} — ${f.role}, ${f.sponsor} (${f.period}): ${f.description}`,
-  );
+  const lines = funding.map((f) => {
+    const who = [f.role, f.pi, f.sponsor].filter(Boolean).join(", ");
+    return `- [${f.status}] ${f.title} — ${who} (${f.period}): ${f.description}`;
+  });
   return `## FUNDING\n${lines.join("\n")}\n${fundingNote}`;
 }
 
@@ -295,7 +300,43 @@ function formatGuestLectures(): string {
 }
 
 function formatMentoring(): string {
-  return `## MENTORING & STUDENT RESOURCES\n${mentoring.paragraph}\n${studentResources.intro}\n${evaluationsNote}`;
+  return `## MENTORING & STUDENT RESOURCES\n${mentoring.paragraph}\n${studentResources.intro}`;
+}
+
+function formatCourseHistory(): string {
+  const blocks = courseHistory.map((h) => {
+    const lines = h.rows.map((r) => `- ${r.semester} ${r.year}: ${r.code} ${r.title} (${r.level}, ${r.credits} cr)`);
+    return `${h.institution} (${h.period}):\n${lines.join("\n")}`;
+  });
+  return `## COURSES TAUGHT\n${blocks.join("\n\n")}`;
+}
+
+function formatEvaluations(): string {
+  const blocks = evaluations.map((t) => {
+    const lines = t.rows.map(
+      (r) => `- ${r.code} ${r.title}, ${r.semester}: ${r.percent}%${r.score ? ` (${r.score})` : ""}`,
+    );
+    return `${t.institution} — ${t.instrument}; ${t.measure}:\n${lines.join("\n")}`;
+  });
+  return `## STUDENT EVALUATIONS\n${evaluationsNote}\n${blocks.join("\n\n")}`;
+}
+
+function formatPhilanthropyAndMentorship(): string {
+  const highlights = philanthropy.highlights.map((h) => `- ${h.value}: ${h.label} (${h.detail})`);
+  const placements = internationalMentorship.placements.map(
+    (m) => `- ${m.year}: ${m.program}, ${m.institution}`,
+  );
+  return [
+    "## PHILANTHROPY",
+    ...philanthropy.paragraphs,
+    ...highlights,
+    "Sponsored students and beneficiaries are not named publicly.",
+    "",
+    "## INTERNATIONAL MENTORSHIP",
+    ...internationalMentorship.paragraphs,
+    internationalMentorship.placementsIntro,
+    ...placements,
+  ].join("\n");
 }
 
 /* --------------------------------------------------- engagement data --- */
@@ -372,6 +413,9 @@ export const siteContext: string = [
   formatTeachingPhilosophy(),
   formatGuestLectures(),
   formatMentoring(),
+  formatCourseHistory(),
+  formatEvaluations(),
+  formatPhilanthropyAndMentorship(),
   formatTalks(),
   formatNews(),
   formatGlobalEngagement(),

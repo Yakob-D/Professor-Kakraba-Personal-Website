@@ -7,9 +7,10 @@ import { Paragraphs } from "../components/ui/Prose";
 import { Badge } from "../components/ui/Card";
 import { Button } from "../components/ui/Button";
 import { CTABand } from "../components/ui/CTABand";
+import { Icon } from "../components/ui/Icon";
 import { ScaleDiagram } from "../components/ui/GraphNetwork";
 import { AreaCard } from "../components/research/AreaCard";
-import { researchAreas, researchVision, patents, patentsCount, patentsNote, funding, fundingNote } from "./data";
+import { researchAreas, researchVision, patents, patentsCount, patentsNote, funding, fundingGroups, fundingNote } from "./data";
 
 export const metadata: Metadata = {
   title: "Research",
@@ -101,23 +102,39 @@ export default function ResearchPage() {
 
       {/* ------------------------------------------------------- funding */}
       <Section id="funding" tone="tint" className="border-y border-line">
-        <SectionHeading eyebrow="Funding" title="Who's" gradientWord="behind it." />
-        <ul className="mt-10 space-y-3">
-          {funding.map((f, i) => (
-            <Reveal as="li" key={f.title} delay={i * 90}>
-              <div className="rounded-2xl border border-line bg-surface p-6">
-                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 className="text-[1.0625rem] font-semibold text-ink">{f.title}</h3>
-                  <span className="font-mono text-[0.75rem] text-faint">{f.period}</span>
-                </div>
-                <p className="mt-1 text-[0.9375rem] font-medium text-brand-700 dark:text-brand-300">
-                  {f.role} · {f.sponsor}
-                </p>
-                <p className="mt-2 text-[0.875rem] leading-relaxed text-muted">{f.description}</p>
-              </div>
-            </Reveal>
-          ))}
-        </ul>
+        <SectionHeading eyebrow="Funding & grants" title="Who's" gradientWord="behind it." />
+        {fundingGroups.map((g) => {
+          const items = funding.filter((f) => f.status === g.status);
+          if (items.length === 0) return null;
+          return (
+            <div key={g.status} className="mt-10">
+              <h3 className="flex items-center gap-2 text-sm font-semibold text-ink">
+                <Icon
+                  name={g.status === "current" ? "award" : g.status === "pending" ? "clock" : "calendar"}
+                  className="size-4 text-brand-500"
+                />
+                {g.label}
+                <span className="font-mono text-[0.75rem] font-normal text-faint">({items.length})</span>
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {items.map((f, i) => (
+                  <Reveal as="li" key={f.title} delay={i * 70}>
+                    <div className="rounded-2xl border border-line bg-surface p-6">
+                      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                        <h4 className="text-[1.0625rem] font-semibold text-ink">{f.title}</h4>
+                        <span className="font-mono text-[0.75rem] text-faint">{f.period}</span>
+                      </div>
+                      <p className="mt-1 text-[0.9375rem] font-medium text-brand-700 dark:text-brand-300">
+                        {[f.role, f.pi, f.sponsor].filter(Boolean).join(" · ")}
+                      </p>
+                      <p className="mt-2 text-[0.875rem] leading-relaxed text-muted">{f.description}</p>
+                    </div>
+                  </Reveal>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
         <p className="mt-5 text-[0.8125rem] italic text-faint">{fundingNote}</p>
       </Section>
 

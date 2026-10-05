@@ -6,12 +6,16 @@ import { Reveal } from "../components/ui/Reveal";
 import { Figure } from "../components/ui/Figure";
 import { CTABand } from "../components/ui/CTABand";
 import { Icon } from "../components/ui/Icon";
+import { Counter } from "../components/ui/Counter";
+import { Prose } from "../components/ui/Prose";
 import { TalkItem } from "../components/engagement/TalkItem";
 import {
   talks,
   talksStat,
   newsMedia,
   globalEngagement,
+  philanthropy,
+  internationalMentorship,
   editorialRoles,
   editorialService,
   leadershipRoles,
@@ -20,7 +24,7 @@ import { formatLongDate } from "../lib/utils";
 
 export const metadata: Metadata = {
   title: "Engagement",
-  description: "Talks, media, global engagement with Ghana, and editorial service.",
+  description: "Talks, media, global engagement with Ghana, philanthropy, international mentorship and editorial service.",
   alternates: { canonical: "/engagement" },
 };
 
@@ -107,9 +111,13 @@ export default function EngagementPage() {
               <p className="mt-2 font-mono text-[0.6875rem] text-faint">{globalEngagement.mou.date}</p>
             </div>
 
-            <p className="mt-6 text-[0.8125rem] italic leading-relaxed text-faint">
+            <a
+              href="#philanthropy"
+              className="mt-6 inline-flex items-center gap-1.5 text-[0.8125rem] font-medium text-brand-700 hover:underline dark:text-brand-300"
+            >
               {globalEngagement.philanthropyNote}
-            </p>
+              <Icon name="arrow-down" className="size-3.5 shrink-0" />
+            </a>
           </div>
 
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -120,6 +128,95 @@ export default function EngagementPage() {
             ))}
           </div>
         </div>
+      </Section>
+
+      {/* ---------------------------------------------------- philanthropy */}
+      <Section id="philanthropy" tone="tint" className="border-y border-line" spacing="lg">
+        <SectionHeading eyebrow="Philanthropy" title="Opening doors" gradientWord="others opened." />
+        <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_0.75fr] lg:items-start lg:gap-14">
+          <Reveal>
+            <Prose size="lg">
+              {philanthropy.paragraphs.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </Prose>
+          </Reveal>
+          <ul className="grid gap-3">
+            {philanthropy.highlights.map((h, i) => (
+              <Reveal as="li" key={h.label} delay={i * 90}>
+                <div className="flex items-start gap-4 rounded-2xl border border-line bg-surface p-5">
+                  <Icon name="heart" className="mt-1 size-4 shrink-0 text-brand-500" />
+                  <div>
+                    <p className="font-display text-2xl font-semibold text-gradient">{h.value}</p>
+                    <p className="mt-1 text-[0.9375rem] font-medium text-ink">{h.label}</p>
+                    <p className="mt-0.5 text-[0.8125rem] text-faint">{h.detail}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
+      {/* ---------------------------------------- international mentorship */}
+      <Section id="mentorship" spacing="lg">
+        <SectionHeading eyebrow="International mentorship" title="From Ghana to" gradientWord="graduate school." />
+        <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_0.75fr] lg:items-center lg:gap-14">
+          <Reveal>
+            <Prose size="lg">
+              {internationalMentorship.paragraphs.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </Prose>
+          </Reveal>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            {internationalMentorship.stats.map((st, i) => (
+              <Reveal key={st.label} delay={i * 90}>
+                <div className="rounded-2xl border border-line bg-brand-gradient-soft p-6 text-center">
+                  <span className="block font-display text-4xl font-semibold text-gradient">
+                    <Counter value={st.value} prefix={st.prefix} suffix={st.suffix} />
+                  </span>
+                  <span className="mt-2 block text-[0.875rem] font-medium text-ink-soft">{st.label}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        <Reveal delay={100} className="mt-12">
+          <div className="overflow-hidden rounded-2xl border border-line bg-surface">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-line px-5 py-4">
+              <h3 className="text-[1.0625rem] font-semibold text-ink">Where they went</h3>
+              <p className="text-[0.8125rem] text-muted">{internationalMentorship.placementsIntro}</p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[32rem] border-collapse">
+                <thead className="bg-surface-2">
+                  <tr>
+                    {["Year", "Program", "Institution"].map((h) => (
+                      <th
+                        key={h}
+                        scope="col"
+                        className="px-4 py-2.5 text-left font-mono text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-faint"
+                      >
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {internationalMentorship.placements.map((m, i) => (
+                    <tr key={i} className="border-t border-line">
+                      <td className="px-4 py-2.5 font-mono text-[0.75rem] text-muted">{m.year}</td>
+                      <td className="px-4 py-2.5 text-[0.8125rem] font-medium text-ink">{m.program}</td>
+                      <td className="px-4 py-2.5 text-[0.8125rem] text-ink-soft">{m.institution}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </Reveal>
       </Section>
 
       {/* ------------------------------------------------- editorial/service */}

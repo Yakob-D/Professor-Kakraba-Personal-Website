@@ -132,7 +132,7 @@ export const primaryNav: NavItem[] = [
   { label: "Publications", href: "/publications", blurb: "Papers, theses and patents" },
   { label: "Software & Tools", href: "/software", blurb: "SMART-Pred and open research code" },
   { label: "Teaching", href: "/teaching", blurb: "Courses, philosophy and guest lectures" },
-  { label: "Engagement", href: "/engagement", blurb: "Talks, media, service and Ghana" },
+  { label: "Engagement", href: "/engagement", blurb: "Talks, media, Ghana, philanthropy and mentorship" },
 ];
 
 export const navCta: NavItem = { label: "Contact", href: "/contact" };
@@ -220,12 +220,9 @@ export type Metric = {
  * patents/applications · 7+ open ML workflows · 59 presentations · 20+
  * students mentored into MS/PhD programs · 47 verified peer reviews."
  *
- * One deliberate change: the citation count. The document itself flags
- * this as unresolved ("Google Scholar recently displayed 297 versus the
- * CV's 327+... pull it live or state 'per Google Scholar, [month year]'")
- * and its own consistency-fix section repeats the instruction to pick one
- * figure with a date stamp. 297 (the Google Scholar figure, with a date)
- * is used here per that instruction.
+ * Citations use the CV figure (328+, as of October 2026). The document
+ * flagged a mismatch with an older Google Scholar snapshot (297); the CV
+ * figure was confirmed as the one to show.
  */
 export const headlineMetrics: Metric[] = [
   {
@@ -236,11 +233,10 @@ export const headlineMetrics: Metric[] = [
     href: "/publications",
   },
   {
-    value: 297,
+    value: 328,
     suffix: "+",
     label: "Citations",
-    asOf: "2026-09",
-    note: "per Google Scholar",
+    asOf: "2026-10",
     href: socialLinks[0].href,
   },
   { value: 10, label: "h-index", asOf: "2026-09", note: "per Google Scholar" },

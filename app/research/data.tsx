@@ -270,41 +270,116 @@ export const patentsNote =
 
 /* -------------------------------------------------------------- funding */
 
+export type FundingStatus = "current" | "pending" | "prior";
+
 export type FundingItem = {
   title: string;
   role: string;
-  sponsor: string;
+  /** Lead PI, where he is not the PI himself. */
+  pi?: string;
+  /** Omitted where the CV doesn't name the sponsor. */
+  sponsor?: string;
   period: string;
-  current: boolean;
-  /** Per the source document's funding caveats: no dollar amounts, ever,
-   *  and prior training support is labelled as a graduate research
+  status: FundingStatus;
+  /** Per the source document's funding caveats: no dollar amounts, pending
+   *  applications shown as "under review" only, unfunded applications left
+   *  off entirely, and prior support labelled as a graduate research
    *  assistantship rather than his own PI funding. */
   description: string;
 };
 
+export const fundingGroups: { status: FundingStatus; label: string }[] = [
+  { status: "current", label: "Current support" },
+  { status: "pending", label: "Under review" },
+  { status: "prior", label: "Previously funded support" },
+];
+
 export const funding: FundingItem[] = [
   {
-    title: "SMART-Pred: next-phase development and validation",
+    title: "SMART-Pred: Machine Learning for Population Health Surveillance",
     role: "Principal Investigator",
-    sponsor: "WSPH–CAIDS AI Seed Grant",
+    sponsor: "Tulane WSPH–CAIDS AI Seed Grant",
     period: "2026 – 2027",
-    current: true,
+    status: "current",
     description:
-      "Supports expanding SMART-Pred from 10 toward more than 20 algorithms, multi-disease validation, and HIPAA compliance.",
+      "Develops and pilots SMART-Pred as a scalable multi-algorithm AI/ML platform for population health surveillance, extending the Alzheimer's-focused tool to cancer, maternal health and infectious diseases, with intensive graduate training in applied AI and biostatistics.",
   },
   {
-    title: "Doctoral research support",
-    role: "Graduate Research Assistant",
-    sponsor: "NIH/NIA P01 · VA · Arkansas INBRE",
-    period: "2015 – 2021",
-    current: false,
+    title: "SMART-Pred v2 Teach: Equitable, Explainable Clinical Prediction and AI",
+    role: "Principal Investigator",
+    sponsor: "Josiah Macy Jr. Foundation (Board Grant)",
+    period: "2026 – 2029",
+    status: "pending",
     description:
-      "Supported doctoral research in computational structural biology and drug discovery, held as a graduate research assistant, not as Principal Investigator.",
+      "A curriculum built on SMART-Pred v2, the open-source Shiny platform integrating multi-algorithm benchmarking, SHAP-based explainability, subgroup equity analysis and temporal surveillance.",
+  },
+  {
+    title: "Multilevel machine learning to predict and prevent adverse pregnancy, birth and postpartum outcomes in Louisiana",
+    role: "Co-Investigator",
+    pi: "Vilda (PI)",
+    period: "2027 – 2032",
+    status: "pending",
+    description: "Multilevel AI/ML modeling to predict and prevent adverse maternal and birth outcomes.",
+  },
+  {
+    title: "A Neurovascular Pathway to Apathy in AD/ADRD: Extracellular Vesicle and Imaging Markers",
+    role: "Co-Investigator",
+    pi: "Japa (PI)",
+    period: "2027 – 2029",
+    status: "pending",
+    description: "Biostatistical and computational support for vascular and white-matter injury markers in AD/ADRD.",
+  },
+  {
+    title: "Scalable and Efficient Bootstrap Methods",
+    role: "Co-Investigator",
+    pi: "Srivastav (PI)",
+    sponsor: "NSF Statistics",
+    period: "2026 – 2029",
+    status: "pending",
+    description: "Statistical and computational expertise for scalable bootstrap methodology.",
+  },
+  {
+    title: "Early Events in Alzheimer Pathogenesis",
+    role: "Graduate Research Assistant",
+    pi: "Griffin (PI)",
+    sponsor: "NIH/NIA P01 AG012411",
+    period: "2016 – 2021",
+    status: "prior",
+    description:
+      "Protein aggregation and drug-testing research within a large interdisciplinary Alzheimer's disease program.",
+  },
+  {
+    title: "Analysis and Therapy of Age-Dependent Proteostasis Failure in Neurodegeneration",
+    role: "Graduate Research Assistant",
+    pi: "Reis (PI)",
+    sponsor: "Department of Veterans Affairs (I01BX001655)",
+    period: "2013 – 2022",
+    status: "prior",
+    description:
+      "Protein aggregation studies in C. elegans and human CNS samples on neurodegeneration and proteostasis failure.",
+  },
+  {
+    title: "Senior Research Career Scientist Award",
+    role: "Graduate Research Assistant",
+    pi: "Reis (PI)",
+    sponsor: "Department of Veterans Affairs",
+    period: "2012 – 2019",
+    status: "prior",
+    description:
+      "A sustained aging and neurodegeneration research program covering protein aggregation and translational therapeutics.",
+  },
+  {
+    title: "Arkansas IDeA Network of Biomedical Research Excellence",
+    role: "Doctoral Graduate Assistant",
+    sponsor: "NIGMS/NIH Arkansas INBRE (P20 GM103429)",
+    period: "2015 – 2017",
+    status: "prior",
+    description: "Protein aggregation inhibition studies during early doctoral research.",
   },
 ];
 
 export const fundingNote =
-  "Additional funding proposals are currently under review to extend this work; per institutional practice, pending and unfunded applications are not listed publicly here.";
+  "Prior support was held as a graduate research assistant, not as Principal Investigator. Proposals under review are listed without amounts.";
 
 /* ------------------------------------------------------------ page copy */
 

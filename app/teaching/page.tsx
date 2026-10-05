@@ -9,8 +9,12 @@ import { Counter } from "../components/ui/Counter";
 import { CTABand } from "../components/ui/CTABand";
 import { Icon } from "../components/ui/Icon";
 import { CourseCard } from "../components/teaching/CourseCard";
+import { CourseHistoryTable, EvaluationTable } from "../components/teaching/TeachingTables";
 import {
   courses,
+  courseHistory,
+  revivedCourseNote,
+  evaluations,
   teachingStat,
   philosophy,
   guestLectures,
@@ -22,14 +26,13 @@ import { labSite } from "../data/site";
 
 export const metadata: Metadata = {
   title: "Teaching",
-  description: "Courses, teaching philosophy, guest lectures and mentoring.",
+  description: "Courses taught, student evaluations, teaching philosophy, guest lectures and mentoring.",
   alternates: { canonical: "/teaching" },
 };
 
 export default function TeachingPage() {
   const current = courses.filter((c) => c.status === "current");
   const inDevelopment = courses.filter((c) => c.status === "in-development");
-  const history = courses.filter((c) => c.status === "history");
 
   return (
     <>
@@ -64,22 +67,39 @@ export default function TeachingPage() {
       </Section>
 
       {/* ------------------------------------------------- teaching history */}
-      <Section id="history" spacing="md">
-        <SectionHeading eyebrow="Teaching history" title="Earlier" gradientWord="classrooms." />
-        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {history.map((c, i) => (
-            <Reveal as="li" key={c.title + c.institution} delay={i * 60}>
-              <div className="rounded-xl border border-line bg-surface px-4 py-3">
-                <p className="text-[0.875rem] font-medium text-ink">{c.title}</p>
-                <p className="mt-0.5 text-[0.75rem] text-faint">{c.institution}</p>
-              </div>
+      <Section id="history" spacing="lg">
+        <SectionHeading
+          eyebrow="Teaching history"
+          title="Every course,"
+          gradientWord="every term."
+          lede="Graduate and undergraduate sections taught at Tulane, Eastern Kentucky University and East Tennessee State University."
+        />
+        <div className="mt-10 space-y-6">
+          {courseHistory.map((h, i) => (
+            <Reveal key={h.institution} delay={i * 80}>
+              <CourseHistoryTable history={h} />
             </Reveal>
           ))}
-        </ul>
+        </div>
+        <p className="mt-4 text-[0.75rem] text-faint">
+          <span className="text-brand-500">*</span> {revivedCourseNote}
+        </p>
+      </Section>
+
+      {/* ------------------------------------------------------- evaluations */}
+      <Section id="evaluations" tone="tint" className="border-y border-line" spacing="lg">
+        <SectionHeading eyebrow="Student evaluations" title="What students" gradientWord="said." lede={evaluationsNote} />
+        <div className="mt-10 space-y-6">
+          {evaluations.map((t, i) => (
+            <Reveal key={t.institution} delay={i * 80}>
+              <EvaluationTable table={t} />
+            </Reveal>
+          ))}
+        </div>
       </Section>
 
       {/* --------------------------------------------------- philosophy */}
-      <Section id="philosophy" tone="tint" className="border-y border-line">
+      <Section id="philosophy">
         <SectionHeading eyebrow="Teaching philosophy" title="The short" gradientWord="version." />
         <Reveal delay={100} className="mt-8 max-w-2xl">
           <Prose size="lg">
@@ -91,7 +111,7 @@ export default function TeachingPage() {
       </Section>
 
       {/* -------------------------------------------------- guest lectures */}
-      <Section id="guest-lectures" spacing="lg">
+      <Section id="guest-lectures" tone="tint" className="border-y border-line" spacing="lg">
         <SectionHeading eyebrow="Guest lectures" title="Borrowed" gradientWord="classrooms." />
         <ul className="mt-10 grid gap-3 sm:grid-cols-3">
           {guestLectures.map((g, i) => (
@@ -109,19 +129,11 @@ export default function TeachingPage() {
       </Section>
 
       {/* ------------------------------------------------- student resources */}
-      <Section id="student-resources" tone="tint" className="border-y border-line" spacing="md">
+      <Section id="student-resources" spacing="md">
         <SectionHeading eyebrow="Student resources" title="For students in the" gradientWord="classroom." />
         <Reveal delay={100} className="mt-6 max-w-2xl">
           <p className="text-[0.9375rem] leading-relaxed text-muted">{studentResources.intro}</p>
         </Reveal>
-      </Section>
-
-      {/* ------------------------------------------------------- evaluations */}
-      <Section id="evaluations" spacing="md">
-        <div className="flex items-center gap-3 rounded-2xl border border-line bg-surface p-5">
-          <Icon name="check" className="size-4 shrink-0 text-brand-500" />
-          <p className="text-[0.9375rem] text-ink-soft">{evaluationsNote}</p>
-        </div>
       </Section>
 
       {/* -------------------------------------------------------- mentoring */}
