@@ -41,22 +41,15 @@ export default function EngagementPage() {
       {/* --------------------------------------------------------- talks */}
       <Section id="talks" spacing="lg">
         <SectionHeading eyebrow="Talks & keynotes" title="On the" gradientWord="record." lede={talksStat} />
+        {/* One grid, pinned first, so the cards flow without a lone card
+            and a gap between the pinned and remaining talks. */}
         <ul className="mt-10 grid gap-4 sm:grid-cols-2">
-          {pinned.map((t, i) => (
-            <Reveal as="li" key={t.title + t.venue} delay={i * 90}>
+          {[...pinned, ...rest].map((t, i) => (
+            <Reveal as="li" key={t.title + t.venue} delay={i * 70} className="h-full">
               <TalkItem talk={t} />
             </Reveal>
           ))}
         </ul>
-        {rest.length > 0 && (
-          <ul className="mt-4 grid gap-4 sm:grid-cols-2">
-            {rest.map((t, i) => (
-              <Reveal as="li" key={t.title + t.venue} delay={i * 70}>
-                <TalkItem talk={t} />
-              </Reveal>
-            ))}
-          </ul>
-        )}
       </Section>
 
       {/* ----------------------------------------------------- news/media */}
@@ -90,7 +83,7 @@ export default function EngagementPage() {
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-14">
           <div>
-            <h3 className="text-sm font-semibold text-ink">Partner institutions</h3>
+            <h3 className="text-xl font-bold text-ink">Partner institutions</h3>
             <ul className="mt-4 space-y-2.5">
               {globalEngagement.partners.map((p) => (
                 <li key={p.name} className="flex items-start gap-3 rounded-xl border border-line bg-surface px-4 py-3">
@@ -186,7 +179,7 @@ export default function EngagementPage() {
         <Reveal delay={100} className="mt-12">
           <div className="overflow-hidden rounded-2xl border border-line bg-surface">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-line px-5 py-4">
-              <h3 className="text-[1.0625rem] font-semibold text-ink">Where they went</h3>
+              <h3 className="text-xl font-bold text-ink">Where they went</h3>
               <p className="text-[0.8125rem] text-muted">{internationalMentorship.placementsIntro}</p>
             </div>
             <div className="overflow-x-auto">
@@ -239,7 +232,7 @@ export default function EngagementPage() {
         </div>
 
         <div className="mt-10">
-          <h3 className="text-sm font-semibold text-ink">Tulane leadership</h3>
+          <h3 className="text-xl font-bold text-ink">Tulane leadership</h3>
           <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
             {currentLeadership.map((r) => (
               <li key={r.role} className="flex items-start gap-2.5 text-[0.875rem] text-ink-soft">
@@ -252,7 +245,7 @@ export default function EngagementPage() {
 
         {earlierLeadership.length > 0 && (
           <div className="mt-8">
-            <h3 className="text-sm font-semibold text-ink">Earlier service</h3>
+            <h3 className="text-xl font-bold text-ink">Earlier service</h3>
             <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
               {earlierLeadership.map((r) => (
                 <li key={r.role} className="flex items-start gap-2.5 text-[0.875rem] text-muted">

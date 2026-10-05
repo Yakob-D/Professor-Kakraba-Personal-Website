@@ -108,7 +108,7 @@ export default function ResearchPage() {
           if (items.length === 0) return null;
           return (
             <div key={g.status} className="mt-10">
-              <h3 className="flex items-center gap-2 text-sm font-semibold text-ink">
+              <h3 className="flex items-center gap-2 text-xl font-bold text-ink">
                 <Icon
                   name={g.status === "current" ? "award" : g.status === "pending" ? "clock" : "calendar"}
                   className="size-4 text-brand-500"

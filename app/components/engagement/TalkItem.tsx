@@ -7,7 +7,7 @@ export function TalkItem({ talk }: { talk: Talk }) {
   return (
     <div
       className={cn(
-        "relative rounded-2xl border p-5 transition-[border-color,transform] duration-300",
+        "relative h-full rounded-2xl border p-5 transition-[border-color,transform] duration-300",
         talk.pinned
           ? "border-brand-300/70 bg-brand-gradient-soft hover:-translate-y-0.5 dark:border-brand-600"
           : "border-line bg-surface hover:-translate-y-0.5 hover:border-brand-300/50",
@@ -24,11 +24,11 @@ export function TalkItem({ talk }: { talk: Talk }) {
           <span className="ml-auto font-mono text-[0.75rem] text-faint">{talk.date}</span>
         )}
       </div>
-      <h3 className="mt-3 pr-6 text-[1.0625rem] font-semibold leading-snug text-ink">
+      <h3 className="mt-3 pr-6 text-lg font-bold leading-snug text-ink">
         {talk.title}
       </h3>
-      <p className="mt-1.5 flex items-center gap-1.5 text-[0.875rem] text-muted">
-        <Icon name="map-pin" className="size-3.5 text-brand-500" />
+      <p className="mt-1.5 flex items-start gap-1.5 text-[0.875rem] text-muted">
+        <Icon name="map-pin" className="mt-[0.2rem] size-3.5 shrink-0 text-brand-500" />
         {talk.venue}
       </p>
     </div>

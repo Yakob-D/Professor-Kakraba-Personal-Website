@@ -15,7 +15,7 @@ export function MediaKit() {
           <p className="text-[0.8125rem] leading-relaxed text-ink-soft">{mediaKit.terms}</p>
         </div>
 
-        <h3 className="mt-8 text-sm font-semibold text-ink">Speaking topics</h3>
+        <h3 className="mt-8 text-xl font-bold text-ink">Speaking topics</h3>
         <ul className="mt-3 space-y-2">
           {mediaKit.speakingTopics.map((topic) => (
             <li key={topic} className="flex gap-2.5 text-[0.875rem] leading-snug text-ink-soft">

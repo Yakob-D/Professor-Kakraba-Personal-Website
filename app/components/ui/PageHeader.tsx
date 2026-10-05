@@ -42,12 +42,12 @@ export function PageHeader({
                 align === "center" && "justify-center",
               )}
             >
-              <span className="h-px w-8 bg-brand-gradient" aria-hidden />
-              <span className="font-mono text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
+              <span className="h-[3px] w-12 rounded-full bg-brand-gradient" aria-hidden />
+              <span className="font-mono text-base font-bold uppercase tracking-[0.12em] text-brand-600 sm:text-xl dark:text-brand-300">
                 {eyebrow}
               </span>
             </div>
-            <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-[3.4rem]">
+            <h1 className="text-[2.75rem] font-bold leading-[1.05] tracking-tight text-ink sm:text-[4.25rem]">
               {title}
               {gradientWord && (
                 <>

@@ -18,7 +18,7 @@ function TableShell({
     <div className="overflow-hidden rounded-2xl border border-line bg-surface">
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-line px-5 py-4">
         <div>
-          <h3 className="text-[1.0625rem] font-semibold text-ink">{title}</h3>
+          <h3 className="text-xl font-bold text-ink">{title}</h3>
           <p className="mt-0.5 text-[0.8125rem] text-muted">{subtitle}</p>
         </div>
         {aside}

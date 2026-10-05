@@ -36,8 +36,8 @@ export function FeaturedWork() {
           {/* Copy */}
           <Reveal direction="left" duration={900}>
             <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-brand-gradient" aria-hidden />
-              <span className="font-mono text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
+              <span className="h-[3px] w-12 rounded-full bg-brand-gradient" aria-hidden />
+              <span className="font-mono text-base font-bold uppercase tracking-[0.12em] text-brand-600 sm:text-xl dark:text-brand-300">
                 {w.eyebrow}
               </span>
             </div>
