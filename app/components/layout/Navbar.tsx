@@ -49,7 +49,7 @@ export function Navbar() {
       >
         <nav
           aria-label="Primary"
-          className="mx-auto flex h-18 w-full max-w-(--container-page) items-center justify-between gap-6 px-5 sm:px-8"
+          className="mx-auto flex h-18 w-full max-w-[82rem] items-center justify-between gap-6 px-5 sm:px-8"
         >
           <Link
             href="/"
@@ -74,7 +74,7 @@ export function Navbar() {
             </span>
           </Link>
 
-          <ul className="hidden items-center gap-0.5 lg:flex">
+          <ul className="hidden items-center gap-0.5 xl:flex">
             {primaryNav.map((item) => {
               const active = isActive(item.href);
               return (
@@ -83,7 +83,7 @@ export function Navbar() {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "group/nav relative inline-flex h-9 items-center rounded-full px-3.5 text-sm font-medium transition-colors",
+                      "group/nav relative inline-flex h-9 items-center whitespace-nowrap rounded-full px-2.5 text-sm font-medium transition-colors",
                       active ? "text-brand-700 dark:text-brand-200" : "text-ink-soft hover:text-ink",
                     )}
                   >
@@ -91,7 +91,7 @@ export function Navbar() {
                     <span
                       aria-hidden
                       className={cn(
-                        "absolute inset-x-3.5 bottom-0.5 h-px origin-left bg-brand-gradient transition-transform duration-300",
+                        "absolute inset-x-2.5 bottom-0.5 h-px origin-left bg-brand-gradient transition-transform duration-300",
                         active ? "scale-x-100" : "scale-x-0 group-hover/nav:scale-x-100",
                       )}
                     />
@@ -122,7 +122,7 @@ export function Navbar() {
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
               aria-expanded={menuOpen}
-              className="grid size-10 place-items-center rounded-full border border-line bg-surface/80 text-ink-soft backdrop-blur transition-colors hover:border-brand-400 lg:hidden"
+              className="grid size-10 place-items-center rounded-full border border-line bg-surface/80 text-ink-soft backdrop-blur transition-colors hover:border-brand-400 xl:hidden"
             >
               <Icon name="menu" className="size-[1.05rem]" />
             </button>

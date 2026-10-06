@@ -18,7 +18,7 @@ export function HonorsList() {
                 </h3>
                 <span className="font-mono text-[0.6875rem] text-faint">{h.year}</span>
               </div>
-              <p className="mt-1 text-[0.8125rem] text-muted">{h.organisation}</p>
+              {h.organisation && <p className="mt-1 text-[0.8125rem] text-muted">{h.organisation}</p>}
               {h.note && (
                 <p className="mt-1.5 text-[0.8125rem] leading-relaxed text-ink-soft">
                   {h.note}

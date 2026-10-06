@@ -5,7 +5,7 @@ import { Section, SectionHeading } from "../components/ui/Section";
 import { Reveal } from "../components/ui/Reveal";
 import { CopyButton } from "../components/ui/CopyButton";
 import { Icon } from "../components/ui/Icon";
-import { contactReasons, studentNote } from "./data";
+import { contactReasons, studentNote, cvContact } from "./data";
 import { labSite, profile, socialLinks } from "../data/site";
 import { mailtoHref } from "../lib/utils";
 
@@ -76,8 +76,90 @@ export default function ContactPage() {
         </ul>
       </Section>
 
+      {/* ---------------------------------------------- full contact details */}
+      <Section id="contact-details" spacing="lg">
+        <SectionHeading eyebrow="Contact details" title="Where to" gradientWord="find him." />
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {[
+            { label: "Primary address", lines: cvContact.primaryAddress },
+            { label: "Secondary affiliation", lines: cvContact.secondaryAffiliation },
+            { label: "Tertiary affiliation", lines: cvContact.tertiaryAffiliation },
+          ].map((block) => (
+            <div key={block.label} className="rounded-2xl border border-line bg-surface p-6">
+              <p className="text-[0.75rem] font-medium uppercase tracking-[0.08em] text-faint">{block.label}</p>
+              {block.lines.map((l, i) => (
+                <p key={l} className={i === 0 ? "mt-2 text-[0.9375rem] font-semibold text-ink" : "text-[0.875rem] text-muted"}>
+                  {l}
+                </p>
+              ))}
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <div className="rounded-2xl border border-line bg-surface p-6">
+            <p className="text-[0.75rem] font-medium uppercase tracking-[0.08em] text-faint">Phone</p>
+            <ul className="mt-2 space-y-1">
+              {cvContact.phones.map((ph) => (
+                <li key={ph.label} className="text-[0.9375rem] text-ink-soft">
+                  {ph.label}:{" "}
+                  <a href={ph.href} className="font-medium text-ink hover:text-brand-700 dark:hover:text-brand-200">
+                    {ph.display}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-2xl border border-line bg-surface p-6">
+            <p className="text-[0.75rem] font-medium uppercase tracking-[0.08em] text-faint">Email & web</p>
+            <ul className="mt-2 space-y-1">
+              {cvContact.emails.map((e) => (
+                <li key={e}>
+                  <a href={mailtoHref(e)} className="break-all text-[0.9375rem] font-medium text-ink hover:text-brand-700 dark:hover:text-brand-200">
+                    {e}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a
+                  href={cvContact.website.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="text-[0.9375rem] font-medium text-ink hover:text-brand-700 dark:hover:text-brand-200"
+                >
+                  {cvContact.website.display}
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="rounded-2xl border border-line bg-surface p-6">
+            <p className="text-[0.75rem] font-medium uppercase tracking-[0.08em] text-faint">Languages</p>
+            <p className="mt-2 text-[0.9375rem] font-medium text-ink">{cvContact.languages.join(", ")}</p>
+          </div>
+        </div>
+        <div className="mt-4 rounded-2xl border border-line bg-surface p-6">
+          <p className="text-[0.75rem] font-medium uppercase tracking-[0.08em] text-faint">Professional profiles</p>
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {socialLinks
+              .filter((s) => s.label !== "GitHub")
+              .map((s) => (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="inline-flex items-center gap-2 text-[0.9375rem] font-medium text-brand-700 hover:underline dark:text-brand-300"
+                  >
+                    <Icon name={s.icon} className="size-4 shrink-0" />
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+          </ul>
+        </div>
+      </Section>
+
       {/* ------------------------------------------------ office / profiles */}
-      <Section id="details" spacing="lg">
+      <Section id="details" tone="tint" className="border-y border-line" spacing="lg">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Reveal>
             <a

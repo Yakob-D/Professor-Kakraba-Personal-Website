@@ -231,155 +231,289 @@ export const smartPred = {
   } satisfies ImageRef,
 };
 
+/** The main research areas, in his own words. */
+export const mainResearchAreas =
+  "His research combines artificial intelligence, machine learning, biostatistics, bioinformatics, and computational biology to address public-health prediction, aging and neurodegenerative diseases, drug discovery, and digital health.";
+
 /* -------------------------------------------------------------- patents */
 
 export type Patent = {
   title: string;
+  /** Inventors exactly as listed on the CV. */
+  inventors: string;
+  year: number;
   number: string;
   status: string;
   filingBody: string;
   description: string;
+  href?: string;
 };
 
-/**
- * The source document's headline metric is "3 patents/applications," but it
- * only gives verifiable reference numbers for two. Rather than invent a
- * third, this list shows the two documented patents and says so.
- */
+/** All three patents/applications, as listed under "Patents/Inventions" on the CV. */
 export const patents: Patent[] = [
   {
-    title: "Quinoline multi-target AChE/aggregation inhibitors",
-    number: "Filed with Tulane OIPM, 2026",
-    status: "Filed",
-    filingBody: "Tulane Office of Intellectual Property Management (OIPM)",
+    title: "Novel Quinoline Analogs as Multi-Target Inhibitors of Acetylcholinesterase and Protein Aggregation in Alzheimer’s Disease Therapy",
+    inventors: "Kakraba, S., et al.",
+    year: 2025,
+    number: "Submission ID: OI2026-00561 · January 14, 2026",
+    status: "Application submitted",
+    filingBody: "Tulane Office of Intellectual Property Management",
     description:
-      "Covers quinoline-based multi-target acetylcholinesterase (AChE) and protein-aggregation inhibitors from the drug-discovery pillar.",
+      "Quinoline-based multi-target acetylcholinesterase (AChE) and protein-aggregation inhibitors from the drug-discovery pillar.",
   },
   {
-    title: "TDZD analogs",
-    number: "US 2023/0125667 A1 · PCT/US2021/017970",
+    title: "Novel TDZD analogs as agents that delay, prevent, or reverse age-associated diseases and as anti-cancer and antileukemic agents",
+    inventors: "Bowroju, S.K., Crooks, P., Penthala, N., Ayyadevara, S., Guzman, M., Shmookler Reis, R.J., Lopes, E., & Kakraba, S.",
+    year: 2021,
+    number: "U.S. Patent Application No. US20230125667A1",
     status: "Application published",
-    filingBody: "U.S. Patent and Trademark Office / PCT",
-    description: "Covers TDZD-analog compounds developed from the AI-QSAR screening pipeline.",
+    filingBody: "U.S. Patent and Trademark Office",
+    description: "TDZD-analog compounds for age-associated disease, cancer and leukemia.",
+    href: "https://patents.google.com/patent/US20230125667A1",
+  },
+  {
+    title: "U.S. Patent Application No. PCT/US/2021/017970",
+    inventors: "Bowroju, K.S., Crooks, P., Penthala, N., Ayyadevara, S., Guzman, M., Reis, S.J.R., Lopes, E., Kakraba, S.",
+    year: 2021,
+    number: "PCT/US/2021/017970",
+    status: "PCT application",
+    filingBody: "Patent Cooperation Treaty (PCT)",
+    description: "International application filed alongside the TDZD-analog work.",
   },
 ];
 
-export const patentsCount = 3;
-export const patentsNote =
-  "The headline figure of 3 patents/applications includes one additional application not yet publicly detailed here.";
+export const patentsCount = patents.length;
 
 /* -------------------------------------------------------------- funding */
 
-export type FundingStatus = "current" | "pending" | "prior";
+export type FundingStatus = "current" | "pending" | "unfunded" | "prior";
 
 export type FundingItem = {
+  /** The PI line and dates exactly as printed on the CV. */
+  pi: string;
+  period: string;
+  sponsor: string;
   title: string;
   role: string;
-  /** Lead PI, where he is not the PI himself. */
-  pi?: string;
-  /** Omitted where the CV doesn't name the sponsor. */
-  sponsor?: string;
-  period: string;
+  effort?: string;
+  /** Total sponsor / direct costs, as printed on the CV. */
+  costs?: string;
+  /** The CV's status line. */
+  statusLabel?: string;
   status: FundingStatus;
-  /** Per the source document's funding caveats: no dollar amounts, pending
-   *  applications shown as "under review" only, unfunded applications left
-   *  off entirely, and prior support labelled as a graduate research
-   *  assistantship rather than his own PI funding. */
   description: string;
 };
 
 export const fundingGroups: { status: FundingStatus; label: string }[] = [
   { status: "current", label: "Current support" },
-  { status: "pending", label: "Under review" },
-  { status: "prior", label: "Previously funded support" },
+  { status: "pending", label: "Submitted / pending applications" },
+  { status: "unfunded", label: "Unfunded applications" },
+  { status: "prior", label: "Previously funded research support" },
 ];
 
+/** Every entry under "Research Support" (C.2.1–C.2.3) on the CV. */
 export const funding: FundingItem[] = [
   {
-    title: "SMART-Pred: Machine Learning for Population Health Surveillance",
+    pi: "Kakraba (PI)",
+    period: "01/2026–06/2027",
+    sponsor: "Tulane University – WSPH–CAIDS AI Seed Grant",
+    title: "SMART-pred: Machine Learning for Population Health Surveillance",
     role: "Principal Investigator",
-    sponsor: "Tulane WSPH–CAIDS AI Seed Grant",
-    period: "2026 – 2027",
+    effort: "N/A",
+    costs: "Total Sponsor Costs: Approximately $50,000 (WSPH Seed Funds: $30,000; CAIDS Research Assistant Funds: $20,000)",
+    statusLabel: "Funded / Active",
     status: "current",
     description:
-      "Develops and pilots SMART-Pred as a scalable multi-algorithm AI/ML platform for population health surveillance, extending the Alzheimer's-focused tool to cancer, maternal health and infectious diseases, with intensive graduate training in applied AI and biostatistics.",
+      "Develops and pilots SMART-pred, a scalable multi-algorithm AI/ML platform for population health surveillance, extending an Alzheimer’s-focused prediction tool to broader applications such as cancer, maternal health, and infectious diseases, while providing intensive graduate student training in applied AI and biostatistics.",
   },
   {
-    title: "SMART-Pred v2 Teach: Equitable, Explainable Clinical Prediction and AI",
-    role: "Principal Investigator",
-    sponsor: "Josiah Macy Jr. Foundation (Board Grant)",
-    period: "2026 – 2029",
+    pi: "Vilda (PI)",
+    period: "4/1/2027 – 3/31/2032",
+    sponsor: "Project 26-0873-P0001",
+    title: "Multilevel machine learning to predict and prevent adverse pregnancy, birth, and postpartum outcomes in Louisiana",
+    role: "Co-Investigator",
+    effort: "10%",
+    costs: "Total Sponsor Costs: $3,553,208",
+    statusLabel: "Under review",
     status: "pending",
     description:
-      "A curriculum built on SMART-Pred v2, the open-source Shiny platform integrating multi-algorithm benchmarking, SHAP-based explainability, subgroup equity analysis and temporal surveillance.",
+      "Provides multilevel AI/ML modeling support to predict and prevent adverse pregnancy, birth, and postpartum outcomes in Louisiana.",
   },
   {
-    title: "Multilevel machine learning to predict and prevent adverse pregnancy, birth and postpartum outcomes in Louisiana",
-    role: "Co-Investigator",
-    pi: "Vilda (PI)",
-    period: "2027 – 2032",
+    pi: "Kakraba (PI)",
+    period: "09/2026–09/2029",
+    sponsor: "Josiah Macy Jr. Foundation (Board Grant)",
+    title: "SMART-Pred v2 Teach: Transforming the Clinical Learning Environment for Equitable, Explainable Clinical Prediction and AI",
+    role: "PI",
+    effort: "30%",
+    costs: "Total Sponsor Costs: Approx. $300,000 (3 years)",
+    statusLabel: "Submitted",
     status: "pending",
-    description: "Multilevel AI/ML modeling to predict and prevent adverse maternal and birth outcomes.",
+    description:
+      "SMART-Pred v2 Teach is built on existing, validated work from his laboratory. The curriculum centers on SMART-Pred v2, an open-source Shiny platform he has already developed that integrates multi-algorithm benchmarking, SHAP-based explainability, subgroup equity analysis, temporal surveillance, and operational decision-support views.",
   },
   {
-    title: "A Neurovascular Pathway to Apathy in AD/ADRD: Extracellular Vesicle and Imaging Markers",
-    role: "Co-Investigator",
+    pi: "Shaffer, Doumbia (MPI)",
+    period: "03/2025–02/2030",
+    sponsor: "NIH (D43; 26-0076-P0001)",
+    title: "Advancing Data Science Training for Enhancing Global Infectious Diseases in West Africa",
+    role: "Co-Investigator (Subaward)",
+    effort: "~7.5% (biostatistics and data science contribution)",
+    costs: "Total Sponsor Costs: Approx. $545,000 (prime award; subaward to Tulane)",
+    statusLabel: "Unfunded (not awarded to date)",
+    status: "unfunded",
+    description:
+      "Provides biostatistical and data science expertise to support training and research activities in global infectious disease surveillance in West Africa.",
+  },
+  {
     pi: "Japa (PI)",
-    period: "2027 – 2029",
+    period: "4/1/2027 – 3/31/2029",
+    sponsor: "Project 26-1193-P0001",
+    title: "A Neurovascular Pathway to Apathy in AD/ADRD: Extracellular Vesicle and Imaging Markers of Vascular and White Matter Injury",
+    role: "Co-Investigator",
+    effort: "5%",
+    costs: "Total Sponsor Costs: $420,750",
+    statusLabel: "Under review",
     status: "pending",
-    description: "Biostatistical and computational support for vascular and white-matter injury markers in AD/ADRD.",
+    description: "Provides biostatistical and computational support for the study.",
   },
   {
+    pi: "Hutchinson (PI)",
+    period: "04/2026–03/2028",
+    sponsor: "Coefficient Giving (26-0621-P0001)",
+    title: "AI-Enhanced Forecasting to Reduce Contraceptive Stockouts and Unplanned Pregnancies in LMICs",
+    role: "Co-Investigator",
+    effort: "10%",
+    costs: "Total Sponsor Costs: $600,000",
+    statusLabel: "Unfunded",
+    status: "unfunded",
+    description:
+      "Provides AI/ML modeling support for contraceptive supply chain forecasting to reduce stockouts and unplanned pregnancies in low- and middle-income countries.",
+  },
+  {
+    pi: "Hutchinson (PI)",
+    period: "10/2025–03/2027",
+    sponsor: "Bill & Melinda Gates Foundation (25-0865-P0001)",
+    title: "Economic Impact of Gender Violence and Mental Health (EIGVM) Calculator",
+    role: "Co-Investigator",
+    effort: "10%",
+    costs: "Total Sponsor Costs: $149,955",
+    statusLabel: "Unfunded",
+    status: "unfunded",
+    description:
+      "Contributes data science and analytical methods for economic impact modeling of gender-based violence and mental health outcomes.",
+  },
+  {
+    pi: "Datta (PI)",
+    period: "07/2025–06/2030",
+    sponsor: "NIH (Tulane National Primate Research Center) (R01; 25-0492-P0001)",
+    title: "Neuroinflammation and CNS HIV Persistence: Role of DDX3",
+    role: "Co-Investigator",
+    effort: "5%",
+    costs: "Total Sponsor Costs: $3,393,494",
+    statusLabel: "Unfunded",
+    status: "unfunded",
+    description:
+      "Provides biostatistical and computational support for CNS HIV neuroinflammation research, with emphasis on DDX3-mediated mechanisms.",
+  },
+  {
+    pi: "Datta (PI)",
+    period: "04/2025–03/2030",
+    sponsor: "NIH (Tulane National Primate Research Center) (R01; 25-0092-P0001)",
+    title: "DDX3X Inhibitor, RK-33, as an Antiviral Agent for HIV-1 Cure",
+    role: "Co-Investigator",
+    effort: "5%",
+    costs: "Total Sponsor Costs: $4,233,933",
+    statusLabel: "Unfunded",
+    status: "unfunded",
+    description:
+      "Contributes statistical modeling and data analysis for antiviral drug discovery and evaluation of DDX3X inhibitor RK‑33 in the context of an HIV‑1 cure.",
+  },
+  {
+    pi: "Srivastav (PI)",
+    period: "07/2026–06/2029",
+    sponsor: "NSF Statistics (26-0593-P0001)",
     title: "Scalable and Efficient Bootstrap Methods",
     role: "Co-Investigator",
-    pi: "Srivastav (PI)",
-    sponsor: "NSF Statistics",
-    period: "2026 – 2029",
+    effort: "10%",
+    statusLabel: "Submitted / Under Review",
     status: "pending",
-    description: "Statistical and computational expertise for scalable bootstrap methodology.",
-  },
-  {
-    title: "Early Events in Alzheimer Pathogenesis",
-    role: "Graduate Research Assistant",
-    pi: "Griffin (PI)",
-    sponsor: "NIH/NIA P01 AG012411",
-    period: "2016 – 2021",
-    status: "prior",
     description:
-      "Protein aggregation and drug-testing research within a large interdisciplinary Alzheimer's disease program.",
+      "Provides statistical and computational expertise for the development and evaluation of scalable bootstrap methodology.",
   },
   {
+    pi: "Shaffer (PI)",
+    period: "12/2026–11/2031",
+    sponsor: "NIH – USTTB/NIH R21/R33 (Global Infectious Disease Research; 26-0919-P0001)",
+    title: "USTTB/NIH R21/R33 (Global Infectious Disease Research)",
+    role: "Co-Investigator",
+    effort: "7.0%",
+    costs: "Total Sponsor Cost: $441,829",
+    statusLabel: "Unfunded (to date)",
+    status: "unfunded",
+    description:
+      "Contributes AI/ML and biostatistical support to global infectious disease research activities via subaward.",
+  },
+  {
+    pi: "Kakraba (PI)",
+    period: "2025–2026",
+    sponsor: "Larvin Bernick Grant",
+    title: "Piloting and Implementing Machine Learning Workflows to Enhance Disease Diagnostics and Public Health Outcomes in Ghana",
+    role: "Principal Investigator",
+    effort: "N/A",
+    costs: "Total Sponsor Cost: $10,000",
+    statusLabel: "Unfunded",
+    status: "unfunded",
+    description:
+      "Proposed full scientific and administrative leadership to pilot AI/ML workflows for improving disease diagnostics and public health outcomes in Ghana.",
+  },
+  {
+    pi: "Reis (PI)",
+    period: "04/01/2013–03/31/2022",
+    sponsor: "Department of Veterans Affairs (I01BX001655)",
     title: "Analysis and Therapy of Age-Dependent Proteostasis Failure in Neurodegeneration",
     role: "Graduate Research Assistant",
-    pi: "Reis (PI)",
-    sponsor: "Department of Veterans Affairs (I01BX001655)",
-    period: "2013 – 2022",
+    costs: "Direct Costs: Approximately $150,000–$200,000/year",
     status: "prior",
     description:
-      "Protein aggregation studies in C. elegans and human CNS samples on neurodegeneration and proteostasis failure.",
+      "Conducted protein aggregation studies using C. elegans and human CNS samples, contributing to mechanistic and therapeutic investigations of neurodegeneration and proteostasis failure.",
   },
   {
+    pi: "Reis (PI)",
+    period: "10/01/2012–09/30/2019",
+    sponsor: "Department of Veterans Affairs",
     title: "Senior Research Career Scientist Award",
     role: "Graduate Research Assistant",
-    pi: "Reis (PI)",
-    sponsor: "Department of Veterans Affairs",
-    period: "2012 – 2019",
+    costs: "Direct Costs: Approximately $150,000–$200,000/year",
     status: "prior",
     description:
-      "A sustained aging and neurodegeneration research program covering protein aggregation and translational therapeutics.",
+      "Participated in a sustained aging and neurodegeneration research program, contributing to studies of protein aggregation, neurodegenerative mechanisms, and translational therapeutic development.",
   },
   {
+    pi: "Griffin (PI)",
+    period: "09/2016–06/2021",
+    sponsor: "NIH / NIA (P01 AG012411-17A1)",
+    title: "Early Events in Alzheimer Pathogenesis",
+    role: "Graduate Research Assistant",
+    costs: "Direct Costs: Approximately $1.2–$1.5 million/year",
+    status: "prior",
+    description:
+      "Conducted protein aggregation and drug-testing research within a large, interdisciplinary Alzheimer’s disease program; project also supported graduate assistantship including tuition, stipend, and health insurance.",
+  },
+  {
+    pi: "Arkansas INBRE Program",
+    period: "08/17/2015–03/17/2017",
+    sponsor: "NIGMS / NIH (P20 GM103429)",
     title: "Arkansas IDeA Network of Biomedical Research Excellence",
     role: "Doctoral Graduate Assistant",
-    sponsor: "NIGMS/NIH Arkansas INBRE (P20 GM103429)",
-    period: "2015 – 2017",
     status: "prior",
-    description: "Protein aggregation inhibition studies during early doctoral research.",
+    description:
+      "Supported protein aggregation inhibition studies and provided research-training infrastructure (tuition, health insurance, conference travel, and stipend support) during early doctoral research development.",
   },
 ];
 
 export const fundingNote =
-  "Prior support was held as a graduate research assistant, not as Principal Investigator. Proposals under review are listed without amounts.";
+  "As listed under Research Support on the CV. Prior support was held as a graduate research assistant, not as Principal Investigator.";
 
 /* ------------------------------------------------------------ page copy */
 

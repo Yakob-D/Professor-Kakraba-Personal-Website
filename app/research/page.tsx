@@ -10,7 +10,7 @@ import { CTABand } from "../components/ui/CTABand";
 import { Icon } from "../components/ui/Icon";
 import { ScaleDiagram } from "../components/ui/GraphNetwork";
 import { AreaCard } from "../components/research/AreaCard";
-import { researchAreas, researchVision, patents, patentsCount, patentsNote, funding, fundingGroups, fundingNote } from "./data";
+import { researchAreas, mainResearchAreas, researchVision, patents, patentsCount, funding, fundingGroups, fundingNote } from "./data";
 
 export const metadata: Metadata = {
   title: "Research",
@@ -58,9 +58,10 @@ export default function ResearchPage() {
       {/* ------------------------------------------------------ 4 pillars */}
       <Section id="areas" tone="tint" className="border-y border-line">
         <SectionHeading
-          eyebrow="Four research pillars"
+          eyebrow="Main research areas"
           title="Pick a scale,"
           gradientWord="start exploring."
+          lede={mainResearchAreas}
         />
         <ul className="mt-12 grid gap-4 sm:grid-cols-2">
           {researchAreas.map((area, i) => (
@@ -73,7 +74,7 @@ export default function ResearchPage() {
 
       {/* ------------------------------------------------------- patents */}
       <Section id="patents" spacing="lg">
-        <SectionHeading eyebrow="Patents" title="Protecting the" gradientWord="methods." />
+        <SectionHeading eyebrow="Patents & applications" title="Protecting the" gradientWord="methods." />
         <ul className="mt-10 space-y-3">
           {patents.map((p, i) => (
             <Reveal as="li" key={p.title} delay={i * 90}>
@@ -82,11 +83,23 @@ export default function ResearchPage() {
                   <h3 className="text-[1.0625rem] font-semibold leading-snug text-ink">
                     {p.title}
                   </h3>
+                  <p className="mt-1.5 text-[0.8125rem] text-muted">{p.inventors} ({p.year})</p>
                   <p className="mt-1 font-mono text-[0.75rem] text-faint">{p.number}</p>
                   <p className="mt-1 text-[0.8125rem] text-muted">{p.filingBody}</p>
                   <p className="mt-2.5 text-[0.875rem] leading-relaxed text-muted">
                     {p.description}
                   </p>
+                  {p.href && (
+                    <a
+                      href={p.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="mt-2 inline-flex items-center gap-1 text-[0.8125rem] font-medium text-brand-700 hover:underline dark:text-brand-300"
+                    >
+                      View patent application
+                      <Icon name="arrow-up-right" className="size-3.5" />
+                    </a>
+                  )}
                 </div>
                 <Badge tone="outline" className="shrink-0">
                   {p.status}
@@ -96,7 +109,7 @@ export default function ResearchPage() {
           ))}
         </ul>
         <p className="mt-5 text-[0.8125rem] italic text-faint">
-          {patentsCount} patents/applications in total. {patentsNote}
+          {patentsCount} patents and patent applications in total.
         </p>
       </Section>
 
@@ -110,7 +123,7 @@ export default function ResearchPage() {
             <div key={g.status} className="mt-10">
               <h3 className="flex items-center gap-2 text-xl font-bold text-ink">
                 <Icon
-                  name={g.status === "current" ? "award" : g.status === "pending" ? "clock" : "calendar"}
+                  name={g.status === "current" ? "award" : g.status === "pending" ? "clock" : g.status === "unfunded" ? "x" : "calendar"}
                   className="size-4 text-brand-500"
                 />
                 {g.label}
@@ -125,8 +138,24 @@ export default function ResearchPage() {
                         <span className="font-mono text-[0.75rem] text-faint">{f.period}</span>
                       </div>
                       <p className="mt-1 text-[0.9375rem] font-medium text-brand-700 dark:text-brand-300">
-                        {[f.role, f.pi, f.sponsor].filter(Boolean).join(" · ")}
+                        {f.sponsor}
                       </p>
+                      <dl className="mt-2 grid gap-x-6 gap-y-1 text-[0.8125rem] sm:grid-cols-2">
+                        {[
+                          ["PI", f.pi],
+                          ["Role", f.role],
+                          ["Effort", f.effort],
+                          ["Status", f.statusLabel],
+                        ]
+                          .filter(([, v]) => v)
+                          .map(([k, v]) => (
+                            <div key={k} className="flex gap-1.5">
+                              <dt className="font-semibold text-ink-soft">{k}:</dt>
+                              <dd className="text-muted">{v}</dd>
+                            </div>
+                          ))}
+                      </dl>
+                      {f.costs && <p className="mt-1 text-[0.8125rem] text-muted">{f.costs}</p>}
                       <p className="mt-2 text-[0.875rem] leading-relaxed text-muted">{f.description}</p>
                     </div>
                   </Reveal>

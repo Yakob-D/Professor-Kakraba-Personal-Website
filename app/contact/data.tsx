@@ -44,3 +44,28 @@ export const contactReasons: ContactReason[] = [
 
 export const studentNote =
   "Interested in joining the lab as a student or postdoc? Project openings, applications and current students are on the lab site.";
+
+/** "Personal Information" on the CV, in full. */
+export const cvContact = {
+  primaryAddress: [
+    "Department of Biostatistics and Data Science",
+    "Celia Scott Weatherhead School of Public Health and Tropical Medicine (WSPH)",
+    "Tulane University, 1440 Canal Street, Suite 1610H, MB Code #8310",
+    "New Orleans, LA 70112, USA",
+  ],
+  secondaryAffiliation: [
+    "Connolly Alexander Institute of Data Science (CAIDS)",
+    "Tulane University, New Orleans, LA 70118, USA",
+  ],
+  tertiaryAffiliation: [
+    "Tulane Center for Aging, School of Medicine",
+    "Tulane University, 1430 Tulane Avenue, New Orleans, LA 70112, USA",
+  ],
+  phones: [
+    { label: "Office", display: "+1 (504) 988-2475", href: "tel:+15049882475" },
+    { label: "Mobile", display: "+1 (423) 672-9998", href: "tel:+14236729998" },
+  ],
+  emails: ["skakraba@tulane.edu", "kakrabaresearchgroup@gmail.com"],
+  website: { display: "kakrabaresearchgroup.com", href: "https://kakrabaresearchgroup.com" },
+  languages: ["English", "Fante", "Twi"],
+};

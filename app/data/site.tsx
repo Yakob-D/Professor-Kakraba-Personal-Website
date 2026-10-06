@@ -78,8 +78,7 @@ export const profile: Profile = {
     "Tulane University",
   ],
   institution: "Tulane University School of Public Health & Tropical Medicine",
-  // One of the three tagline options given verbatim in the source document.
-  tagline: "Building trustworthy, accessible AI for public health, from New Orleans to Accra.",
+  tagline: "Building trustworthy, scalable, robust AI applications for public health and biomedical sciences.",
   // The document's own positioning statement, given verbatim for "About page
   // and media kit" use, reused here for the homepage intro.
   intro:
@@ -129,7 +128,8 @@ export const primaryNav: NavItem[] = [
   { label: "Home", href: "/", blurb: "Start here" },
   { label: "About", href: "/about", blurb: "Bio, story, positions and CV" },
   { label: "Research", href: "/research", blurb: "Four pillars, from molecules to populations" },
-  { label: "Publications", href: "/publications", blurb: "Papers, theses and patents" },
+  { label: "Publications", href: "/publications", blurb: "Papers, theses, patents and applications" },
+  { label: "Conferences", href: "/conferences", blurb: "Talks, keynotes, posters, panels and workshops" },
   { label: "Software & Tools", href: "/software", blurb: "SMART-Pred and open research code" },
   { label: "Teaching", href: "/teaching", blurb: "Courses, philosophy and guest lectures" },
   { label: "Engagement", href: "/engagement", blurb: "Talks, media, Ghana, philanthropy and mentorship" },
@@ -162,11 +162,9 @@ export const socialLinks: SocialLink[] = [
     handle: "0000-0002-6362-5126",
   },
   {
-    // The document lists PubMed among the footer profile links but gives no
-    // specific PubMed ID — this is an author-name search, not a verified
-    // deep link to a confirmed profile.
+    // His public PubMed bibliography, as listed on the CV.
     label: "PubMed",
-    href: "https://pubmed.ncbi.nlm.nih.gov/?term=Kakraba+S%5BAuthor%5D",
+    href: "https://www.ncbi.nlm.nih.gov/myncbi/samuel.kakraba.2/bibliography/public/",
     icon: "file-text",
   },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/kakrabasamuel/", icon: "linkedin" },
@@ -179,9 +177,19 @@ export const socialLinks: SocialLink[] = [
   },
   { label: "ResearchGate", href: "https://www.researchgate.net/profile/Samuel-Kakraba", icon: "researchgate" },
   {
-    label: "Tulane profile",
+    label: "Tulane WSPH Faculty",
     href: "https://sph.tulane.edu/bios/samuel-kakraba",
     icon: "building",
+  },
+  {
+    label: "Connolly Alexander Institute of Data Science",
+    href: "https://datainstitute.tulane.edu/tulane-people/samuel-kakraba-phd",
+    icon: "database",
+  },
+  {
+    label: "Tulane Center for Aging",
+    href: "https://medicine.tulane.edu/departments/tulane-center-aging-tulane-cancer-center/faculty/samuel-kakraba-phd",
+    icon: "brain",
   },
 ];
 
@@ -266,7 +274,7 @@ export const siteMeta = {
   url: "https://samuelkakraba.com",
   title: "Samuel Kakraba, Ph.D.",
   description:
-    "Samuel Kakraba, Ph.D. — Assistant Professor of Biostatistics & Data Science at Tulane University. Explainable, open AI for public health, from molecules to populations, New Orleans to Accra.",
+    "Samuel Kakraba, Ph.D. — Assistant Professor of Biostatistics & Data Science at Tulane University. Building trustworthy, scalable, robust AI applications for public health and biomedical sciences.",
   /** Shown in the footer. Keep in sync with real deployments. */
   lastUpdated: "2026-10-05",
   locale: "en_US",

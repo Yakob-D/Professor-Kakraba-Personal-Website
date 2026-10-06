@@ -15,7 +15,8 @@ import { HonorsList } from "../components/about/HonorsList";
 import { SkillsToolkit } from "../components/about/SkillsToolkit";
 import { BeyondWork } from "../components/about/BeyondWork";
 import { MediaKit } from "../components/about/MediaKit";
-import { storyParagraphs, aboutImages } from "./data";
+import { GroupedList } from "../components/ui/GroupedList";
+import { storyParagraphs, aboutImages, graduateCoursework, professionalDevelopment, coCurricular } from "./data";
 import { profile } from "../data/site";
 
 export const metadata: Metadata = {
@@ -126,11 +127,35 @@ export default function AboutPage() {
         </div>
       </Section>
 
+      {/* ---------------------------------------------- graduate coursework */}
+      <Section id="coursework" tone="tint" className="border-y border-line">
+        <SectionHeading eyebrow="Selected graduate-level coursework" title="What he" gradientWord="studied." />
+        <div className="mt-10">
+          <GroupedList groups={graduateCoursework} />
+        </div>
+      </Section>
+
+      {/* ----------------------------------------- professional development */}
+      <Section id="professional-development" spacing="lg">
+        <SectionHeading
+          eyebrow="Professional development"
+          title="Training &"
+          gradientWord="certifications."
+        />
+        <div className="mt-10">
+          <GroupedList groups={professionalDevelopment} columns={1} numbered />
+        </div>
+      </Section>
+
       {/* --------------------------------------------------- beyond work */}
       <Section id="beyond-work" tone="tint" className="border-y border-line" spacing="md">
         <SectionHeading eyebrow="Beyond work" title="Off the" gradientWord="clock." />
         <div className="mt-8">
           <BeyondWork />
+        </div>
+        <div className="mt-10">
+          <h3 className="mb-6 text-xl font-bold text-ink">Co-curricular achievements: track and field</h3>
+          <GroupedList groups={coCurricular} columns={1} numbered />
         </div>
       </Section>
 

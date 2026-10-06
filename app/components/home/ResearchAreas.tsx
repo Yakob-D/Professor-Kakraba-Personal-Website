@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { researchAreaCards } from "@/app/(home)/data";
+import { mainResearchAreas } from "@/app/research/data";
 import { Section, SectionHeading } from "../ui/Section";
 import { Reveal } from "../ui/Reveal";
 import { Button } from "../ui/Button";
@@ -10,10 +11,10 @@ export function ResearchAreas() {
   return (
     <Section id="research" tone="tint" className="border-y border-line">
       <SectionHeading
-        eyebrow="Research"
+        eyebrow="Main research areas"
         title="From molecules to populations, in"
         gradientWord="four areas."
-        lede="Different scales, one question: can a model be accurate and still explain itself well enough to act on?"
+        lede={mainResearchAreas}
         action={
           <Button href="/research" variant="secondary" icon="arrow-right">
             Research overview

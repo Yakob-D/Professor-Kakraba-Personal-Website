@@ -69,7 +69,13 @@ export function Reveal({
           setShown(false);
         }
       },
-      { threshold: amount, rootMargin: "0px 0px -8% 0px" },
+      // An element much taller than the viewport can never have `amount`
+      // of itself on screen at once, so it would stay hidden forever; reveal
+      // those as soon as any part scrolls into view instead.
+      {
+        threshold: node.getBoundingClientRect().height > window.innerHeight * 0.8 ? 0 : amount,
+        rootMargin: "0px 0px -8% 0px",
+      },
     );
 
     observer.observe(node);

@@ -39,7 +39,7 @@ export function MobileMenu({
   return (
     <div
       className={cn(
-        "fixed inset-0 z-60 lg:hidden",
+        "fixed inset-0 z-60 xl:hidden",
         open ? "pointer-events-auto" : "pointer-events-none",
       )}
       aria-hidden={!open}

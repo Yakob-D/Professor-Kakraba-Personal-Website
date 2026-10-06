@@ -39,12 +39,13 @@ import {
   smartPred,
   patents,
   patentsCount,
-  patentsNote,
+  mainResearchAreas,
   funding,
   fundingNote,
   researchVision,
 } from "@/app/research/data";
-import { publications, publicationVenues, publicationRecordNote, theses } from "@/app/publications/data";
+import { publications, allPublications, theses } from "@/app/publications/data";
+import { presentations } from "@/app/publications/conferences";
 import { softwareProjects, githubOrg, reproducibilityStatement } from "@/app/software/data";
 import {
   courses,
@@ -60,13 +61,16 @@ import {
 import {
   talks,
   talksStat,
-  newsMedia,
+  mediaCoverage,
   globalEngagement,
   philanthropy,
   internationalMentorship,
   editorialRoles,
   editorialService,
-  leadershipRoles,
+  refereedJournals,
+  orcidReviews,
+  universityCommittees,
+  schoolCommittees,
 } from "@/app/engagement/data";
 import { studentNote } from "@/app/contact/data";
 
@@ -216,21 +220,21 @@ function formatSmartPred(): string {
 
 function formatPatents(): string {
   const lines = patents.map(
-    (p) => `- ${p.title} (${p.status}, ${p.filingBody}, ref: ${p.number}): ${p.description}`,
+    (p) => `- ${p.title} — ${p.inventors} (${p.year}). ${p.status}, ${p.filingBody}, ref: ${p.number}: ${p.description}`,
   );
-  return `## PATENTS\nHeadline count: ${patentsCount}. ${patentsNote}\n${lines.join("\n")}`;
+  return `## PATENTS & PATENT APPLICATIONS\nTotal: ${patentsCount}.\n${lines.join("\n")}`;
 }
 
 function formatFunding(): string {
   const lines = funding.map((f) => {
-    const who = [f.role, f.pi, f.sponsor].filter(Boolean).join(", ");
-    return `- [${f.status}] ${f.title} — ${who} (${f.period}): ${f.description}`;
+    const meta = [f.pi, f.sponsor, f.role, f.effort && `effort ${f.effort}`, f.costs, f.statusLabel].filter(Boolean).join("; ");
+    return `- [${f.status}] ${f.title} (${f.period}) — ${meta}. ${f.description}`;
   });
   return `## FUNDING\n${lines.join("\n")}\n${fundingNote}`;
 }
 
 function formatResearchVision(): string {
-  return `## RESEARCH VISION\n${researchVision.paragraphs.join("\n\n")}`;
+  return `## RESEARCH VISION\n${mainResearchAreas}\n\n${researchVision.paragraphs.join("\n\n")}`;
 }
 
 /* -------------------------------------------------- publications data --- */
@@ -242,12 +246,19 @@ function formatPublications(): string {
   return `## FEATURED PUBLICATIONS\n${lines.join("\n")}`;
 }
 
-function formatPublicationVenues(): string {
-  const lines = publicationVenues.map((v) => {
-    const note = v.note ? ` — ${v.note}` : "";
-    return `- ${v.journal}${note}`;
-  });
-  return `## OTHER PUBLICATION VENUES\n${publicationRecordNote}\n${lines.join("\n")}`;
+function formatAllPublications(): string {
+  const lines = allPublications.map(
+    (p) =>
+      `- (${p.year}) ${p.authors}. "${p.title}." ${p.journal}${p.details ? `, ${p.details}` : ""}.${p.doi ? ` https://doi.org/${p.doi}` : ""}${p.note ? ` (${p.note})` : ""}`,
+  );
+  return `## ALL PEER-REVIEWED PUBLICATIONS (${allPublications.length})\n${lines.join("\n")}`;
+}
+
+function formatConferencePresentations(): string {
+  const lines = presentations
+    .filter((p) => p.category === "poster")
+    .map((p) => `- ${p.date}: ${p.authors}. "${p.title}." ${p.role}, ${p.venue}`);
+  return `## CONFERENCE POSTERS (all ${presentations.length} presentations are on /conferences)\n${lines.join("\n")}`;
 }
 
 function formatTheses(): string {
@@ -260,7 +271,7 @@ function formatTheses(): string {
 /* ----------------------------------------------------- software data --- */
 
 function formatSoftware(): string {
-  const lines = softwareProjects.map((p) => `- ${p.name}: ${p.description}`);
+  const lines = softwareProjects.map((p) => `- (${p.year}) ${p.authors}. ${p.name}. ${p.href}${p.doi ? ` DOI: ${p.doi}` : ""}`);
   return `## SOFTWARE & TOOLS\nGitHub organisation: ${githubOrg.name} (${githubOrg.href})\n${reproducibilityStatement}\n${lines.join("\n")}\nPage: /software`;
 }
 
@@ -291,11 +302,9 @@ function formatTeachingPhilosophy(): string {
 }
 
 function formatGuestLectures(): string {
-  const lines = guestLectures.map((g) => {
-    const venue = g.venue ? `, ${g.venue}` : "";
-    const date = g.date ? ` (${g.date})` : "";
-    return `- ${g.title}${venue}${date}`;
-  });
+  const lines = guestLectures.map(
+    (g) => `- ${g.date ?? g.year}: "${g.title}" — ${g.course ? `${g.course}, ` : ""}${g.host}`,
+  );
   return `## GUEST LECTURES\n${lines.join("\n")}`;
 }
 
@@ -322,19 +331,22 @@ function formatEvaluations(): string {
 }
 
 function formatPhilanthropyAndMentorship(): string {
-  const highlights = philanthropy.highlights.map((h) => `- ${h.value}: ${h.label} (${h.detail})`);
+  const scholars = philanthropy.scholars.map(
+    (sch) => `- ${sch.name} (${sch.period}): ${sch.support} Origin: ${sch.origin}.${sch.note ? ` ${sch.note}` : ""}`,
+  );
   const placements = internationalMentorship.placements.map(
-    (m) => `- ${m.year}: ${m.program}, ${m.institution}`,
+    (m) => `- ${m.name} (${m.year}): ${m.program}, ${m.institution}`,
   );
   return [
     "## PHILANTHROPY",
     ...philanthropy.paragraphs,
-    ...highlights,
-    "Sponsored students and beneficiaries are not named publicly.",
+    `${philanthropy.scholarsTitle}:`,
+    ...scholars,
+    `${philanthropy.emergency.title} (${philanthropy.emergency.year}): ${philanthropy.emergency.body}`,
     "",
     "## INTERNATIONAL MENTORSHIP",
     ...internationalMentorship.paragraphs,
-    internationalMentorship.placementsIntro,
+    `${internationalMentorship.placementsTitle}:`,
     ...placements,
   ].join("\n");
 }
@@ -343,39 +355,59 @@ function formatPhilanthropyAndMentorship(): string {
 
 function formatTalks(): string {
   const lines = talks.map((t) => {
-    const date = t.date ? ` (${t.date})` : "";
-    return `- ${t.type}: ${t.title}, ${t.venue}${date}`;
+    const links = t.links?.map((l) => ` [${l.label}: ${l.href}]`).join("") ?? "";
+    return `- ${t.date} — ${t.role}: "${t.title}", ${t.venue}${links}`;
   });
   return `## TALKS & KEYNOTES\n${talksStat}\n${lines.join("\n")}`;
 }
 
 function formatNews(): string {
-  const lines = newsMedia.map((n) => `- ${n.outlet}, ${n.date}: ${n.headline} — ${n.excerpt}`);
-  return `## NEWS & MEDIA\n${lines.join("\n")}`;
+  const fmt = (m: { year: number; date?: string; outlet: string; headline: string; description: string; links: { href: string }[] }) =>
+    `${m.date ?? m.year} — ${m.outlet}: "${m.headline}". ${m.description} ${m.links.map((l) => l.href).join(" ")}`.trim();
+  const lines = mediaCoverage.flatMap((m) => [
+    `- ${fmt(m)}`,
+    ...(m.subItems ?? []).map((sub) => `  - ${fmt(sub)}`),
+  ]);
+  return `## MEDIA COVERAGE & PUBLIC ENGAGEMENT\n${lines.join("\n")}`;
 }
 
 function formatGlobalEngagement(): string {
   const lines = [
     `Role: ${globalEngagement.role}`,
     globalEngagement.intro,
-    `Partner institutions: ${globalEngagement.partners.map((p) => p.name).join(", ")}`,
-    `${globalEngagement.mou.title} (${globalEngagement.mou.date}): ${globalEngagement.mou.description}`,
-    globalEngagement.philanthropyNote,
+    globalEngagement.delegationNote,
+    ...globalEngagement.partners.flatMap((p) =>
+      p.coverage.map(
+        (c) => `- ${p.name}: ${c.description} "${c.headline}" (${c.outlet}) ${c.links.map((l) => l.href).join(" ")}`,
+      ),
+    ),
+    "International thesis and dissertation committees:",
+    ...globalEngagement.internationalCommittees.map(
+      (c) => `- ${c.student}, ${c.role}, ${c.period}: "${c.title}", ${c.degree}, ${c.institution}`,
+    ),
+    `Overview: "${globalEngagement.overview.headline}" ${globalEngagement.overview.links.map((l) => l.href).join(" ")}`,
   ];
   return `## GLOBAL ENGAGEMENT (GHANA & AFRICA)\n${lines.join("\n")}`;
 }
 
 function formatEditorialService(): string {
   const roleLines = editorialRoles.map((r) => `- ${r.role}, ${r.organisation} (${r.period})`);
-  const leadershipLines = leadershipRoles.map(
-    (r) => `- ${r.role}, ${r.organisation}${r.current ? "" : " (previous)"}`,
+  const refereed = refereedJournals.map((g) => `- ${g.period}: reviewer for ${g.journals.join("; ")}`);
+  const orcid = orcidReviews.rows.map((r) => `- ${r.journal} (${r.publisher}): ${r.reviews} reviews, ${r.years}`);
+  const committees = [...universityCommittees, ...schoolCommittees].map(
+    (c) => `- ${c.period ? `${c.period}: ` : ""}${c.role}`,
   );
   return [
-    "## EDITORIAL & SERVICE",
-    roleLines.join("\n"),
+    "## EDITORIAL & PEER-REVIEW ACTIVITIES",
+    ...roleLines,
     `${editorialService.reviewCount} ${editorialService.reviewLabel}`,
-    "Leadership & committee roles:",
-    leadershipLines.join("\n"),
+    "Refereed journals:",
+    ...refereed,
+    "Verified peer reviews (ORCID):",
+    ...orcid,
+    "",
+    "## COMMITTEES & SERVICE",
+    ...committees,
   ].join("\n");
 }
 
@@ -406,7 +438,8 @@ export const siteContext: string = [
   formatPatents(),
   formatFunding(),
   formatPublications(),
-  formatPublicationVenues(),
+  formatAllPublications(),
+  formatConferencePresentations(),
   formatTheses(),
   formatSoftware(),
   formatTeaching(),

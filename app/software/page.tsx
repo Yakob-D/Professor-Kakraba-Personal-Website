@@ -70,37 +70,54 @@ export default function SoftwarePage() {
         <SectionHeading
           eyebrow={`GitHub · ${githubOrg.name}`}
           title="Open research"
-          gradientWord="code."
+          gradientWord="code book."
           action={
             <Button href={githubOrg.href} variant="secondary" icon="arrow-up-right">
               Visit the organisation
             </Button>
           }
         />
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {softwareProjects.map((proj, i) => (
-            <Reveal as="li" key={proj.name} delay={i * 80}>
-              <a
-                href={githubOrg.href}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="group/sw flex h-full flex-col rounded-2xl border border-line bg-surface p-6 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-brand-300/70"
-              >
-                <div className="flex items-center justify-between">
-                  <Icon name="code" className="size-5 text-brand-600 dark:text-brand-300" />
-                  <Icon
-                    name="arrow-up-right"
-                    className="size-4 text-faint transition-transform group-hover/sw:translate-x-0.5"
-                  />
-                </div>
-                <h3 className="mt-4 text-[0.9375rem] font-medium text-ink">{proj.name}</h3>
-                <p className="mt-2 flex-1 text-[0.8125rem] leading-relaxed text-muted">
-                  {proj.description}
+        <ol className="mt-10 grid gap-4 md:grid-cols-2">
+          {softwareProjects.map((proj) => (
+            <li key={proj.href} className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6">
+              <div className="flex items-center justify-between">
+                <Icon name="code" className="size-5 text-brand-600 dark:text-brand-300" />
+                <span className="font-mono text-[0.75rem] text-faint">{proj.year}</span>
+              </div>
+              <h3 className="mt-4 text-[0.9375rem] font-semibold leading-snug text-ink">{proj.name}</h3>
+              <p className="mt-2 text-[0.8125rem] leading-relaxed text-muted">{proj.description}</p>
+              <p className="mt-2 text-[0.8125rem] text-muted">{proj.authors}</p>
+              {proj.role && (
+                <p className="mt-1 text-[0.8125rem] text-muted">
+                  <span className="font-semibold text-ink-soft">Role: </span>
+                  {proj.role}
                 </p>
-              </a>
-            </Reveal>
+              )}
+              <div className="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-4">
+                <a
+                  href={proj.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="inline-flex items-center gap-1 text-[0.8125rem] font-medium text-brand-700 hover:underline dark:text-brand-300"
+                >
+                  {proj.href.includes("colab") ? "Open in Colab" : "View repository"}
+                  <Icon name="arrow-up-right" className="size-3.5" />
+                </a>
+                {proj.doi && (
+                  <a
+                    href={`https://doi.org/${proj.doi}`}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="inline-flex items-center gap-1 font-mono text-[0.75rem] text-brand-700 hover:underline dark:text-brand-300"
+                  >
+                    DOI: {proj.doi}
+                    <Icon name="arrow-up-right" className="size-3" />
+                  </a>
+                )}
+              </div>
+            </li>
           ))}
-        </ul>
+        </ol>
       </Section>
 
       {/* --------------------------------------------- reproducibility */}

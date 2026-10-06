@@ -15,6 +15,13 @@ import {
   courseHistory,
   revivedCourseNote,
   evaluations,
+  teachingStatement,
+  otherTeaching,
+  mastersCommittees,
+  doctoralCommittees,
+  studentsAdvised,
+  academicAdvising,
+  type CommitteeEntry,
   teachingStat,
   philosophy,
   guestLectures,
@@ -72,7 +79,7 @@ export default function TeachingPage() {
           eyebrow="Teaching history"
           title="Every course,"
           gradientWord="every term."
-          lede="Graduate and undergraduate sections taught at Tulane, Eastern Kentucky University and East Tennessee State University."
+          lede={teachingStatement}
         />
         <div className="mt-10 space-y-6">
           {courseHistory.map((h, i) => (
@@ -84,6 +91,43 @@ export default function TeachingPage() {
         <p className="mt-4 text-[0.75rem] text-faint">
           <span className="text-brand-500">*</span> {revivedCourseNote}
         </p>
+
+        <div className="mt-10 overflow-hidden rounded-2xl border border-line bg-surface">
+          <div className="border-b border-line px-5 py-4">
+            <h3 className="text-xl font-bold text-ink">Other teaching experience</h3>
+            <p className="mt-0.5 text-[0.8125rem] text-muted">Schools in Cape Coast, Ghana, before graduate study</p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[40rem] border-collapse">
+              <thead className="bg-surface-2">
+                <tr>
+                  {["Institution", "Course", "Times taught", "Mode", "Level"].map((h) => (
+                    <th
+                      key={h}
+                      scope="col"
+                      className="px-4 py-2.5 text-left font-mono text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-faint"
+                    >
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {otherTeaching.map((t) => (
+                  <tr key={t.institution} className="border-t border-line">
+                    <td className="px-4 py-2.5 text-[0.8125rem] font-medium text-ink">
+                      {t.institution} <span className="font-mono text-[0.75rem] text-faint">({t.period})</span>
+                    </td>
+                    <td className="px-4 py-2.5 text-[0.8125rem] text-ink-soft">{t.course}</td>
+                    <td className="px-4 py-2.5 font-mono text-[0.8125rem] text-ink-soft">{t.timesTaught}</td>
+                    <td className="px-4 py-2.5 text-[0.8125rem] text-ink-soft">{t.mode}</td>
+                    <td className="px-4 py-2.5 text-[0.8125rem] text-ink-soft">{t.level}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </Section>
 
       {/* ------------------------------------------------------- evaluations */}
@@ -112,20 +156,86 @@ export default function TeachingPage() {
 
       {/* -------------------------------------------------- guest lectures */}
       <Section id="guest-lectures" tone="tint" className="border-y border-line" spacing="lg">
-        <SectionHeading eyebrow="Guest lectures" title="Borrowed" gradientWord="classrooms." />
-        <ul className="mt-10 grid gap-3 sm:grid-cols-3">
+        <SectionHeading
+          eyebrow="Guest lectures & seminars"
+          title="Borrowed"
+          gradientWord="classrooms."
+          lede={`${guestLectures.length} guest lectures and invited seminars, 2024–2026.`}
+        />
+        <ol className="mt-10 grid gap-3 md:grid-cols-2">
           {guestLectures.map((g, i) => (
-            <Reveal as="li" key={g.title} delay={i * 90}>
-              <div className="rounded-2xl border border-line bg-surface p-5">
-                <Icon name="mic" className="size-4 text-brand-600 dark:text-brand-300" />
-                <h3 className="mt-3 text-[0.9375rem] font-semibold leading-snug text-ink">
-                  {g.title}
-                </h3>
-                {g.venue && <p className="mt-1.5 text-[0.8125rem] text-muted">{g.venue}</p>}
+            <Reveal as="li" key={g.title + g.year + g.host} delay={(i % 4) * 70} className="h-full">
+              <div className="flex h-full gap-4 rounded-2xl border border-line bg-surface p-5">
+                <Icon name="mic" className="mt-1 size-4 shrink-0 text-brand-600 dark:text-brand-300" />
+                <div className="min-w-0">
+                  <p className="font-mono text-[0.75rem] text-faint">{g.date ?? g.year}</p>
+                  <h3 className="mt-1 text-[1rem] font-semibold leading-snug text-ink">{g.title}</h3>
+                  {g.course && (
+                    <p className="mt-1.5 text-[0.8125rem] font-medium text-brand-700 dark:text-brand-300">
+                      {g.course}
+                    </p>
+                  )}
+                  <p className="mt-1 text-[0.8125rem] leading-relaxed text-muted">{g.host}</p>
+                </div>
               </div>
             </Reveal>
           ))}
-        </ul>
+        </ol>
+      </Section>
+
+      {/* ------------------------------------------------------- committees */}
+      <Section id="committees" spacing="lg">
+        <SectionHeading eyebrow="Thesis & dissertation committees" title="Students he has" gradientWord="supervised." />
+
+        <h3 className="mt-10 text-xl font-bold text-ink">Doctoral committees</h3>
+        <ol className="mt-4 grid gap-3 md:grid-cols-2">
+          {doctoralCommittees.map((c) => (
+            <CommitteeCard key={c.student + c.title} c={c} />
+          ))}
+        </ol>
+
+        <h3 className="mt-12 text-xl font-bold text-ink">Master’s committees</h3>
+        {mastersCommittees.map((g) => (
+          <div key={g.period} className="mt-6">
+            <p className="font-mono text-[0.8125rem] font-semibold text-brand-700 dark:text-brand-300">{g.period}</p>
+            <ol className="mt-3 grid gap-3 md:grid-cols-2">
+              {g.entries.map((c) => (
+                <CommitteeCard key={c.student + c.title} c={c} />
+              ))}
+            </ol>
+          </div>
+        ))}
+      </Section>
+
+      {/* -------------------------------------------------------- advising */}
+      <Section id="advising" tone="tint" className="border-y border-line" spacing="lg">
+        <SectionHeading eyebrow="Academic advising" title="Guiding the" gradientWord="path." lede={academicAdvising.intro} />
+        <div className="mt-10 grid gap-8 lg:grid-cols-[1.4fr_0.6fr]">
+          <ol className="list-decimal space-y-2 rounded-2xl border border-line bg-surface p-6 pl-10 text-[0.9375rem] text-ink-soft marker:font-mono marker:text-[0.75rem] marker:text-faint">
+            {academicAdvising.advisees.map((a) => (
+              <li key={a}>{a}</li>
+            ))}
+          </ol>
+          <div className="overflow-hidden rounded-2xl border border-line bg-surface">
+            <p className="border-b border-line px-5 py-3 text-lg font-bold text-ink">Students advised</p>
+            <table className="w-full border-collapse">
+              <thead className="bg-surface-2">
+                <tr>
+                  <th scope="col" className="px-5 py-2 text-left font-mono text-[0.6875rem] uppercase tracking-[0.08em] text-faint">Year</th>
+                  <th scope="col" className="px-5 py-2 text-right font-mono text-[0.6875rem] uppercase tracking-[0.08em] text-faint">No. of students</th>
+                </tr>
+              </thead>
+              <tbody>
+                {studentsAdvised.map((r) => (
+                  <tr key={r.year} className="border-t border-line">
+                    <td className="px-5 py-2 font-mono text-[0.8125rem] text-ink-soft">{r.year}</td>
+                    <td className="px-5 py-2 text-right font-mono text-[0.8125rem] font-semibold text-ink">{r.count}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </Section>
 
       {/* ------------------------------------------------- student resources */}
@@ -163,5 +273,20 @@ export default function TeachingPage() {
 
       <CTABand />
     </>
+  );
+}
+
+function CommitteeCard({ c }: { c: CommitteeEntry }) {
+  return (
+    <li className="h-full rounded-2xl border border-line bg-surface p-5">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+        <p className="text-[1rem] font-semibold text-ink">{c.student}</p>
+        <span className="font-mono text-[0.75rem] text-faint">{c.date}</span>
+      </div>
+      <p className="mt-1 text-[0.8125rem] font-medium text-brand-700 dark:text-brand-300">{c.role}</p>
+      <p className="mt-1.5 text-[0.875rem] leading-snug text-ink-soft">{c.title}</p>
+      {c.program && <p className="mt-1.5 text-[0.8125rem] text-muted">{c.program}</p>}
+      {c.note && <p className="mt-1 text-[0.8125rem] italic text-faint">{c.note}</p>}
+    </li>
   );
 }

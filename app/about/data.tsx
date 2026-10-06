@@ -143,43 +143,87 @@ export type Position = {
   external?: boolean;
 };
 
+/** Every entry under "Professional Experience" on the CV, in CV order. */
 export const positions: Position[] = [
   {
-    title: "Assistant Professor of Biostatistics & Data Science",
-    organisation: "Tulane University School of Public Health & Tropical Medicine",
-    period: "Jan 2024 – present",
+    title: "Assistant Professor of Biostatistics and Data Science (full-time position)",
+    organisation: "Department of Biostatistics and Data Science, Celia Scott Weatherhead School of Public Health and Tropical Medicine, Tulane University, New Orleans, LA, USA",
+    period: "Jan 2024 – Present",
     current: true,
-    href: "https://sph.tulane.edu",
+    href: "https://sph.tulane.edu/bios/samuel-kakraba",
   },
   {
-    // Placed under CAIDS only, per the source document's consistency fix:
-    // "Decide how to present the Senior Advisor role and place it under
-    // CAIDS only. The CV lists it under different units."
-    title: "Senior Advisor for Health Data Science Engagement",
-    organisation: "Connolly Alexander Institute for Data Science (CAIDS)",
-    period: "Jul 2026 – present",
+    // The CV's Personal Information lists CAIDS as his secondary affiliation,
+    // and CAIDS announced the appointment; the CV's Professional Experience
+    // line places it under the Tulane Center for Aging.
+    title: "Senior Advisor for Health Data Science Engagement (Secondary Affiliation)",
+    organisation: "Connolly Alexander Institute for Data Science (CAIDS), Tulane University, New Orleans, LA, USA",
+    period: "July 2026 – Present",
     current: true,
-    href: "https://caids.tulane.edu",
+    href: "https://datainstitute.tulane.edu/tulane-people/samuel-kakraba-phd",
   },
   {
-    title: "Assistant Professor (tertiary)",
-    organisation: "Tulane Center for Aging, School of Medicine",
-    period: "Jan 2024 – present",
+    title: "Assistant Professor (Tertiary Affiliation)",
+    organisation: "Tulane Center for Aging, School of Medicine, Tulane University, New Orleans, LA, USA",
+    period: "Jan 2024 – Present",
     current: true,
+    href: "https://medicine.tulane.edu/departments/tulane-center-aging-tulane-cancer-center/faculty/samuel-kakraba-phd",
   },
   {
     title: "Director",
     organisation: "Kakraba Research Group",
-    period: "2024 – present",
+    period: "2024 – Present",
     current: true,
     description: "People, projects and open positions all live on the lab's own site.",
     href: "https://kakraba-research-group.vercel.app",
     external: true,
   },
   {
-    title: "Assistant Professor of Statistics & Data Science",
-    organisation: "Eastern Kentucky University",
-    period: "2021 – 2023",
+    title: "Assistant Professor of Statistics and Data Science (Tenure track, full-time position)",
+    organisation: "Department of Mathematics and Statistics, Eastern Kentucky University, Richmond, KY, USA",
+    period: "Aug 2021 – Dec 2023",
+    current: false,
+  },
+  {
+    title: "Graduate Research Assistant (Full-time position)",
+    organisation: "Department of Information Science, UALR & UAMS; NIH Program Project Grant AG012411-17A1, Little Rock, AR, USA",
+    period: "Aug 2015 – July 2021",
+    current: false,
+  },
+  {
+    title: "Graduate Teaching Associate (Full-time position)",
+    organisation: "Department of Mathematics and Statistics, East Tennessee State University, Johnson City, TN, USA",
+    period: "2014 – 2015",
+    current: false,
+  },
+  {
+    title: "Graduate Teaching Assistant (Full-time position)",
+    organisation: "Department of Mathematics and Statistics, East Tennessee State University, Johnson City, TN, USA",
+    period: "2013 – 2014",
+    current: false,
+  },
+  {
+    title: "Instructor (Full-time position)",
+    organisation: "Wesley Girls’ High School, Cape Coast, Central Region, Ghana",
+    period: "2011 – 2013",
+    current: false,
+  },
+  {
+    title: "Instructor (Full-time position)",
+    organisation: "Wesley Girls’ High School, Cape Coast, Central Region, Ghana",
+    period: "2009 – 2011",
+    current: false,
+  },
+  {
+    title: "Instructor (Full-time position)",
+    organisation: "Montessori Primary School, Pedu, Cape Coast, Central Region, Ghana",
+    period: "2006 – 2007",
+    current: false,
+  },
+  {
+    title: "Instructor (Full-time position)",
+    organisation: "Cherish International School, Pedu, Cape Coast, Central Region, Ghana",
+    period: "2004 – 2006",
     current: false,
   },
 ];
@@ -194,34 +238,36 @@ export type Degree = {
   secondInstitution?: string;
   year: number;
   location: string;
-  /** e.g. "GPA 4.0" */
+  /** e.g. "GPA 4.0/4.0" */
   note?: string;
   thesis?: { title: string; advisor?: string };
 };
 
+/** "Education" on the CV, in full. */
 export const education: Degree[] = [
   {
     degree: "Ph.D.",
     field: "Bioinformatics",
-    institution: "University of Arkansas at Little Rock",
-    secondInstitution: "University of Arkansas for Medical Sciences",
+    institution: "University of Arkansas at Little Rock (UALR)",
+    secondInstitution: "University of Arkansas for Medical Sciences (UAMS)",
     year: 2021,
-    location: "Little Rock, Arkansas",
-    note: "GPA 4.0",
+    location: "Little Rock, AR, USA",
+    note: "GPA: 4.0/4.0",
     thesis: {
       title: "Drugs that Protect Against Protein Aggregation in Neurodegenerative Diseases",
-      advisor: "Robert J. Shmookler Reis",
+      advisor: "Advisor: Robert J.S. Reis, Ph.D.",
     },
   },
   {
     degree: "M.S.",
     field: "Mathematical Sciences",
-    institution: "East Tennessee State University",
+    institution: "East Tennessee State University (ETSU)",
     year: 2015,
-    location: "Johnson City, Tennessee",
+    location: "Johnson City, TN, USA",
+    note: "GPA: 3.56/4.0",
     thesis: {
       title: "A Hierarchical Graph for Nucleotide Binding Domain 2",
-      advisor: "Debra Knisley",
+      advisor: "Advisor: Debra J. Knisley, Ph.D.",
     },
   },
   {
@@ -229,7 +275,11 @@ export const education: Degree[] = [
     field: "Mathematics",
     institution: "University of Cape Coast",
     year: 2011,
-    location: "Cape Coast, Ghana",
+    location: "Cape Coast, Central Region, Ghana",
+    thesis: {
+      title: "The Relationship Between Students’ Perception of Mathematics and their Mathematics Achievements",
+      advisor: "Advisor: Benjamin Y. Sokpe, M.Phil.",
+    },
   },
 ];
 
@@ -238,42 +288,62 @@ export const education: Degree[] = [
 export type Honor = {
   title: string;
   organisation: string;
-  /** A descriptive period rather than a single invented year where the
-   *  source document doesn't give one. */
   year: string;
   note?: string;
 };
 
+/** Every entry under "Honors and Awards" on the CV, in CV order. */
 export const honors: Honor[] = [
   {
-    title: "Outstanding College Doctoral Candidate",
+    title: "Bibliometrics",
+    organisation: "",
+    year: "2026",
+    note: "17+ peer-reviewed publications; 15+ manuscripts under review; 328+ citations; h-index of 10 (vs. ~3–5 typical for assistant professors in biostatistics and data science); i10-index of 12; 3 patents/patent applications, 7+ robust, fully reproducible, publicly available machine learning workflows spanning multiple state-of-the-art algorithms.",
+  },
+  {
+    title: "Earned a Ph.D. with a perfect 4.0/4.0 cumulative GPA, graduating as the top-ranked student in the College of STEM",
     organisation: "University of Arkansas at Little Rock & UAMS",
-    year: "2020–21",
+    year: "2021",
+  },
+  {
+    title: "Outstanding College Doctoral Candidate",
+    organisation: "Donaghey College of Science, Technology, Engineering and Mathematics, University of Arkansas at Little Rock & UAMS, Little Rock, AR, USA",
+    year: "2020 – 2021",
   },
   {
     title: "Outstanding Departmental Doctoral Candidate",
-    organisation: "University of Arkansas at Little Rock & UAMS",
-    year: "2020–21",
+    organisation: "Department of Information Sciences, University of Arkansas at Little Rock, Little Rock, AR, USA",
+    year: "2020 – 2021",
   },
   {
-    title: "Top-ranked student, College of STEM",
-    organisation: "University of Arkansas at Little Rock",
-    year: "During Ph.D. (2015–2021)",
+    title: "Outstanding Oral Presentation (Third Place)",
+    organisation: "Drug Discovery & Development Colloquium, University of Arkansas for Medical Sciences, Little Rock, AR, USA",
+    year: "2019 – 2020",
   },
   {
-    title: "3rd place, Outstanding Oral Presentation",
-    organisation: "UAMS Drug Discovery Colloquium",
-    year: "During Ph.D. (2015–2021)",
+    title: "Graduate Research Assistant Award (Full tuition waiver, stipend, and health insurance)",
+    organisation: "NIH Program Project Grant AG012411-17A1, Department of Information Science, UALR & UAMS, Little Rock, AR, USA",
+    year: "2016 – 2021",
   },
   {
-    title: "Faculty Award for Outstanding Graduate Student",
-    organisation: "East Tennessee State University",
-    year: "During M.S. (– 2015)",
+    title: "Graduate Research Assistant Award (Full tuition waiver, stipend, and health insurance)",
+    organisation: "Department of Information Sciences, University of Arkansas at Little Rock, Little Rock, AR, USA",
+    year: "2015 – 2016",
   },
   {
-    title: "Graduate assistantship awards",
-    organisation: "East Tennessee State University · University of Arkansas at Little Rock & UAMS",
-    year: "2013–2021",
+    title: "Faculty Award: Outstanding Graduate Student",
+    organisation: "Department of Mathematics and Statistics, East Tennessee State University, Johnson City, TN, USA",
+    year: "2014 – 2015",
+  },
+  {
+    title: "Graduate Teaching Associate Award (Full tuition waiver and stipend)",
+    organisation: "Department of Mathematics and Statistics, East Tennessee State University, Johnson City, TN, USA",
+    year: "2014 – 2015",
+  },
+  {
+    title: "Graduate Teaching Assistant Award (Full tuition waiver and stipend)",
+    organisation: "Department of Mathematics and Statistics, East Tennessee State University, Johnson City, TN, USA",
+    year: "2013 – 2014",
   },
 ];
 
@@ -285,27 +355,163 @@ export type SkillGroup = {
   items: string[];
 };
 
+/** "Computational Programming and Software Skills" on the CV, in full. */
 export const skillGroups: SkillGroup[] = [
   {
-    label: "Statistics & programming",
+    label: "Statistical & Data Science Software",
     icon: "code",
-    items: ["R", "Python", "SAS", "SPSS", "Minitab", "Prism", "Hadoop"],
+    items: ["R Statistical Software", "SAS", "Python", "Graph Pad Prism", "Minitab", "Hadoop", "Apache", "Bash scripting", "SPSS"],
   },
   {
-    label: "Molecular modeling",
+    label: "Molecular Modeling & Simulation",
     icon: "flask",
-    items: ["GROMACS", "Schrödinger Maestro", "AutoDock Vina", "Discovery Studio", "Chimera", "Sybyl"],
+    items: ["Gromacs", "Discovery Studio", "Maestro Schrödinger", "AutoDock Vina", "Raccoon", "Modeler", "Chimera", "Cytoscape", "Sybyl"],
   },
-  { label: "Network analysis", icon: "network", items: ["Cytoscape"] },
-  { label: "Infrastructure", icon: "layers", items: ["Linux", "LaTeX"] },
+  {
+    label: "Operating Systems & Applications",
+    icon: "layers",
+    items: ["Linux/Ubuntu", "LaTeX", "Windows", "Android", "Microsoft Office (Word, Excel, PowerPoint)"],
+  },
 ];
 
+/** "Professional Memberships and Offices" on the CV, in full. */
 export const memberships = [
-  "Delta Omega Honorary Society in Public Health",
-  "International Society for Computational Biology (ISCB)",
-  "American Statistical Association (ASA)",
-  "American Association of University Professors (AAUP)",
-  "MidSouth Computational Biology and Bioinformatics Society (MCBIOS)",
+  "2024 – Present · Member, Delta Omega National Honorary Society in Public Health–Eta Chapter, LA, USA",
+  "2023 – Present · Member, International Society for Computational Biology",
+  "2023 – Present · Member, American Statistical Association, USA",
+  "2023 – Present · Member, American Mathematical Association, USA",
+  "2021 – Present · Member, American Association of University Professors, USA",
+  "2019 – Present · Member, American Association of Pharmaceutical Scientists–UAMS Chapter, AR, USA",
+  "2016 – Present · Member, Drug Discovery and Colloquium/MALTO, AR, USA",
+  "2016 – 2017 · Co-chair, Next Generation Sequence Section, MCBIOS Conference, Memphis, TN, USA",
+  "Vice President, UALR & UAMS Bioinformatics Club–Chapter of the MCBIOS, AR, USA",
+  "2015 – Present · Member, Midsouth Computational Biology and Bioinformatics Society, USA",
+  "2015 · Member, Kappa Mu Epsilon (KME) Tennessee Beta Chapter, TN, USA",
+  "2014 – 2015 · Member, American Mathematical Society, USA",
+  "2002 – 2004 · Founder and President, Wildlife Conservation Club, University Practice Senior High School, Cape Coast, Central Region, Ghana. Founded ecology and conservation club, organized workshops, mentored future leaders.",
+  "2003 – 2004 · Pra House Prefect, University Practice Senior High School, Cape Coast, Central Region, Ghana",
+  "2003 – 2004 · Board Member, Students Representative Council (SRC), University Practice Senior High School, Cape Coast, Central Region, Ghana",
+  "1999 – 2001 · Library Prefect, Tuwohofo Holly International School, Akotokyir, Cape Coast, Central Region, Ghana",
+];
+
+/* ------------------------------------------------ coursework & training */
+
+/** "Selected Graduate Level Coursework" on the CV, in full. */
+export const graduateCoursework = [
+  {
+    label: "Data Science (AI and ML) & Statistics & Biostatistics",
+    items: [
+      "Artificial Intelligence for Biomedical and Public Health Applications",
+      "Introduction to Methods in Data Science",
+      "Programming in R",
+      "Programming in Python",
+      "Introduction to Data Science and Technologies",
+      "Data and Information Visualization",
+      "Data Management and Data Mining",
+      "Probability and Statistics",
+      "Regression Analysis",
+      "Advanced Statistical Analysis",
+      "Multivariate Statistics",
+      "Biostatistics I & II",
+      "Machine Learning and Applications/Statistical Learning",
+      "Deep Learning",
+      "Data Science and Technologies",
+      "Big Data and Data Analytics",
+      "Data Mining and Visualization",
+      "Predictive Modeling and Analytics",
+      "Artificial Intelligence",
+      "Business Analytics and Business Intelligence",
+      "Categorical Data Analysis",
+      "Statistical Methods I & II",
+      "Statistical Consulting",
+      "Mathematical Statistics I & II",
+      "Statistical Inference",
+      "Probability & Statistics & Applied Statistics",
+    ],
+  },
+  {
+    label: "Computational Biology & Bioinformatics & Drug Discovery & Mathematics",
+    items: [
+      "Molecular Modeling and Simulation",
+      "Bioinformatics: Theory and Applications",
+      "Discrete Models of Proteins",
+      "Complex Network and Systems Biology",
+      "Drug Discovery and Design",
+      "Biology of Aging",
+      "Molecular Biology",
+      "Graph Theory I & II",
+      "Calculus I–III",
+      "College Algebra",
+      "Real Analysis",
+      "Linear Algebra",
+      "Differential Geometry",
+      "Complex Analysis",
+      "Graph-Theoretic Modeling",
+      "Modern Algebra",
+      "Ordinary Differential Equations",
+    ],
+  },
+];
+
+/** "Professional Development" and "Licenses and Certifications" on the CV. */
+export const professionalDevelopment = [
+  {
+    label: "Tulane University, New Orleans, LA, USA (Fall 2024)",
+    items: [
+      "Office of Research Faculty Orientation, Tulane University, New Orleans, LA, USA",
+      "New Faculty Orientation, Tulane University, New Orleans, LA, USA",
+    ],
+  },
+  {
+    label: "CITI Training Certifications – Tulane University",
+    items: [
+      "Human Research – Group 2: Social and Behavioral Research (Completed: October 22, 2024)",
+      "Responsible Conduct of Research – Social and Behavioral Research Course (Completed: October 21, 2024)",
+      "Conflict of Interest Mini-Course (Completed: October 21, 2024)",
+      "COVID-19 Public Training Series (All completed: October 21, 2024)",
+      "Research Security Training (Combined) (Completed: December 10, 2025)",
+    ],
+  },
+  {
+    label: "Eastern Kentucky University, Richmond, KY, USA (2021–2023)",
+    items: [
+      "Junior Faculty Mentorship Program, College of STEM",
+      "New Faculty Orientation (August 2021)",
+      "Professional Development Session on Classroom Technology (2021)",
+      "STA 270 Workshop (Fall 2021)",
+      "WebAssign Training (Fall 2021)",
+      "Junior Faculty Mentoring Program Orientation (Fall 2021–Spring 2022)",
+      "Workshops on Mentorship and Teaching Effectiveness (2022)",
+      "Faculty Center for Teaching and Learning Workshop: “Integrating Learning Targets” (Fall 2023)",
+    ],
+  },
+  {
+    label: "Licenses and Certifications",
+    items: [
+      "R Programming (2016) – Johns Hopkins University, Coursera",
+      "The Data Scientist’s Toolbox (2016) – Johns Hopkins University, Coursera",
+      "Drug Discovery (2016) – University of California, San Diego, Coursera",
+    ],
+  },
+];
+
+/** "Co-Curricular Achievements" on the CV: track and field results. */
+export const coCurricular = [
+  {
+    label: "University Practice Senior High School, Cape Coast, Central Region, Ghana",
+    items: [
+      "5000 Meters (5K), Boys' Division — First Place (20:34.4) – 2001/2002",
+      "5000 Meters (5K), Boys' Division — Second Place (17:41.55) – 2002/2003",
+      "5000 Meters (5K), Boys' Division — Third Place (19:17.14) – 2003/2004",
+    ],
+  },
+  {
+    label: "Circuit 4, Basic Schools Sports Festival, Cape Coast, Central Region, Ghana",
+    items: [
+      "1500 Meters (1.5K), Boys' Division — First Place (5:14:40) – 1998/1999",
+      "3000 Meters (3K), Boys' Division — Third Place (11:09.39) – 1998/1999",
+    ],
+  },
 ];
 
 /* ------------------------------------------------------------ beyond work */

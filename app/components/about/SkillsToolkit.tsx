@@ -34,7 +34,7 @@ export function SkillsToolkit() {
         <div className="h-full rounded-2xl border border-line bg-brand-gradient-soft p-6">
           <div className="flex items-center gap-2.5">
             <Icon name="users" className="size-4 text-brand-600 dark:text-brand-300" />
-            <h3 className="text-[0.875rem] font-semibold text-ink">Memberships</h3>
+            <h3 className="text-[0.875rem] font-semibold text-ink">Professional memberships and offices</h3>
           </div>
           <ul className="mt-4 space-y-2.5">
             {memberships.map((m) => (
