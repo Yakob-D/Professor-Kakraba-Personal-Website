@@ -62,14 +62,16 @@ export function ChatPanel({ inputRef }: { inputRef: RefObject<HTMLTextAreaElemen
   }
 
   return (
-    <div className="flex h-full flex-col">
+    // flex-1 + min-h-0 (not h-full): the panel sits below ChatWidget's header,
+    // so it must take only the remaining height or the input gets clipped.
+    <div className="flex min-h-0 flex-1 flex-col">
       {/* ----------------------------------------------------------- messages */}
       <div
         ref={listRef}
         role="log"
         aria-live="polite"
         aria-label="Conversation"
-        className="flex-1 space-y-4 overflow-y-auto px-4 py-4"
+        className="min-h-0 flex-1 space-y-4 overflow-y-auto px-4 py-4"
       >
         {messages.length === 0 && (
           <div className="flex h-full flex-col justify-end gap-4">

@@ -104,7 +104,7 @@ function validateMessages(body: unknown): ValidationResult {
 
 /* --------------------------------------------------------------- handler --- */
 
-const model = google("gemini-flash-latest");
+const model = google("gemini-3.5-flash-lite");
 
 export async function POST(request: Request) {
   const ip = getClientIp(request);
