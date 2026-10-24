@@ -364,35 +364,35 @@ export const philanthropy = {
       name: "Isaac Okyere",
       period: "2022–2023",
       support:
-        "Full sponsorship supporting bachelor’s degree training, covering one year of university tuition and fees at the University of Cape Coast, Ghana.",
+        "Provided full sponsorship supporting bachelor’s degree training, covering one year of university tuition and fees at the University of Cape Coast, Ghana.",
       origin: "Agona Swedru, Central Region, Ghana",
     },
     {
       name: "Dorothy Apreku",
       period: "2018–2022",
       support:
-        "Full sponsorship supporting bachelor’s degree training, covering five years of university education including tuition and living expenses at the University of Cape Coast, Ghana.",
+        "Provided full sponsorship supporting bachelor’s degree training, covering five years of university education including tuition and living expenses at the University of Cape Coast, Ghana.",
       origin: "Winneba, Central Region, Ghana",
     },
     {
       name: "Mawufemor Kpo",
       period: "2012–2015",
       support:
-        "Full sponsorship supporting bachelor’s degree training, covering three years of university education including tuition and living expenses at the University of Cape Coast, Ghana.",
+        "Provided full sponsorship supporting bachelor’s degree training, covering three years of university education including tuition and living expenses at the University of Cape Coast, Ghana.",
       origin: "Akotokyir, Cape Coast, Central Region, Ghana",
-      note: "First-year tuition and fees were co-sponsored by Francis Jami (Cape Coast, Central Region, Ghana).",
+      note: "Note: First-year tuition and fees were co-sponsored by Francis Jami (Cape Coast, Central Region, Ghana).",
     },
     {
       name: "Persis Blankson",
       period: "2013–2014",
-      support: "Full sponsorship supporting bachelor’s degree training, covering one year of university tuition and fees.",
+      support: "Provided full sponsorship supporting bachelor’s degree training, covering one year of university tuition and fees.",
       origin: "Takoradi, Western Region, Ghana",
     },
   ] satisfies SponsoredScholar[],
   emergency: {
     title: "Emergency medical and humanitarian support",
     year: 2016,
-    body: "Beyond educational sponsorship, he has mobilized emergency financial support for individuals facing life-threatening medical needs. In 2016, he organized and led a fundraising effort among friends and colleagues that raised approximately $4,000 USD for a critical, life-saving surgery for Alexander Yawson, a teenage girl in Ghana whose condition was life-threatening and who otherwise lacked the financial means to undergo the procedure. She survived and recovered following the surgery.",
+    body: "Beyond educational sponsorship, he has also mobilized emergency financial support for individuals facing life-threatening medical needs. In 2016, he organized and led a fundraising effort among friends and colleagues that raised approximately $4,000 USD for a critical, life-saving surgery for Alexander Yawson, a teen-age girl in Ghana whose condition was life-threatening and who otherwise lacked the financial means to undergo the procedure. She survived and recovered following the surgery.",
   },
 };
 
@@ -416,17 +416,17 @@ export const internationalMentorship = {
   placementsTitle: "Selected recent mentees (2014–present)",
   placements: [
     { name: "Andrews Jacobs Bilson", year: 2026, program: "Interdisciplinary PhD in Aging Studies", institution: "Tulane University, New Orleans, LA, USA" },
-    { name: "Desmond Yemeh", year: 2024, program: "Interdisciplinary PhD in Aging Studies", institution: "Tulane University, New Orleans, LA, USA" },
+    { name: "Desmond Yemeh", year: 2024, program: "Interdisciplinary PhD Aging Studies", institution: "Tulane University, New Orleans, LA, USA" },
     { name: "Owusua Ampong", year: 2024, program: "M.S. Data Science and Analytics", institution: "Georgia State University, Atlanta, GA, USA" },
     { name: "Benjamin Amoah", year: 2023, program: "M.S. Plant Science and Agronomy", institution: "South Dakota State University, Brookings, SD, USA" },
     { name: "Shadrack Asante", year: 2022, program: "M.S. Mathematical Sciences", institution: "East Tennessee State University, Johnson City, TN, USA" },
     { name: "Wilberforce De-Graft", year: 2022, program: "MBA Accounting & Finance", institution: "Eastern Kentucky University, Richmond, KY, USA" },
     { name: "Matthew Quansah", year: 2022, program: "MPH Health Promotions", institution: "Eastern Kentucky University, Richmond, KY, USA" },
-    { name: "Kuukua Egyinba Abraham", year: 2022, program: "M.S. Applied Statistics", institution: "Minnesota State University, Mankato, MN, USA" },
+    { name: "Kuukua Egyinba Abraham", year: 2022, program: "M.S. Applied Statistics", institution: "Minnesota State University Mankato, MN, USA" },
     { name: "Khadija Abdul-Samed", year: 2022, program: "M.A. Clinical Mental Health Counseling", institution: "East Tennessee State University, Johnson City, TN, USA" },
     { name: "Edmund Adorkor", year: 2021, program: "M.S. Agribusiness and Applied Economics", institution: "North Dakota State University, Fargo, ND, USA" },
     { name: "Bright Kweku Manu", year: 2021, program: "M.S. Mathematical Sciences", institution: "East Tennessee State University, Johnson City, TN, USA" },
-    { name: "Matthew Quansah", year: 2021, program: "M.S. Civil and Environmental Engineering", institution: "South Dakota State University, Brookings, SD, USA" },
+    { name: "Matthew Quansah", year: 2021, program: "M.S. Civil and Environmental Engineering", institution: "Brookings, South Dakota State University, SD, USA" },
     { name: "Enoch Kwaku Larrey", year: 2021, program: "Ph.D. Bioinformatics", institution: "UALR & UAMS, Little Rock, AR, USA" },
     { name: "Joseph Asante Jnr.", year: 2020, program: "Ph.D. Bioinformatics", institution: "UALR & UAMS, Little Rock, AR, USA" },
     { name: "Nicholas Fiifi Hagan", year: 2019, program: "Ph.D. Business Information Systems", institution: "University of Memphis, Memphis, TN, USA" },

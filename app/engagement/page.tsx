@@ -236,10 +236,19 @@ export default function EngagementPage() {
           ))}
       </Section>
 
-      {/* ---------------------------------------------------- philanthropy */}
+      {/* ------------------------- philanthropy & international mentorship */}
       <Section id="philanthropy" tone="tint" className="border-y border-line" spacing="lg">
-        <SectionHeading eyebrow="Philanthropy" title="Opening doors" gradientWord="others opened." />
-        <Reveal className="mt-10 max-w-3xl">
+        <SectionHeading
+          eyebrow="Philanthropy and International Mentorship"
+          title="Philanthropy and"
+          gradientWord="International Mentorship."
+          lede={`${philanthropy.scholars.length + 1} philanthropic sponsorships and ${internationalMentorship.placements.length} international mentees helped into U.S. graduate programs, as listed on his CV.`}
+        />
+
+        <h3 className="mt-14 border-b border-line pb-3 font-display text-2xl font-bold text-ink">
+          Philanthropic Sponsorships and Support
+        </h3>
+        <Reveal className="mt-6 max-w-3xl">
           <Prose size="lg">
             {philanthropy.paragraphs.map((p) => (
               <p key={p}>{p}</p>
@@ -247,7 +256,7 @@ export default function EngagementPage() {
           </Prose>
         </Reveal>
 
-        <h3 className="mt-12 text-xl font-bold text-ink">{philanthropy.scholarsTitle}</h3>
+        <h4 className="mt-10 text-xl font-bold text-ink">{philanthropy.scholarsTitle}</h4>
         <ol className="mt-4 grid gap-3 md:grid-cols-2">
           {philanthropy.scholars.map((sch, i) => (
             <Reveal as="li" key={sch.name} delay={i * 80} className="h-full">
@@ -263,7 +272,7 @@ export default function EngagementPage() {
                   <p className="mt-1.5 text-[0.875rem] leading-relaxed text-ink-soft">{sch.support}</p>
                   <p className="mt-1.5 flex items-start gap-1.5 text-[0.8125rem] text-muted">
                     <Icon name="map-pin" className="mt-[0.2rem] size-3.5 shrink-0 text-brand-500" />
-                    Origin: {sch.origin}
+                    Origin: {sch.origin}.
                   </p>
                   {sch.note && <p className="mt-1.5 text-[0.8125rem] italic text-faint">{sch.note}</p>}
                 </div>
@@ -277,19 +286,21 @@ export default function EngagementPage() {
             <Icon name="heart" className="mt-1 size-5 shrink-0 text-brand-600 dark:text-brand-300" />
             <div>
               <div className="flex flex-wrap items-baseline gap-x-3">
-                <h3 className="text-xl font-bold text-ink">{philanthropy.emergency.title}</h3>
+                <h4 className="text-xl font-bold text-ink">{philanthropy.emergency.title}</h4>
                 <span className="font-mono text-[0.75rem] text-faint">{philanthropy.emergency.year}</span>
               </div>
               <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">{philanthropy.emergency.body}</p>
             </div>
           </div>
         </Reveal>
-      </Section>
 
-      {/* ---------------------------------------- international mentorship */}
-      <Section id="mentorship" spacing="lg">
-        <SectionHeading eyebrow="International mentorship" title="From Ghana to" gradientWord="graduate school." />
-        <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_0.6fr] lg:items-start lg:gap-14">
+        <h3
+          id="mentorship"
+          className="mt-20 scroll-mt-24 border-b border-line pb-3 font-display text-2xl font-bold text-ink"
+        >
+          International Student Mentorship
+        </h3>
+        <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_0.6fr] lg:items-start lg:gap-14">
           <Reveal>
             <Prose size="lg">
               {internationalMentorship.paragraphs.map((p) => (
@@ -314,7 +325,7 @@ export default function EngagementPage() {
         <Reveal delay={100} className="mt-12">
           <div className="overflow-hidden rounded-2xl border border-line bg-surface">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-line px-5 py-4">
-              <h3 className="text-xl font-bold text-ink">{internationalMentorship.placementsTitle}</h3>
+              <h4 className="text-xl font-bold text-ink">{internationalMentorship.placementsTitle}</h4>
               <span className="font-mono text-[0.75rem] text-faint">
                 {internationalMentorship.placements.length} mentees
               </span>
@@ -348,7 +359,7 @@ export default function EngagementPage() {
       </Section>
 
       {/* ------------------------------------------------- editorial/service */}
-      <Section id="editorial" tone="tint" className="border-y border-line">
+      <Section id="editorial" spacing="lg">
         <SectionHeading eyebrow="Editorial & peer-review activities" title="Keeping the" gradientWord="field honest." />
 
         <h3 className="mt-10 text-xl font-bold text-ink">Editorial board membership</h3>
@@ -436,7 +447,7 @@ export default function EngagementPage() {
       </Section>
 
       {/* ------------------------------------------------------- committees */}
-      <Section id="committees" spacing="lg">
+      <Section id="committees" tone="tint" className="border-y border-line">
         <SectionHeading eyebrow="Service" title="Committees &" gradientWord="leadership." />
         {[
           { label: "University committees / advisory boards", items: universityCommittees },
