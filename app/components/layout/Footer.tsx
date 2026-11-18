@@ -148,6 +148,15 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} {profile.displayName}. All rights reserved.
           </p>
+          <p>
+            Developed by Yakob Dibabu · Contact at{" "}
+            <a
+              href="mailto:dibabuyakob@gmail.com"
+              className="text-ink-soft underline-offset-[3px] transition-colors hover:text-brand-700 hover:underline dark:hover:text-brand-200"
+            >
+              dibabuyakob@gmail.com
+            </a>
+          </p>
           <p className="flex items-center gap-2">
             <Icon name="clock" className="size-3.5" />
             Last updated {formatLongDate(siteMeta.lastUpdated)}
