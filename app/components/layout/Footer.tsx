@@ -149,7 +149,7 @@ export function Footer() {
             © {new Date().getFullYear()} {profile.displayName}. All rights reserved.
           </p>
           <p>
-            Developed by Yakob Dibabu · Contact at{" "}
+            Developed by Yakob Dibabu Assefa · Contact at{" "}
             <a
               href="mailto:dibabuyakob@gmail.com"
               className="text-ink-soft underline-offset-[3px] transition-colors hover:text-brand-700 hover:underline dark:hover:text-brand-200"
