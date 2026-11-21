@@ -86,7 +86,7 @@ function formatProfile(): string {
     `Languages: ${profile.languages.join(", ")}`,
     `Office: ${profile.office.building}, ${profile.office.street}, ${profile.office.city}`,
     `CV: ${profile.cv.href} (last updated ${profile.cv.updated})`,
-    `The research group (Kakraba Research Group, ${labSite.href}) is a separate site covering lab people, alumni and "Join the Lab" — link out to it rather than describing lab members.`,
+    `The research group (Kakraba Global Research Collaborative, ${labSite.href}) is a separate site covering lab people, alumni and "Join the Lab" — link out to it rather than describing lab members.`,
   ].filter((line): line is string => Boolean(line));
   return `## PROFILE\n${lines.join("\n")}`;
 }

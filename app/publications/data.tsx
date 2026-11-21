@@ -1,6 +1,6 @@
 /* =============================================================================
    PUBLICATIONS DATA
-   Source: the Kakraba Research Group publications page
+   Source: the Kakraba Global Research Collaborative publications page
    (kakraba-research-group.vercel.app/publications), which mirrors the CV's
    "Peer-Reviewed Publications" list: 17 papers, each with its DOI. Only
    peer-reviewed / in-press work is listed; manuscripts under review are not.

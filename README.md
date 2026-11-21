@@ -4,7 +4,7 @@ Dr. Samuel Kakraba's personal portfolio site: a Next.js (App Router) build cover
 Research, Publications, Software & Tools, Teaching, Engagement and Contact. Built against
 `plan/kakraba-website-plan.md`; content was then rebuilt to strictly match
 `plan/kakraba-website-informations.txt` (a research-backed website blueprint), with lab/mentorship
-content kept on the separate Kakraba Research Group site by direction.
+content kept on the separate Kakraba Global Research Collaborative site by direction.
 
 ## Getting started
 

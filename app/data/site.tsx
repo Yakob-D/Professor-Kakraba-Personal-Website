@@ -121,7 +121,7 @@ export type NavItem = {
  * Follows the source document's recommended navigation exactly, with one
  * deliberate exception: the document recommends folding Lab/Mentorship/
  * Join-the-Lab content into this site. By direction, that stays on the
- * separate Kakraba Research Group site instead (this site only links out
+ * separate Kakraba Global Research Collaborative site instead (this site only links out
  * to it — see `labSite` below), so "Lab" is not a nav item here.
  */
 export const primaryNav: NavItem[] = [
@@ -200,8 +200,8 @@ export const socialLinks: SocialLink[] = [
  * single source for people, alumni, projects and "Join the Lab".
  */
 export const labSite = {
-  name: "Kakraba Research Group",
-  shortName: "Kakraba Research Group",
+  name: "Kakraba Global Research Collaborative",
+  shortName: "Kakraba Global Research Collaborative",
   href: "https://kakraba-research-group.vercel.app",
 };
 

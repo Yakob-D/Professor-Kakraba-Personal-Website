@@ -171,7 +171,7 @@ export const positions: Position[] = [
   },
   {
     title: "Director",
-    organisation: "Kakraba Research Group",
+    organisation: "Kakraba Global Research Collaborative",
     period: "2024 – Present",
     current: true,
     description: "People, projects and open positions all live on the lab's own site.",

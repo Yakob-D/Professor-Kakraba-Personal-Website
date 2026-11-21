@@ -1,6 +1,6 @@
 /* =============================================================================
    CONFERENCE PRESENTATIONS
-   Source: the Kakraba Research Group conferences page
+   Source: the Kakraba Global Research Collaborative conferences page
    (kakraba-research-group.vercel.app/conferences), which is the CV's
    "Conference Presentations" list with spelling cleaned up: 62 entries,
    2015–2026. Links are the CV's own media-coverage URLs, attached to the
